@@ -1,4 +1,4 @@
-package com.hxkj.ws.server;
+package com.hxkj.common.util.ws.server;
 
 import com.hxkj.auth.model.AuthUser;
 

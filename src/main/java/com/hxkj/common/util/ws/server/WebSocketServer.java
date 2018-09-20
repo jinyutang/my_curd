@@ -1,13 +1,11 @@
-package com.hxkj.ws.server;
+package com.hxkj.common.util.ws.server;
 
 import com.hxkj.auth.model.AuthUser;
-import com.hxkj.common.util.StringUtils;
 import org.apache.log4j.Logger;
 
 import javax.websocket.*;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
-import java.util.List;
 
 
 /**

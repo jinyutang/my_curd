@@ -93,13 +93,6 @@ public class AuthUserController extends BaseController {
         }
         authUser.setLastEditTime(new Date());
 
-        String gender = authUser.getGender();
-        if("1".equals("gender")){
-            authUser.setGender("res/image/maleAvatar.jpg");
-        }else{
-            authUser.setGender("res/image/femaleAvatar.jpg");
-        }
-
         boolean updateFlag = authUser.update();
         if (updateFlag) {
             renderText(Constant.UPDATE_SUCCESS);

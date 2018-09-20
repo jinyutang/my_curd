@@ -1,0 +1,56 @@
+<!--选择角色页面-->
+<#include "/WEB-INF/views/common/common.html"/> <@layout>
+<link rel="stylesheet" href="${ctx!}/res/css/list.css">
+</head>
+<body>
+<script type="text/javascript">
+    /*查询函数*/
+    function queryModel() {
+        var queryParams = {
+            search_LIKE_role_name: $("#roleName").textbox("getValue"),
+        };
+        $('#dg').datagrid('load', queryParams);
+    }
+
+
+    /**
+     * 保存 选中的角色
+     */
+    function saveSelected(){
+        var ary = $("#dg").datagrid("getSelections");
+        if(ary.length==0){
+            parent.popup.msg('请至少选择一个角色');
+            return;
+        }
+        if(top.location==self.location){
+           return;
+        };
+        /*调用父窗口函数*/
+        parent.saveAction(ary);
+    }
+</script>
+<div id="nestLayout" class="easyui-layout" fit="true">
+    <div data-options="region:'center' "   split="true" style="border-top: none">
+        <table id="dg" class="easyui-datagrid  "
+               url="${ctx!}/utils/roleData"   pageSize="40" pageList="[20,40]"
+               fitColumns="true" singleSelect="${singleSelect}"
+               toolbar="#tb" rownumbers="true"  border="false"
+               fit="true" pagination="true">
+            <thead>
+            <tr>
+                <#if singleSelect=="false"><th data-options="field:'id',checkbox:true"></th></#if>
+                <th field="role_name" width="150">角色名</th>
+                <th field="role_desc" width="300">角色描述</th>
+            </tr>
+            </thead>
+        </table>
+        <div id="tb" >
+            <a onclick="saveSelected()" href="#" class="easyui-linkbutton" iconCls="iconfont icon-save" plain="true">${yesBtnTxt!}</a>
+            <span id="enterSpan" class="searchInputArea" >
+					<input id="roleName" prompt="角色名" class="easyui-textbox" style="width:150px">
+					<a href="#" class="easyui-linkbutton" data-options="iconCls:'iconfont icon-search',plain:true" onclick="queryModel()">搜索</a>
+            </span>
+        </div>
+    </div>
+</div>
+</@layout>

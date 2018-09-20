@@ -5,7 +5,6 @@ import freemarker.cache.TemplateLoader;
 import freemarker.template.Configuration;
 import freemarker.template.DefaultObjectWrapper;
 import freemarker.template.Template;
-import freemarker.template.TemplateException;
 import org.apache.log4j.Logger;
 
 import java.io.*;
@@ -27,15 +26,12 @@ public abstract class FreemarkerUtils {
     public static String renderAsText(String templateContent, Map<String, Object> paramMap) {
         StringWriter writer = new StringWriter();
         try {
-            // 实现逻辑可能并不合适
             Configuration cfg = new Configuration(Configuration.VERSION_2_3_22);
             cfg.setTemplateLoader(new StringTemplateLoader(templateContent));
             cfg.setDefaultEncoding(Constant.DEFAULT_ENCODEING);
             Template template = cfg.getTemplate("");
             template.process(paramMap, writer);
-        } catch (IOException e) {
-            LOG.error(e.getMessage(), e);
-        } catch (TemplateException e) {
+        } catch (Exception e) {
             LOG.error(e.getMessage(), e);
         }
         return writer.toString();
@@ -67,9 +63,7 @@ public abstract class FreemarkerUtils {
             bufferedWriter.flush();
             outputStreamWriter.close();
             fileOutputStream.close();
-        } catch (IOException e) {
-            LOG.error(e.getMessage(), e);
-        } catch (TemplateException e) {
+        } catch (Exception e) {
             LOG.error(e.getMessage(), e);
         } finally {
             if (null != fileOutputStream) {

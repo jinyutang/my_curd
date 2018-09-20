@@ -105,7 +105,7 @@
             <tr>
                 <th data-options="field:'ck',checkbox:true"></th>
                 <th field="tableName" width="50">表名</th>
-                <th field="tableComment" width="100">表备注</th>
+                <th field="tableComment" width="100" formatter="commentFmt">表备注</th>
                 <th field="tablePrimaryKeys" width="50">主键</th>
                 <th field="tableNameCamel" width="100">表名驼峰</th>
                 <th field="tableNameCamelFirstUp" width="100">表名驼峰首字大写</th>
@@ -125,6 +125,13 @@
 <script src="${ctx!}/res/layer/layer.js"></script>
 <script src="${ctx!}/res/js/popup-tools.js"></script>
 <script type="text/javascript">
+    function commentFmt(val,row){
+        if(val!=null){
+            return val.replace('\r\n','<br/>');
+        }
+        return val;
+    }
+
     $(function(){
         $('#dg').datagrid({
             url: "${ctx!}/sysGenerator/query?fullFlag=true",

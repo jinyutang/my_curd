@@ -11,6 +11,7 @@ import com.hxkj.data.model.*;
 import com.hxkj.jin.model.JinTb;
 import com.hxkj.jin.model.JinTb2;
 import com.hxkj.sys.model.SysOplog;
+import com.hxkj.sys.model.*;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 
 /**
@@ -30,7 +31,13 @@ public class MappingKit {
      */
     public static void mapping(ActiveRecordPlugin arp) {
         // 系统 模块
-        arp.addMapping("sys_oplog", "id", SysOplog.class);
+        arp.addMapping("sys_oplog", "id", SysOplog.class);         // 日志
+        arp.addMapping("sys_notification_type", "id", SysNotificationType.class);     // 消息通知类型
+        arp.addMapping("sys_notification", "id", SysNotification.class);              // 消息通知主表
+        arp.addMapping("sys_notification_detail", "id", SysNotificationDetail.class); // 消息通知从表
+        arp.addMapping("sys_notification_type_role", "notification_type_id,role_id", SysNotificationTypeRole.class);  // 消息通知类型 角色中间表
+        arp.addMapping("sys_notification_type_user", "notification_type_id,user_id", SysNotificationTypeUser.class);  // 消息通知类型 用户中间表
+
 
         // 基础数据
         arp.addMapping("data_dict", "id", DataDict.class);

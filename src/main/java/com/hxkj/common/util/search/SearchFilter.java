@@ -48,7 +48,7 @@ public class SearchFilter {
             for (int i = 1; i < names.length; i++) {
                 filedNameTemp = filedNameTemp + names[i] + "_";
             }
-            if (filedNameTemp.substring(filedNameTemp.length() - 1, filedNameTemp.length()).equals("_")) {
+            if (filedNameTemp.substring(filedNameTemp.length() - 1).equals("_")) {
                 filedNameTemp = filedNameTemp.substring(0, filedNameTemp.length() - 1);
             }
             filedName = filedNameTemp;

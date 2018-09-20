@@ -1,7 +1,7 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : 本地MySQL
+ Source Server         : 本地mysql
  Source Server Type    : MySQL
  Source Server Version : 50719
  Source Host           : localhost:3306
@@ -11,7 +11,7 @@
  Target Server Version : 50719
  File Encoding         : 65001
 
- Date: 06/09/2018 22:04:06
+ Date: 19/09/2018 23:20:25
 */
 
 SET NAMES utf8mb4;
@@ -31,7 +31,7 @@ CREATE TABLE `auth_menu`  (
   `create_time` datetime(0) NULL DEFAULT NULL,
   `last_edit_time` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 40 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '菜单' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 43 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '菜单' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of auth_menu
@@ -56,6 +56,10 @@ INSERT INTO `auth_menu` VALUES (29, 'markdown编辑', '/cmsArticle/m', 'iconfont
 INSERT INTO `auth_menu` VALUES (34, 'ckeditor5_classic', '/editor/ck5classic', 'iconfont icon-richeditor', 3, 27, '2018-06-29 19:29:09', '2018-09-06 20:08:11');
 INSERT INTO `auth_menu` VALUES (37, 'easyui texteditor', '/editor/texteditor', 'iconfont icon-richeditor', 4, 27, '2018-09-04 20:52:24', '2018-09-06 20:08:20');
 INSERT INTO `auth_menu` VALUES (38, '地区', '/dataRegion', 'iconfont icon-region', 4, 16, '2018-09-06 11:34:16', '2018-09-06 20:07:40');
+INSERT INTO `auth_menu` VALUES (39, '消息通知', '/', 'iconfont icon-notification', 4, 12, '2018-09-17 19:27:28', '2018-09-17 19:31:05');
+INSERT INTO `auth_menu` VALUES (40, '系统通知类型', '/sysNotificationType', 'iconfont icon-notification_type', 1, 39, '2018-09-17 19:27:46', '2018-09-19 20:48:59');
+INSERT INTO `auth_menu` VALUES (41, '类型角色维护', '/sysNotificationTypeRole', 'iconfont icon-relation', 2, 39, '2018-09-17 20:07:49', '2018-09-18 00:25:18');
+INSERT INTO `auth_menu` VALUES (42, '类型用户维护', '/sysNotificationTypeUser', 'iconfont icon-relation', 3, 39, '2018-09-17 20:08:39', '2018-09-18 00:25:39');
 
 -- ----------------------------
 -- Table structure for auth_org
@@ -136,6 +140,9 @@ INSERT INTO `auth_role_menu` VALUES (1, 29, 1);
 INSERT INTO `auth_role_menu` VALUES (1, 34, 1);
 INSERT INTO `auth_role_menu` VALUES (1, 37, 1);
 INSERT INTO `auth_role_menu` VALUES (1, 38, 1);
+INSERT INTO `auth_role_menu` VALUES (1, 40, 1);
+INSERT INTO `auth_role_menu` VALUES (1, 41, 1);
+INSERT INTO `auth_role_menu` VALUES (1, 42, 1);
 INSERT INTO `auth_role_menu` VALUES (7, 26, 1);
 INSERT INTO `auth_role_menu` VALUES (8, 17, 1);
 INSERT INTO `auth_role_menu` VALUES (8, 28, 1);
@@ -174,9 +181,9 @@ CREATE TABLE `auth_user`  (
 -- ----------------------------
 -- Records of auth_user
 -- ----------------------------
-INSERT INTO `auth_user` VALUES (1, 'admin', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', '张闯', 'upload/image/20180903/125939375.jpg', '1', 2, '15238002477@163.com', '15238002477', '运维工程师', 'departmentStaff', '2018-09-06 22:01:12', '0', '2018-06-21 22:09:36', '2018-08-30 13:03:50');
+INSERT INTO `auth_user` VALUES (1, 'admin', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', '张闯', 'upload/image/20180915/142905591.jpg', '1', 2, '15238002477@163.com', '15238002477', '运维工程师', 'departmentStaff', '2018-09-19 23:19:18', '0', '2018-06-21 22:09:36', '2018-08-30 13:03:50');
 INSERT INTO `auth_user` VALUES (3, 'jack', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', '杰克', 'res/image/maleAvatar.jpg', '1', 3, 'jack@outlook.com', '123456', '人力专员', 'departmentStaff', '2018-09-01 17:36:56', '0', '2018-06-21 22:14:44', '2018-08-30 13:04:24');
-INSERT INTO `auth_user` VALUES (4, 'tom', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', 'Tom', 'res/image/maleAvatar.jpg', '1', 3, 'tom@istek.net.cn', '18813848438', '培训专员', 'departmentStaff', '2018-09-05 17:31:13', '0', '2018-06-27 20:57:01', '2018-08-30 13:04:35');
+INSERT INTO `auth_user` VALUES (4, 'tom', '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', 'Tom', 'res/image/maleAvatar.jpg', '1', 3, 'tom@istek.net.cn', '18813848438', '培训专员', 'departmentStaff', '2018-09-12 18:42:18', '0', '2018-06-27 20:57:01', '2018-08-30 13:04:35');
 
 -- ----------------------------
 -- Table structure for auth_user_role
@@ -267,7 +274,7 @@ CREATE TABLE `data_dict`  (
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
   `last_edit_time` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 174 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '数据字典' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 172 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '数据字典' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of data_dict
@@ -303,8 +310,6 @@ INSERT INTO `data_dict` VALUES (168, 'category', '女频-女尊', 'gender=female
 INSERT INTO `data_dict` VALUES (169, 'category', '女频-莉莉', 'gender=female&major=莉莉', '0000-00-00 00:00:00', NULL);
 INSERT INTO `data_dict` VALUES (170, 'jobLevel', '部门主管', 'departmentHead', '2018-08-29 19:05:27', NULL);
 INSERT INTO `data_dict` VALUES (171, 'jobLevel', '员工', 'departmentStaff', '2018-08-29 19:06:49', NULL);
-INSERT INTO `data_dict` VALUES (172, 'notificationReceiver', '单人信息', '1', '2018-08-31 13:11:31', '2018-08-31 13:16:02');
-INSERT INTO `data_dict` VALUES (173, 'notificationReceiver', '全体信息', '2', '2018-08-31 13:14:59', NULL);
 
 -- ----------------------------
 -- Table structure for data_file
@@ -329,26 +334,11 @@ CREATE TABLE `data_file`  (
 -- ----------------------------
 -- Records of data_file
 -- ----------------------------
-INSERT INTO `data_file` VALUES ('485475297399930880', 1, NULL, 'upload/image/20180901/154530562.jpg', 'u=832101073,2523374224&fm=27&gp=0.jpg', 'image/jpeg', 'jpg', 5721, '', '2018-09-01 15:45:30');
-INSERT INTO `data_file` VALUES ('485475327506644992', 1, NULL, 'upload/image/20180901/154537757.jpg', '14027794.jpg', 'image/jpeg', 'jpg', 42847, '', '2018-09-01 15:45:37');
-INSERT INTO `data_file` VALUES ('485475367973289984', 1, NULL, 'upload/image/20180901/154547405.jpg', '1530335295662.jpg', 'image/jpeg', 'jpg', 858451, '', '2018-09-01 15:45:47');
-INSERT INTO `data_file` VALUES ('485475400642723840', 1, NULL, 'upload/image/20180901/154555194.jpg', '1T04943M-8.jpg', 'image/jpeg', 'jpg', 467970, '', '2018-09-01 15:45:55');
-INSERT INTO `data_file` VALUES ('485475431311474688', 1, NULL, 'upload/image/20180901/154602504.jpg', '1530792903235.jpg', 'image/jpeg', 'jpg', 1474812, '', '2018-09-01 15:46:02');
-INSERT INTO `data_file` VALUES ('485475860577517568', 1, NULL, 'upload/file/20180901/154744839.pdf', '阿里巴巴Java开发手册（纪念版）.pdf', 'application/pdf', 'pdf', 1257689, '', '2018-09-01 15:47:44');
-INSERT INTO `data_file` VALUES ('485475988625424384', 1, NULL, 'upload/image/20180901/154815380.jpg', 'gg2.jpg', 'image/jpeg', 'jpg', 221721, '', '2018-09-01 15:48:15');
-INSERT INTO `data_file` VALUES ('485476046569734144', 1, NULL, 'upload/image/20180901/154829195.jpg', 'gg.jpg', 'image/jpeg', 'jpg', 118166, '', '2018-09-01 15:48:29');
-INSERT INTO `data_file` VALUES ('485500513559773184', 1, NULL, 'upload/image/20180901/172542564.jpg', '14027794.jpg', 'image/jpeg', 'jpg', 50909, 'admin 头像', '2018-09-01 17:25:42');
-INSERT INTO `data_file` VALUES ('485501912649564160', 1, NULL, 'upload/image/20180901/173116149.jpg', 'u=832101073,2523374224&fm=27&gp=0.jpg', 'image/jpeg', 'jpg', 5721, 'admin 头像', '2018-09-01 17:31:16');
-INSERT INTO `data_file` VALUES ('485502671755673600', 1, NULL, 'upload/image/20180901/173417135.jpg', '14027794.jpg', 'image/jpeg', 'jpg', 42847, 'admin 头像', '2018-09-01 17:34:17');
-INSERT INTO `data_file` VALUES ('485502704639016960', 1, NULL, 'upload/image/20180901/173424977.jpg', '1530335295662.jpg', 'image/jpeg', 'jpg', 858451, 'admin 头像', '2018-09-01 17:34:24');
-INSERT INTO `data_file` VALUES ('485502777938673664', 1, NULL, 'upload/image/20180901/173442459.jpg', 'u=832101073,2523374224&fm=27&gp=0.jpg', 'image/jpeg', 'jpg', 5721, 'admin 头像', '2018-09-01 17:34:42');
-INSERT INTO `data_file` VALUES ('485502966304866304', 1, NULL, 'upload/image/20180901/173527363.jpg', '1530335330585.jpg', 'image/jpeg', 'jpg', 553659, 'admin 头像', '2018-09-01 17:35:27');
-INSERT INTO `data_file` VALUES ('485503060542488576', 1, NULL, 'upload/image/20180901/173549840.jpg', 'u=832101073,2523374224&fm=27&gp=0.jpg', 'image/jpeg', 'jpg', 5721, 'admin 头像', '2018-09-01 17:35:49');
-INSERT INTO `data_file` VALUES ('485824343536828416', 1, NULL, 'upload/image/20180902/145229640.jpg', 'femaleAvatar.jpg', 'image/jpeg', 'jpg', 10662, 'admin 头像', '2018-09-02 14:52:29');
-INSERT INTO `data_file` VALUES ('485845859888529408', 1, NULL, 'upload/image/20180902/161759522.jpg', 'maleAvatar.jpg', 'image/jpeg', 'jpg', 9981, 'admin 头像', '2018-09-02 16:17:59');
-INSERT INTO `data_file` VALUES ('486158334836080640', 1, NULL, 'upload/image/20180903/125939375.jpg', 'u=832101073,2523374224&fm=27&gp=0.jpg', 'image/jpeg', 'jpg', 5721, 'admin 头像', '2018-09-03 12:59:39');
-INSERT INTO `data_file` VALUES ('486949691225800704', 1, NULL, 'upload/file/20180905/172413440.docx', '直接人工优化概要设计及数据库设计.docx', NULL, 'docx', 38197, '', '2018-09-05 17:24:13');
-INSERT INTO `data_file` VALUES ('486949722108461056', 1, NULL, 'upload/file/20180905/172420823.docx', '直接人工优化系统业务需求说明书V1.2.docx', NULL, 'docx', 491570, '', '2018-09-05 17:24:20');
+INSERT INTO `data_file` VALUES ('490295388884959232', 1, NULL, 'upload/file/20180914/225849935.xls', '9月新增模板.xls', NULL, 'xls', 418304, '', '2018-09-14 22:58:49');
+INSERT INTO `data_file` VALUES ('490529155377528832', 1, NULL, 'upload/image/20180915/142744183.jpg', '2834453015476316342.jpg', 'image/jpeg', 'jpg', 13386, 'admin 头像', '2018-09-15 14:27:44');
+INSERT INTO `data_file` VALUES ('490529189288476672', 1, NULL, 'upload/image/20180915/142752300.jpg', '6a209620e6f5f5f1175f97014806abb9.jpg', 'image/jpeg', 'jpg', 21545, 'admin 头像', '2018-09-15 14:27:52');
+INSERT INTO `data_file` VALUES ('490529211249852416', 1, NULL, 'upload/image/20180915/142757550.jpg', '2834453015476316342.jpg', 'image/jpeg', 'jpg', 13386, 'admin 头像', '2018-09-15 14:27:57');
+INSERT INTO `data_file` VALUES ('490529496626102272', 1, NULL, 'upload/image/20180915/142905591.jpg', 'u=1000578597,387319941&fm=26&gp=0.jpg', 'image/jpeg', 'jpg', 5941, 'admin 头像', '2018-09-15 14:29:05');
 
 -- ----------------------------
 -- Table structure for data_region
@@ -4133,34 +4123,104 @@ INSERT INTO `data_region` VALUES ('900000', '钓鱼岛', '100000', '钓鱼岛', 
 DROP TABLE IF EXISTS `sys_notification`;
 CREATE TABLE `sys_notification`  (
   `id` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `notification_type` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '通知类型编码',
-  `receiver_type` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '通知受众类型, 1 单用户 ，2 多用户',
-  `title` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '标题',
-  `content` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '内容',
-  `expiry_time` datetime(0) NOT NULL COMMENT '过期时间',
-  `dead_time` datetime(0) NOT NULL COMMENT '必死时间',
+  `cate1` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '大分类，USER 和 SYSTEM 两种',
+  `cate2` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '小分类，通知类型下的业务代码',
+  `title` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '消息标题',
+  `content` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '消息内容',
   `create_time` datetime(0) NOT NULL COMMENT '创建时间',
-  `last_edit_time` datetime(0) NULL DEFAULT NULL COMMENT '最后修改时间',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '通知 主表\r\n\r\n一条消息 为 一条主表记录，如果消息为 多用户消息，一个用户对应一条从表记录。\r\n添加 多用户消息，当用户量非常大时，应该采用异步的方式。\r\n\r\n全体用户消息发送应该非常慎重，当用户量非常大时，此设计并不合适。\r\n\r\n为保证数据表不会过大，有如下设计。（\r\n1. 单用户消息\r\n    定时器检查 消息过期，删除未读 主从表记录\r\n    定时器检查  必死期， 不论是否已读，删除主从表记录\r\n2 多用户消息\r\n    定时器检查 消息过期，删除 从表中  未读的记录\r\n    定时器检查 必死期，删除主从表记录。' ROW_FORMAT = Dynamic;
+  `expiry_time` datetime(0) NULL DEFAULT NULL COMMENT '过期时间',
+  `dead_time` datetime(0) NULL DEFAULT NULL COMMENT '必死时间',
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `sn_cate1`(`cate1`) USING BTREE,
+  INDEX `sn_cate2`(`cate2`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '通知主表\r\n过期时间 和 必死 时间 用于控制 表记录行数不过大\r\n定时器检查 消息是否过期，如果过期且消息未读，删除从表信息。\r\n定时器检查 消息是否必死，如果必死则删除 主从表信息。\r\n' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Table structure for sys_notification_info
+-- Records of sys_notification
 -- ----------------------------
-DROP TABLE IF EXISTS `sys_notification_info`;
-CREATE TABLE `sys_notification_info`  (
-  `id` varbinary(30) NOT NULL,
-  `sender` int(11) UNSIGNED NOT NULL COMMENT '发送人主键',
-  `receiver` int(11) UNSIGNED NOT NULL COMMENT '接收人主键',
-  `has_read` varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '0' COMMENT '是否已读 0 未读 1 已读, 默认是未读',
-  `read_time` datetime(0) NULL DEFAULT NULL COMMENT '接收者查看消息的时间',
-  `content_id` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '消息文本id',
-  `create_time` datetime(0) NOT NULL COMMENT '创建时间',
+INSERT INTO `sys_notification` VALUES ('492112577413775360', 'SYSTEM', '00002', '日志删除', 'admin 于 2018-09-19 23:19:41 删除了 4 条 系统日志。', '2018-09-19 23:19:41', '2018-10-19 23:19:41', '2018-11-18 23:19:41');
+
+-- ----------------------------
+-- Table structure for sys_notification_detail
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_notification_detail`;
+CREATE TABLE `sys_notification_detail`  (
+  `id` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `main_id` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '主表id',
+  `sender` int(11) UNSIGNED NULL DEFAULT NULL COMMENT '发送人',
+  `receiver` int(11) UNSIGNED NOT NULL COMMENT '接收人',
+  `is_read` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '0' COMMENT '是否已读，0未读 1已读',
+  `read_time` datetime(0) NULL DEFAULT NULL COMMENT '已读时间',
   PRIMARY KEY (`id`) USING BTREE,
-  INDEX `sys_notification_sender`(`sender`) USING BTREE COMMENT '发送人索引',
-  INDEX `sys_notification_receiver`(`receiver`) USING BTREE COMMENT '接收人索引',
-  INDEX `sys_notification_conetnt_id`(`content_id`) USING BTREE COMMENT '消息文本索引'
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '通知从表' ROW_FORMAT = Dynamic;
+  INDEX `snd_main_id`(`main_id`) USING BTREE,
+  INDEX `snd_sender`(`sender`) USING BTREE,
+  INDEX `snd_receiver`(`receiver`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '通知表 从表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of sys_notification_detail
+-- ----------------------------
+INSERT INTO `sys_notification_detail` VALUES ('492112577464107008', '492112577413775360', NULL, 1, '0', NULL);
+INSERT INTO `sys_notification_detail` VALUES ('492112577464107009', '492112577413775360', NULL, 4, '0', NULL);
+INSERT INTO `sys_notification_detail` VALUES ('492112577464107010', '492112577413775360', NULL, 3, '0', NULL);
+
+-- ----------------------------
+-- Table structure for sys_notification_type
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_notification_type`;
+CREATE TABLE `sys_notification_type`  (
+  `id` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `txt` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '名字',
+  `code` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '编码',
+  `template` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '消息模板',
+  `remark` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
+  `until_expiry_day` int(11) NULL DEFAULT NULL COMMENT '多少天后过期',
+  `until_dead_day` int(11) NULL DEFAULT NULL COMMENT '多少天后必死',
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE INDEX `snt_code_unique`(`code`) USING BTREE COMMENT '编码唯一'
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '系统通知类型' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of sys_notification_type
+-- ----------------------------
+INSERT INTO `sys_notification_type` VALUES ('491746002944917504', '小说下载', '00001', NULL, '小说下载时消息', 10, 20);
+INSERT INTO `sys_notification_type` VALUES ('492075507165167616', '日志删除', '00002', '${user!} 于 ${date!} 删除了 ${number!} 条 系统日志。', '系统日志删除消息', 30, 60);
+
+-- ----------------------------
+-- Table structure for sys_notification_type_role
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_notification_type_role`;
+CREATE TABLE `sys_notification_type_role`  (
+  `notification_type_id` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '系统通知类型id',
+  `role_id` int(10) UNSIGNED NOT NULL COMMENT '角色类型id',
+  PRIMARY KEY (`notification_type_id`, `role_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '通知类型 角色中间表\r\n用于控制 特定角色用户接收特定类型的系统通知' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of sys_notification_type_role
+-- ----------------------------
+INSERT INTO `sys_notification_type_role` VALUES ('491746002944917504', 1);
+INSERT INTO `sys_notification_type_role` VALUES ('492075507165167616', 7);
+INSERT INTO `sys_notification_type_role` VALUES ('492075507165167616', 8);
+INSERT INTO `sys_notification_type_role` VALUES ('492075507165167616', 9);
+
+-- ----------------------------
+-- Table structure for sys_notification_type_user
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_notification_type_user`;
+CREATE TABLE `sys_notification_type_user`  (
+  `notification_type_id` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '系统通知类型id',
+  `user_id` int(10) UNSIGNED NOT NULL COMMENT '用户id',
+  PRIMARY KEY (`notification_type_id`, `user_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '通知类型 用户中间表\r\n用户控制特定用户接受特定类型的通知' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of sys_notification_type_user
+-- ----------------------------
+INSERT INTO `sys_notification_type_user` VALUES ('491746002944917504', 1);
+INSERT INTO `sys_notification_type_user` VALUES ('491746002944917504', 3);
+INSERT INTO `sys_notification_type_user` VALUES ('491746002944917504', 4);
+INSERT INTO `sys_notification_type_user` VALUES ('492075507165167616', 1);
 
 -- ----------------------------
 -- Table structure for sys_oplog
@@ -4178,312 +4238,91 @@ CREATE TABLE `sys_oplog`  (
 -- ----------------------------
 -- Records of sys_oplog
 -- ----------------------------
-INSERT INTO `sys_oplog` VALUES ('460896244781285376', 1, '退出', '0:0:0:0:0:0:0:1', '2018-06-25 19:57:07');
-INSERT INTO `sys_oplog` VALUES ('460896261722079232', 1, '登录', '0:0:0:0:0:0:0:1', '2018-06-25 19:57:11');
-INSERT INTO `sys_oplog` VALUES ('460910368928038912', 1, '登录', '0:0:0:0:0:0:0:1', '2018-06-25 20:53:15');
-INSERT INTO `sys_oplog` VALUES ('460911142093455360', 1, '登录', '0:0:0:0:0:0:0:1', '2018-06-25 20:56:19');
-INSERT INTO `sys_oplog` VALUES ('460911183340240896', 1, '退出', '0:0:0:0:0:0:0:1', '2018-06-25 20:56:29');
-INSERT INTO `sys_oplog` VALUES ('460911202793422848', 1, '登录', '0:0:0:0:0:0:0:1', '2018-06-25 20:56:34');
-INSERT INTO `sys_oplog` VALUES ('460911208397012992', 1, '访问无权限路径[/cmsArticle]', '0:0:0:0:0:0:0:1', '2018-06-25 20:56:35');
-INSERT INTO `sys_oplog` VALUES ('460911234061959168', 1, '访问无权限路径[/cmsArticle]', '0:0:0:0:0:0:0:1', '2018-06-25 20:56:41');
-INSERT INTO `sys_oplog` VALUES ('460912005620957184', 1, '登录', '0:0:0:0:0:0:0:1', '2018-06-25 20:59:45');
-INSERT INTO `sys_oplog` VALUES ('460912036306485248', 1, '访问无权限路径[/cmsArticle]', '0:0:0:0:0:0:0:1', '2018-06-25 20:59:52');
-INSERT INTO `sys_oplog` VALUES ('460913889391935488', 1, '登录', '0:0:0:0:0:0:0:1', '2018-06-25 21:07:14');
-INSERT INTO `sys_oplog` VALUES ('460914356171833344', 1, '登录', '0:0:0:0:0:0:0:1', '2018-06-25 21:09:05');
-INSERT INTO `sys_oplog` VALUES ('460915678652661760', 1, '登录', '0:0:0:0:0:0:0:1', '2018-06-25 21:14:21');
-INSERT INTO `sys_oplog` VALUES ('460917417829203968', 1, '登录', '0:0:0:0:0:0:0:1', '2018-06-25 21:21:15');
-INSERT INTO `sys_oplog` VALUES ('460917990079070208', 1, '登录', '0:0:0:0:0:0:0:1', '2018-06-25 21:23:32');
-INSERT INTO `sys_oplog` VALUES ('460918268475998208', 1, '登录', '0:0:0:0:0:0:0:1', '2018-06-25 21:24:38');
-INSERT INTO `sys_oplog` VALUES ('460918543970467840', 1, '退出', '0:0:0:0:0:0:0:1', '2018-06-25 21:25:44');
-INSERT INTO `sys_oplog` VALUES ('460918564447059968', 1, '登录', '0:0:0:0:0:0:0:1', '2018-06-25 21:25:49');
-INSERT INTO `sys_oplog` VALUES ('460919802249084928', 1, '登录', '0:0:0:0:0:0:0:1', '2018-06-25 21:30:44');
-INSERT INTO `sys_oplog` VALUES ('460921769184722944', 1, '登录', '0:0:0:0:0:0:0:1', '2018-06-25 21:38:33');
-INSERT INTO `sys_oplog` VALUES ('460922887285506048', 1, '登录', '0:0:0:0:0:0:0:1', '2018-06-25 21:42:59');
-INSERT INTO `sys_oplog` VALUES ('461236211185352704', 1, '登录', '0:0:0:0:0:0:0:1', '2018-06-26 18:28:02');
-INSERT INTO `sys_oplog` VALUES ('461239970837823488', 1, '登录', '0:0:0:0:0:0:0:1', '2018-06-26 18:42:58');
-INSERT INTO `sys_oplog` VALUES ('461241763856646144', 1, '登录', '0:0:0:0:0:0:0:1', '2018-06-26 18:50:05');
-INSERT INTO `sys_oplog` VALUES ('461243301463326720', 1, '登录', '0:0:0:0:0:0:0:1', '2018-06-26 18:56:12');
-INSERT INTO `sys_oplog` VALUES ('461256741842059264', 1, '登录', '0:0:0:0:0:0:0:1', '2018-06-26 19:49:36');
-INSERT INTO `sys_oplog` VALUES ('461617578477879296', 1, '退出', '0:0:0:0:0:0:0:1', '2018-06-27 19:43:27');
-INSERT INTO `sys_oplog` VALUES ('461617597494853632', 1, '登录', '0:0:0:0:0:0:0:1', '2018-06-27 19:43:31');
-INSERT INTO `sys_oplog` VALUES ('461623038853513216', 1, '退出', '0:0:0:0:0:0:0:1', '2018-06-27 20:05:09');
-INSERT INTO `sys_oplog` VALUES ('461623056201154560', 1, '登录', '0:0:0:0:0:0:0:1', '2018-06-27 20:05:13');
-INSERT INTO `sys_oplog` VALUES ('461624583699562496', 1, '退出', '0:0:0:0:0:0:0:1', '2018-06-27 20:11:17');
-INSERT INTO `sys_oplog` VALUES ('461624604851437568', 1, '登录', '0:0:0:0:0:0:0:1', '2018-06-27 20:11:22');
-INSERT INTO `sys_oplog` VALUES ('461634228321255424', 1, '登录', '0:0:0:0:0:0:0:1', '2018-06-27 20:49:36');
-INSERT INTO `sys_oplog` VALUES ('461636307605520384', 1, '退出', '0:0:0:0:0:0:0:1', '2018-06-27 20:57:52');
-INSERT INTO `sys_oplog` VALUES ('461636327725596672', 4, '登录', '0:0:0:0:0:0:0:1', '2018-06-27 20:57:57');
-INSERT INTO `sys_oplog` VALUES ('461636394805100544', 4, '访问无权限路径[/authMenu]', '0:0:0:0:0:0:0:1', '2018-06-27 20:58:13');
-INSERT INTO `sys_oplog` VALUES ('461636551244251136', 4, '退出', '0:0:0:0:0:0:0:1', '2018-06-27 20:58:50');
-INSERT INTO `sys_oplog` VALUES ('461636572920414208', 3, '登录', '0:0:0:0:0:0:0:1', '2018-06-27 20:58:55');
-INSERT INTO `sys_oplog` VALUES ('461636738125660160', 3, '访问无权限路径[/dataFile]', '0:0:0:0:0:0:0:1', '2018-06-27 20:59:35');
-INSERT INTO `sys_oplog` VALUES ('461636812943654912', 3, '退出', '0:0:0:0:0:0:0:1', '2018-06-27 20:59:53');
-INSERT INTO `sys_oplog` VALUES ('461636830471651328', 1, '登录', '0:0:0:0:0:0:0:1', '2018-06-27 20:59:57');
-INSERT INTO `sys_oplog` VALUES ('461636858732871680', 1, '退出', '0:0:0:0:0:0:0:1', '2018-06-27 21:00:03');
-INSERT INTO `sys_oplog` VALUES ('461636899967074304', 1, '登录', '0:0:0:0:0:0:0:1', '2018-06-27 21:00:13');
-INSERT INTO `sys_oplog` VALUES ('461637363479609344', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-06-27 21:02:04');
-INSERT INTO `sys_oplog` VALUES ('462047044664557568', 1, '登录', '0:0:0:0:0:0:0:1', '2018-06-29 00:09:59');
-INSERT INTO `sys_oplog` VALUES ('462047242161750016', 1, '退出', '0:0:0:0:0:0:0:1', '2018-06-29 00:10:46');
-INSERT INTO `sys_oplog` VALUES ('462047264840351744', 1, '登录', '0:0:0:0:0:0:0:1', '2018-06-29 00:10:52');
-INSERT INTO `sys_oplog` VALUES ('462048122634240000', 1, '退出', '0:0:0:0:0:0:0:1', '2018-06-29 00:14:16');
-INSERT INTO `sys_oplog` VALUES ('462048152824840192', 1, '登录', '0:0:0:0:0:0:0:1', '2018-06-29 00:14:24');
-INSERT INTO `sys_oplog` VALUES ('462329192688648192', 1, '登录', '0:0:0:0:0:0:0:1', '2018-06-29 18:51:09');
-INSERT INTO `sys_oplog` VALUES ('462338498351857664', 1, '登录', '0:0:0:0:0:0:0:1', '2018-06-29 19:28:07');
-INSERT INTO `sys_oplog` VALUES ('462338813293756416', 1, '退出', '0:0:0:0:0:0:0:1', '2018-06-29 19:29:22');
-INSERT INTO `sys_oplog` VALUES ('462338830037417984', 1, '登录', '0:0:0:0:0:0:0:1', '2018-06-29 19:29:26');
-INSERT INTO `sys_oplog` VALUES ('462339698665193472', 1, '访问无权限路径[/imgUpload]', '0:0:0:0:0:0:0:1', '2018-06-29 19:32:54');
-INSERT INTO `sys_oplog` VALUES ('462339969025835008', 1, '登录', '0:0:0:0:0:0:0:1', '2018-06-29 19:33:58');
-INSERT INTO `sys_oplog` VALUES ('462340434128011264', 1, '登录', '0:0:0:0:0:0:0:1', '2018-06-29 19:35:49');
-INSERT INTO `sys_oplog` VALUES ('462362485496741888', 1, '登录', '0:0:0:0:0:0:0:1', '2018-06-29 21:03:26');
-INSERT INTO `sys_oplog` VALUES ('462379703475372032', 1, '登录', '0:0:0:0:0:0:0:1', '2018-06-29 22:11:51');
-INSERT INTO `sys_oplog` VALUES ('462380026843627520', 1, '退出', '0:0:0:0:0:0:0:1', '2018-06-29 22:13:09');
-INSERT INTO `sys_oplog` VALUES ('462380048830169088', 1, '登录', '0:0:0:0:0:0:0:1', '2018-06-29 22:13:14');
-INSERT INTO `sys_oplog` VALUES ('463319591204945920', 1, '登录', '0:0:0:0:0:0:0:1', '2018-07-02 12:26:38');
-INSERT INTO `sys_oplog` VALUES ('463320671913508864', 1, '退出', '0:0:0:0:0:0:0:1', '2018-07-02 12:30:56');
-INSERT INTO `sys_oplog` VALUES ('463320723784466432', 1, '登录', '0:0:0:0:0:0:0:1', '2018-07-02 12:31:08');
-INSERT INTO `sys_oplog` VALUES ('463328397867614208', 1, '退出', '0:0:0:0:0:0:0:1', '2018-07-02 13:01:38');
-INSERT INTO `sys_oplog` VALUES ('463328450262859776', 1, '登录', '0:0:0:0:0:0:0:1', '2018-07-02 13:01:50');
-INSERT INTO `sys_oplog` VALUES ('463794217731227648', 1, '登录', '0:0:0:0:0:0:0:1', '2018-07-03 19:52:38');
-INSERT INTO `sys_oplog` VALUES ('464145529228492800', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-07-04 19:08:37');
-INSERT INTO `sys_oplog` VALUES ('464559146910351360', 1, '登录', '0:0:0:0:0:0:0:1', '2018-07-05 22:32:11');
-INSERT INTO `sys_oplog` VALUES ('465132085812658176', 1, '登录', '0:0:0:0:0:0:0:1', '2018-07-07 12:28:50');
-INSERT INTO `sys_oplog` VALUES ('465614373352636416', 1, '登录', '0:0:0:0:0:0:0:1', '2018-07-08 20:25:17');
-INSERT INTO `sys_oplog` VALUES ('467054925713506304', 1, '登录', '0:0:0:0:0:0:0:1', '2018-07-12 19:49:31');
-INSERT INTO `sys_oplog` VALUES ('467057487074295808', 1, '退出', '0:0:0:0:0:0:0:1', '2018-07-12 19:59:42');
-INSERT INTO `sys_oplog` VALUES ('467057523564740608', 1, '登录', '0:0:0:0:0:0:0:1', '2018-07-12 19:59:51');
-INSERT INTO `sys_oplog` VALUES ('467057651352600576', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-07-12 20:00:21');
-INSERT INTO `sys_oplog` VALUES ('467063872432373760', 1, '退出', '0:0:0:0:0:0:0:1', '2018-07-12 20:25:04');
-INSERT INTO `sys_oplog` VALUES ('467063895081615360', 4, '登录', '0:0:0:0:0:0:0:1', '2018-07-12 20:25:10');
-INSERT INTO `sys_oplog` VALUES ('467063962437943296', 4, '访问无权限路径[/authMenu]', '0:0:0:0:0:0:0:1', '2018-07-12 20:25:26');
-INSERT INTO `sys_oplog` VALUES ('467065078282190848', 4, '访问无权限路径[/authUser]', '0:0:0:0:0:0:0:1', '2018-07-12 20:29:52');
-INSERT INTO `sys_oplog` VALUES ('467066636726173696', 4, '访问无权限路径[/authUser]', '0:0:0:0:0:0:0:1', '2018-07-12 20:36:03');
-INSERT INTO `sys_oplog` VALUES ('467066639980953600', 4, '访问无权限路径[/authUser]', '0:0:0:0:0:0:0:1', '2018-07-12 20:36:04');
-INSERT INTO `sys_oplog` VALUES ('467066644351418368', 4, '访问无权限路径[/authUser]', '0:0:0:0:0:0:0:1', '2018-07-12 20:36:05');
-INSERT INTO `sys_oplog` VALUES ('467066678325280768', 4, '访问无权限路径[/authUser]', '0:0:0:0:0:0:0:1', '2018-07-12 20:36:13');
-INSERT INTO `sys_oplog` VALUES ('467066690899804160', 4, '退出', '0:0:0:0:0:0:0:1', '2018-07-12 20:36:16');
-INSERT INTO `sys_oplog` VALUES ('467066714257883136', 1, '登录', '0:0:0:0:0:0:0:1', '2018-07-12 20:36:22');
-INSERT INTO `sys_oplog` VALUES ('467768948356546560', 1, '登录', '0:0:0:0:0:0:0:1', '2018-07-14 19:06:48');
-INSERT INTO `sys_oplog` VALUES ('467783813724897280', 1, '登录', '0:0:0:0:0:0:0:1', '2018-07-14 20:05:52');
-INSERT INTO `sys_oplog` VALUES ('468398137598279680', 1, '登录', '0:0:0:0:0:0:0:1', '2018-07-16 12:46:58');
-INSERT INTO `sys_oplog` VALUES ('469230795119132672', 1, '登录', '0:0:0:0:0:0:0:1', '2018-07-18 19:55:39');
-INSERT INTO `sys_oplog` VALUES ('469230950484541440', 1, '退出', '0:0:0:0:0:0:0:1', '2018-07-18 19:56:16');
-INSERT INTO `sys_oplog` VALUES ('469230976652804096', 4, '登录', '0:0:0:0:0:0:0:1', '2018-07-18 19:56:22');
-INSERT INTO `sys_oplog` VALUES ('469231257822167040', 4, '访问无权限路径[/authMenu]', '0:0:0:0:0:0:0:1', '2018-07-18 19:57:29');
-INSERT INTO `sys_oplog` VALUES ('469231277262766080', 4, '退出', '0:0:0:0:0:0:0:1', '2018-07-18 19:57:34');
-INSERT INTO `sys_oplog` VALUES ('469231296321683456', 1, '登录', '0:0:0:0:0:0:0:1', '2018-07-18 19:57:38');
-INSERT INTO `sys_oplog` VALUES ('469808071783219200', 1, '登录', '0:0:0:0:0:0:0:1', '2018-07-20 10:09:32');
-INSERT INTO `sys_oplog` VALUES ('469808631429201920', 1, '退出', '0:0:0:0:0:0:0:1', '2018-07-20 10:11:46');
-INSERT INTO `sys_oplog` VALUES ('469808660982267904', 4, '登录', '0:0:0:0:0:0:0:1', '2018-07-20 10:11:53');
-INSERT INTO `sys_oplog` VALUES ('469808716271583232', 4, '访问无权限路径[/authMenu]', '0:0:0:0:0:0:0:1', '2018-07-20 10:12:06');
-INSERT INTO `sys_oplog` VALUES ('469809153775239168', 4, '退出', '0:0:0:0:0:0:0:1', '2018-07-20 10:13:50');
-INSERT INTO `sys_oplog` VALUES ('469809187921068032', 1, '登录', '0:0:0:0:0:0:0:1', '2018-07-20 10:13:59');
-INSERT INTO `sys_oplog` VALUES ('469975673532841984', 1, '登录', '0:0:0:0:0:0:0:1', '2018-07-20 21:15:32');
-INSERT INTO `sys_oplog` VALUES ('469984172614615040', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-07-20 21:49:18');
-INSERT INTO `sys_oplog` VALUES ('470167128817795072', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-07-21 09:56:18');
-INSERT INTO `sys_oplog` VALUES ('478187639128719360', 1, '登录', '0:0:0:0:0:0:0:1', '2018-08-12 13:06:57');
-INSERT INTO `sys_oplog` VALUES ('479371184387915776', 1, '登录', '0:0:0:0:0:0:0:1', '2018-08-15 19:29:56');
-INSERT INTO `sys_oplog` VALUES ('479381658890403840', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-08-15 20:11:33');
-INSERT INTO `sys_oplog` VALUES ('479396143957016576', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-08-15 21:09:07');
-INSERT INTO `sys_oplog` VALUES ('479398794245439488', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-08-15 21:19:39');
-INSERT INTO `sys_oplog` VALUES ('479404624575463424', 1, '退出', '0:0:0:0:0:0:0:1', '2018-08-15 21:42:49');
-INSERT INTO `sys_oplog` VALUES ('479404658381553664', 1, '登录', '0:0:0:0:0:0:0:1', '2018-08-15 21:42:57');
-INSERT INTO `sys_oplog` VALUES ('479404920491999232', 1, '退出', '0:0:0:0:0:0:0:1', '2018-08-15 21:43:59');
-INSERT INTO `sys_oplog` VALUES ('479404944894459904', 1, '登录', '0:0:0:0:0:0:0:1', '2018-08-15 21:44:05');
-INSERT INTO `sys_oplog` VALUES ('479424496923574272', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-08-15 23:01:47');
-INSERT INTO `sys_oplog` VALUES ('479424497103929344', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-08-15 23:01:47');
-INSERT INTO `sys_oplog` VALUES ('479440789617770496', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-08-16 00:06:31');
-INSERT INTO `sys_oplog` VALUES ('479441447502741504', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-08-16 00:09:08');
-INSERT INTO `sys_oplog` VALUES ('480125966153154560', 1, '登录', '0:0:0:0:0:0:0:1', '2018-08-17 21:29:10');
-INSERT INTO `sys_oplog` VALUES ('481561372451143680', 1, '登录', '0:0:0:0:0:0:0:1', '2018-08-21 20:32:58');
-INSERT INTO `sys_oplog` VALUES ('481569260250857472', 1, '登录', '0:0:0:0:0:0:0:1', '2018-08-21 21:04:18');
-INSERT INTO `sys_oplog` VALUES ('481570215864303616', 1, '退出', '0:0:0:0:0:0:0:1', '2018-08-21 21:08:06');
-INSERT INTO `sys_oplog` VALUES ('481570224718479360', 1, '登录', '0:0:0:0:0:0:0:1', '2018-08-21 21:08:08');
-INSERT INTO `sys_oplog` VALUES ('481571364197629952', 1, '3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d 修改为新密码：3d4f2bf07dc1be38b20cd6e46949a1071f9d0e3d', '0:0:0:0:0:0:0:1', '2018-08-21 21:12:40');
-INSERT INTO `sys_oplog` VALUES ('481580328436105216', 1, '登录', '0:0:0:0:0:0:0:1', '2018-08-21 21:48:17');
-INSERT INTO `sys_oplog` VALUES ('481586160712286208', 1, '退出', '0:0:0:0:0:0:0:1', '2018-08-21 22:11:28');
-INSERT INTO `sys_oplog` VALUES ('481586168169758720', 1, '登录', '0:0:0:0:0:0:0:1', '2018-08-21 22:11:29');
-INSERT INTO `sys_oplog` VALUES ('481586196619722752', 1, '访问无权限路径[/userInfo]', '0:0:0:0:0:0:0:1', '2018-08-21 22:11:36');
-INSERT INTO `sys_oplog` VALUES ('481586438102581248', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-08-21 22:12:34');
-INSERT INTO `sys_oplog` VALUES ('481586633540370432', 1, '退出', '0:0:0:0:0:0:0:1', '2018-08-21 22:13:20');
-INSERT INTO `sys_oplog` VALUES ('481586639185903616', 1, '登录', '0:0:0:0:0:0:0:1', '2018-08-21 22:13:22');
-INSERT INTO `sys_oplog` VALUES ('481587856670720000', 1, '退出', '0:0:0:0:0:0:0:1', '2018-08-21 22:18:12');
-INSERT INTO `sys_oplog` VALUES ('481587863574544384', 1, '登录', '0:0:0:0:0:0:0:1', '2018-08-21 22:18:14');
-INSERT INTO `sys_oplog` VALUES ('481816312616583168', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-08-22 13:26:00');
-INSERT INTO `sys_oplog` VALUES ('481900410299219968', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-08-22 19:00:11');
-INSERT INTO `sys_oplog` VALUES ('481901996060704768', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-08-22 19:06:29');
-INSERT INTO `sys_oplog` VALUES ('481905086918819840', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-08-22 19:18:46');
-INSERT INTO `sys_oplog` VALUES ('481905505137065984', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-08-22 19:20:25');
-INSERT INTO `sys_oplog` VALUES ('481906799725772800', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-08-22 19:25:34');
-INSERT INTO `sys_oplog` VALUES ('481906994970624000', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-08-22 19:26:21');
-INSERT INTO `sys_oplog` VALUES ('481910652273688576', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-08-22 19:40:52');
-INSERT INTO `sys_oplog` VALUES ('481925578895654912', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-08-22 20:40:11');
-INSERT INTO `sys_oplog` VALUES ('481925579302502400', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-08-22 20:40:11');
-INSERT INTO `sys_oplog` VALUES ('481944186803716096', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-08-22 21:54:08');
-INSERT INTO `sys_oplog` VALUES ('481946931694665728', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-08-22 22:05:02');
-INSERT INTO `sys_oplog` VALUES ('483312629163491328', 1, '登录', '0:0:0:0:0:0:0:1', '2018-08-26 16:31:50');
-INSERT INTO `sys_oplog` VALUES ('483636559111782400', 1, '登录', '0:0:0:0:0:0:0:1', '2018-08-27 13:59:01');
-INSERT INTO `sys_oplog` VALUES ('483733411635134464', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-08-27 20:23:52');
-INSERT INTO `sys_oplog` VALUES ('483733412411080704', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-08-27 20:23:52');
-INSERT INTO `sys_oplog` VALUES ('483752034516860928', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-08-27 21:37:52');
-INSERT INTO `sys_oplog` VALUES ('483777929298313216', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-08-27 23:20:46');
-INSERT INTO `sys_oplog` VALUES ('483783424037879808', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-08-27 23:42:36');
-INSERT INTO `sys_oplog` VALUES ('483792056188141568', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-08-28 00:16:54');
-INSERT INTO `sys_oplog` VALUES ('483793128025751552', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-08-28 00:21:10');
-INSERT INTO `sys_oplog` VALUES ('483793430242131968', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-08-28 00:22:22');
-INSERT INTO `sys_oplog` VALUES ('483799333011980288', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-08-28 00:45:49');
-INSERT INTO `sys_oplog` VALUES ('483983235097821184', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-08-28 12:56:35');
-INSERT INTO `sys_oplog` VALUES ('484425859994746880', 1, '登录', '0:0:0:0:0:0:0:1', '2018-08-29 18:15:25');
-INSERT INTO `sys_oplog` VALUES ('484695926233890816', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-08-30 12:08:34');
-INSERT INTO `sys_oplog` VALUES ('484700537611091968', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-08-30 12:26:53');
-INSERT INTO `sys_oplog` VALUES ('484709701821399040', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-08-30 13:03:18');
-INSERT INTO `sys_oplog` VALUES ('484711432051490816', 1, '退出', '0:0:0:0:0:0:0:1', '2018-08-30 13:10:10');
-INSERT INTO `sys_oplog` VALUES ('484711472845291520', 1, '登录', '0:0:0:0:0:0:0:1', '2018-08-30 13:10:20');
-INSERT INTO `sys_oplog` VALUES ('485073770822762496', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-08-31 13:09:59');
-INSERT INTO `sys_oplog` VALUES ('485466313624387584', 1, '登录', '0:0:0:0:0:0:0:1', '2018-09-01 15:09:48');
-INSERT INTO `sys_oplog` VALUES ('485472767597084672', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-01 15:35:27');
-INSERT INTO `sys_oplog` VALUES ('485474004203732992', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-01 15:40:22');
-INSERT INTO `sys_oplog` VALUES ('485475231310282752', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-01 15:45:14');
-INSERT INTO `sys_oplog` VALUES ('485480085692874752', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-01 16:04:32');
-INSERT INTO `sys_oplog` VALUES ('485480379440955392', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-01 16:05:42');
-INSERT INTO `sys_oplog` VALUES ('485486223314386944', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-01 16:28:55');
-INSERT INTO `sys_oplog` VALUES ('485500826224164864', 1, '退出', '0:0:0:0:0:0:0:1', '2018-09-01 17:26:57');
-INSERT INTO `sys_oplog` VALUES ('485500835518742528', 1, '登录', '0:0:0:0:0:0:0:1', '2018-09-01 17:26:59');
-INSERT INTO `sys_oplog` VALUES ('485501755270889472', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-01 17:30:38');
-INSERT INTO `sys_oplog` VALUES ('485501999916253184', 1, '退出', '0:0:0:0:0:0:0:1', '2018-09-01 17:31:36');
-INSERT INTO `sys_oplog` VALUES ('485502004399964160', 1, '登录', '0:0:0:0:0:0:0:1', '2018-09-01 17:31:38');
-INSERT INTO `sys_oplog` VALUES ('485503318383132672', 1, '退出', '0:0:0:0:0:0:0:1', '2018-09-01 17:36:51');
-INSERT INTO `sys_oplog` VALUES ('485503338457071616', 3, '登录', '0:0:0:0:0:0:0:1', '2018-09-01 17:36:56');
-INSERT INTO `sys_oplog` VALUES ('485503732054753280', 3, '退出', '0:0:0:0:0:0:0:1', '2018-09-01 17:38:29');
-INSERT INTO `sys_oplog` VALUES ('485503745187119104', 1, '登录', '0:0:0:0:0:0:0:1', '2018-09-01 17:38:33');
-INSERT INTO `sys_oplog` VALUES ('485528398089682944', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-01 19:16:30');
-INSERT INTO `sys_oplog` VALUES ('485528398307786752', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-01 19:16:30');
-INSERT INTO `sys_oplog` VALUES ('485535180518326272', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-01 19:43:27');
-INSERT INTO `sys_oplog` VALUES ('485535661495943168', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-01 19:45:22');
-INSERT INTO `sys_oplog` VALUES ('485553076686553088', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-01 20:54:34');
-INSERT INTO `sys_oplog` VALUES ('485553077114372096', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-01 20:54:34');
-INSERT INTO `sys_oplog` VALUES ('485555206977748992', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-01 21:03:02');
-INSERT INTO `sys_oplog` VALUES ('485555417749913600', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-01 21:03:52');
-INSERT INTO `sys_oplog` VALUES ('485555620255105024', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-01 21:04:41');
-INSERT INTO `sys_oplog` VALUES ('485560470388867072', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-01 21:23:57');
-INSERT INTO `sys_oplog` VALUES ('485596259030138880', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-01 23:46:10');
-INSERT INTO `sys_oplog` VALUES ('485598468925030400', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-01 23:54:56');
-INSERT INTO `sys_oplog` VALUES ('485602911204671488', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-02 00:12:36');
-INSERT INTO `sys_oplog` VALUES ('485603609715671040', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-02 00:15:22');
-INSERT INTO `sys_oplog` VALUES ('485606739731808256', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-02 00:27:48');
-INSERT INTO `sys_oplog` VALUES ('485609944242978816', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-02 00:40:32');
-INSERT INTO `sys_oplog` VALUES ('485616340225228800', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-02 01:05:57');
-INSERT INTO `sys_oplog` VALUES ('485617038723645440', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-02 01:08:44');
-INSERT INTO `sys_oplog` VALUES ('485822116596285440', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-02 14:43:38');
-INSERT INTO `sys_oplog` VALUES ('485823172298407936', 1, '退出', '0:0:0:0:0:0:0:1', '2018-09-02 14:47:50');
-INSERT INTO `sys_oplog` VALUES ('485823177503539200', 1, '登录', '0:0:0:0:0:0:0:1', '2018-09-02 14:47:51');
-INSERT INTO `sys_oplog` VALUES ('485823238429999104', 1, '退出', '0:0:0:0:0:0:0:1', '2018-09-02 14:48:06');
-INSERT INTO `sys_oplog` VALUES ('485823246319484928', 1, '登录', '0:0:0:0:0:0:0:1', '2018-09-02 14:48:08');
-INSERT INTO `sys_oplog` VALUES ('485830073522323456', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-02 15:15:15');
-INSERT INTO `sys_oplog` VALUES ('485830425537675264', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-02 15:16:39');
-INSERT INTO `sys_oplog` VALUES ('485830426233929728', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-02 15:16:39');
-INSERT INTO `sys_oplog` VALUES ('485830732174852096', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-02 15:17:52');
-INSERT INTO `sys_oplog` VALUES ('485830733248593920', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-02 15:17:53');
-INSERT INTO `sys_oplog` VALUES ('485831197507715072', 1, '角色: 普通用户, 关联菜单: 看小说', '0:0:0:0:0:0:0:1', '2018-09-02 15:19:43');
-INSERT INTO `sys_oplog` VALUES ('485831544414404608', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-02 15:21:06');
-INSERT INTO `sys_oplog` VALUES ('485832173228654592', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-02 15:23:36');
-INSERT INTO `sys_oplog` VALUES ('485832404842315776', 1, '角色: 内容管理员, 关联菜单: 文件,富文本编辑,markdown编辑,ck5_classic', '0:0:0:0:0:0:0:1', '2018-09-02 15:24:31');
-INSERT INTO `sys_oplog` VALUES ('485832423976730624', 1, '角色: 内容管理员, 关联菜单: 文件,富文本编辑,markdown编辑,ck5_classic', '0:0:0:0:0:0:0:1', '2018-09-02 15:24:36');
-INSERT INTO `sys_oplog` VALUES ('485832874822467584', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-02 15:26:23');
-INSERT INTO `sys_oplog` VALUES ('485832912604758016', 1, '用户: jack, 关联角色: 普通用户,内容管理员', '0:0:0:0:0:0:0:1', '2018-09-02 15:26:32');
-INSERT INTO `sys_oplog` VALUES ('485833731571974144', 1, '角色: 管理员, 取消关联菜单: 富文本编辑', '0:0:0:0:0:0:0:1', '2018-09-02 15:29:47');
-INSERT INTO `sys_oplog` VALUES ('485833800467611648', 1, '角色: 管理员, 关联菜单: 菜单,角色,组织,用户,druid监控,代码生成器,系统日志,文件,码表,省,市,县/区,看小说,富文本编辑,markdown编辑,ck5_classic', '0:0:0:0:0:0:0:1', '2018-09-02 15:30:04');
-INSERT INTO `sys_oplog` VALUES ('485936348574777344', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-02 22:17:33');
-INSERT INTO `sys_oplog` VALUES ('485943959311351808', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-02 22:47:48');
-INSERT INTO `sys_oplog` VALUES ('485944380264284160', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-02 22:49:28');
-INSERT INTO `sys_oplog` VALUES ('486156669848387584', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-03 12:53:02');
-INSERT INTO `sys_oplog` VALUES ('486295379357204480', 1, '登录', '0:0:0:0:0:0:0:1', '2018-09-03 22:04:13');
-INSERT INTO `sys_oplog` VALUES ('486295396167974912', 1, '退出', '0:0:0:0:0:0:0:1', '2018-09-03 22:04:17');
-INSERT INTO `sys_oplog` VALUES ('486295452484894720', 1, '登录', '0:0:0:0:0:0:0:1', '2018-09-03 22:04:30');
-INSERT INTO `sys_oplog` VALUES ('486295462282788864', 1, '退出', '0:0:0:0:0:0:0:1', '2018-09-03 22:04:33');
-INSERT INTO `sys_oplog` VALUES ('486300032341901312', 1, '登录', '0:0:0:0:0:0:0:1', '2018-09-03 22:22:42');
-INSERT INTO `sys_oplog` VALUES ('486300058627604480', 1, '退出', '0:0:0:0:0:0:0:1', '2018-09-03 22:22:48');
-INSERT INTO `sys_oplog` VALUES ('486300110125268992', 1, '登录', '0:0:0:0:0:0:0:1', '2018-09-03 22:23:01');
-INSERT INTO `sys_oplog` VALUES ('486300123207303168', 1, '退出', '0:0:0:0:0:0:0:1', '2018-09-03 22:23:04');
-INSERT INTO `sys_oplog` VALUES ('486300408310923264', 1, '登录', '0:0:0:0:0:0:0:1', '2018-09-03 22:24:12');
-INSERT INTO `sys_oplog` VALUES ('486300429353746432', 1, '退出', '0:0:0:0:0:0:0:1', '2018-09-03 22:24:17');
-INSERT INTO `sys_oplog` VALUES ('486300454901252096', 1, '登录', '0:0:0:0:0:0:0:1', '2018-09-03 22:24:23');
-INSERT INTO `sys_oplog` VALUES ('486300464330047488', 1, '退出', '0:0:0:0:0:0:0:1', '2018-09-03 22:24:25');
-INSERT INTO `sys_oplog` VALUES ('486300777950740480', 1, '登录', '0:0:0:0:0:0:0:1', '2018-09-03 22:25:40');
-INSERT INTO `sys_oplog` VALUES ('486300790453960704', 1, '退出', '0:0:0:0:0:0:0:1', '2018-09-03 22:25:43');
-INSERT INTO `sys_oplog` VALUES ('486301729499906048', 1, '登录', '0:0:0:0:0:0:0:1', '2018-09-03 22:29:27');
-INSERT INTO `sys_oplog` VALUES ('486301755248738304', 1, '退出', '0:0:0:0:0:0:0:1', '2018-09-03 22:29:33');
-INSERT INTO `sys_oplog` VALUES ('486301792716455936', 1, '登录', '0:0:0:0:0:0:0:1', '2018-09-03 22:29:42');
-INSERT INTO `sys_oplog` VALUES ('486301818037469184', 1, '退出', '0:0:0:0:0:0:0:1', '2018-09-03 22:29:48');
-INSERT INTO `sys_oplog` VALUES ('486302196393050112', 4, '登录', '0:0:0:0:0:0:0:1', '2018-09-03 22:31:18');
-INSERT INTO `sys_oplog` VALUES ('486302208783024128', 4, '退出', '0:0:0:0:0:0:0:1', '2018-09-03 22:31:21');
-INSERT INTO `sys_oplog` VALUES ('486302355545915392', 4, '登录', '0:0:0:0:0:0:0:1', '2018-09-03 22:31:56');
-INSERT INTO `sys_oplog` VALUES ('486302463842844672', 4, '登录', '0:0:0:0:0:0:0:1', '2018-09-03 22:32:22');
-INSERT INTO `sys_oplog` VALUES ('486302504817000448', 4, '退出', '0:0:0:0:0:0:0:1', '2018-09-03 22:32:32');
-INSERT INTO `sys_oplog` VALUES ('486303461239947264', 1, '登录', '0:0:0:0:0:0:0:1', '2018-09-03 22:36:20');
-INSERT INTO `sys_oplog` VALUES ('486630216232337408', 1, '登录', '0:0:0:0:0:0:0:1', '2018-09-04 20:14:44');
-INSERT INTO `sys_oplog` VALUES ('486631237130125312', 1, '退出', '0:0:0:0:0:0:0:1', '2018-09-04 20:18:48');
-INSERT INTO `sys_oplog` VALUES ('486631618669182976', 1, '登录', '0:0:0:0:0:0:0:1', '2018-09-04 20:20:19');
-INSERT INTO `sys_oplog` VALUES ('486639737105285120', 1, '角色: 管理员, 关联菜单: 菜单,角色,组织,用户,druid监控,代码生成器,系统日志,文件,码表,省,市,县/区,看小说,富文本编辑,markdown编辑,ck5_classic,easyui texteditor', '0:0:0:0:0:0:0:1', '2018-09-04 20:52:34');
-INSERT INTO `sys_oplog` VALUES ('486639909684117504', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-04 20:53:15');
-INSERT INTO `sys_oplog` VALUES ('486862641256464384', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-05 11:38:19');
-INSERT INTO `sys_oplog` VALUES ('486937032464007168', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-05 16:33:55');
-INSERT INTO `sys_oplog` VALUES ('486951422689017856', 1, '退出', '0:0:0:0:0:0:0:1', '2018-09-05 17:31:06');
-INSERT INTO `sys_oplog` VALUES ('486951452288221184', 4, '登录', '0:0:0:0:0:0:0:1', '2018-09-05 17:31:13');
-INSERT INTO `sys_oplog` VALUES ('486952505461178368', 4, '退出', '0:0:0:0:0:0:0:1', '2018-09-05 17:35:24');
-INSERT INTO `sys_oplog` VALUES ('486952644229726208', 1, '登录', '0:0:0:0:0:0:0:1', '2018-09-05 17:35:57');
-INSERT INTO `sys_oplog` VALUES ('487206025938599936', 1, '登录', '0:0:0:0:0:0:0:1', '2018-09-06 10:22:48');
-INSERT INTO `sys_oplog` VALUES ('487221801449947136', 1, '登录', '0:0:0:0:0:0:0:1', '2018-09-06 11:25:29');
-INSERT INTO `sys_oplog` VALUES ('487223532896387072', 1, '登录', '0:0:0:0:0:0:0:1', '2018-09-06 11:32:22');
-INSERT INTO `sys_oplog` VALUES ('487225752144576512', 1, '登录', '0:0:0:0:0:0:0:1', '2018-09-06 11:41:11');
-INSERT INTO `sys_oplog` VALUES ('487226746232373248', 1, '登录', '0:0:0:0:0:0:0:1', '2018-09-06 11:45:08');
-INSERT INTO `sys_oplog` VALUES ('487227054387888128', 1, '角色: 管理员, 关联菜单: 菜单,角色,组织,用户,druid监控,代码生成器,系统日志,文件,码表,省,市,县/区,看小说,富文本编辑,markdown编辑,ck5_classic,easyui texteditor,地区', '0:0:0:0:0:0:0:1', '2018-09-06 11:46:22');
-INSERT INTO `sys_oplog` VALUES ('487227076223434752', 1, '退出', '0:0:0:0:0:0:0:1', '2018-09-06 11:46:27');
-INSERT INTO `sys_oplog` VALUES ('487227082372284416', 1, '登录', '0:0:0:0:0:0:0:1', '2018-09-06 11:46:28');
-INSERT INTO `sys_oplog` VALUES ('487227348224049152', 1, '登录', '0:0:0:0:0:0:0:1', '2018-09-06 11:47:32');
-INSERT INTO `sys_oplog` VALUES ('487229828945149952', 1, '登录', '0:0:0:0:0:0:0:1', '2018-09-06 11:57:23');
-INSERT INTO `sys_oplog` VALUES ('487238251946442752', 1, '登录', '0:0:0:0:0:0:0:1', '2018-09-06 12:30:51');
-INSERT INTO `sys_oplog` VALUES ('487240617131245568', 1, '登录', '0:0:0:0:0:0:0:1', '2018-09-06 12:40:15');
-INSERT INTO `sys_oplog` VALUES ('487241106283560960', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-06 12:42:12');
-INSERT INTO `sys_oplog` VALUES ('487241106979815424', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-06 12:42:12');
-INSERT INTO `sys_oplog` VALUES ('487241870703853568', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-06 12:45:14');
-INSERT INTO `sys_oplog` VALUES ('487241871857287168', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-06 12:45:14');
-INSERT INTO `sys_oplog` VALUES ('487246685244751872', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-06 13:04:22');
-INSERT INTO `sys_oplog` VALUES ('487247132433055744', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-06 13:06:08');
-INSERT INTO `sys_oplog` VALUES ('487247383873191936', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-06 13:07:08');
-INSERT INTO `sys_oplog` VALUES ('487253135094448128', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-06 13:30:00');
-INSERT INTO `sys_oplog` VALUES ('487253135442575360', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-06 13:30:00');
-INSERT INTO `sys_oplog` VALUES ('487269823735136256', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-06 14:36:19');
-INSERT INTO `sys_oplog` VALUES ('487269824557219840', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-06 14:36:19');
-INSERT INTO `sys_oplog` VALUES ('487271581291118592', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-06 14:43:18');
-INSERT INTO `sys_oplog` VALUES ('487271581962207232', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-06 14:43:18');
-INSERT INTO `sys_oplog` VALUES ('487272096641056768', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-06 14:45:20');
-INSERT INTO `sys_oplog` VALUES ('487272807831437312', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-06 14:48:10');
-INSERT INTO `sys_oplog` VALUES ('487273980701442048', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-06 14:52:50');
-INSERT INTO `sys_oplog` VALUES ('487273981213147136', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-06 14:52:50');
-INSERT INTO `sys_oplog` VALUES ('487295697784143872', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-06 16:19:07');
-INSERT INTO `sys_oplog` VALUES ('487296831227691008', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-06 16:23:38');
-INSERT INTO `sys_oplog` VALUES ('487296831978471424', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-06 16:23:38');
-INSERT INTO `sys_oplog` VALUES ('487299183254962176', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-06 16:32:58');
-INSERT INTO `sys_oplog` VALUES ('487299183947022336', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-06 16:32:59');
-INSERT INTO `sys_oplog` VALUES ('487302956601835520', 1, '退出', '0:0:0:0:0:0:0:1', '2018-09-06 16:47:58');
-INSERT INTO `sys_oplog` VALUES ('487302965195964416', 1, '登录', '0:0:0:0:0:0:0:1', '2018-09-06 16:48:00');
-INSERT INTO `sys_oplog` VALUES ('487315513198772224', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-06 17:37:52');
-INSERT INTO `sys_oplog` VALUES ('487324025312247808', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-06 18:11:41');
-INSERT INTO `sys_oplog` VALUES ('487326310025134080', 1, '退出', '0:0:0:0:0:0:0:1', '2018-09-06 18:20:46');
-INSERT INTO `sys_oplog` VALUES ('487326325263040512', 1, '登录', '0:0:0:0:0:0:0:1', '2018-09-06 18:20:50');
-INSERT INTO `sys_oplog` VALUES ('487326946712092672', 1, '退出', '0:0:0:0:0:0:0:1', '2018-09-06 18:23:18');
-INSERT INTO `sys_oplog` VALUES ('487326952823193600', 1, '登录', '0:0:0:0:0:0:0:1', '2018-09-06 18:23:19');
-INSERT INTO `sys_oplog` VALUES ('487329584920920064', 1, '退出', '0:0:0:0:0:0:0:1', '2018-09-06 18:33:47');
-INSERT INTO `sys_oplog` VALUES ('487329591011049472', 1, '登录', '0:0:0:0:0:0:0:1', '2018-09-06 18:33:48');
-INSERT INTO `sys_oplog` VALUES ('487329835958403072', 1, '退出', '0:0:0:0:0:0:0:1', '2018-09-06 18:34:47');
-INSERT INTO `sys_oplog` VALUES ('487329841880760320', 1, '登录', '0:0:0:0:0:0:0:1', '2018-09-06 18:34:48');
-INSERT INTO `sys_oplog` VALUES ('487347793430577152', 1, '登录', '0:0:0:0:0:0:0:1', '2018-09-06 19:46:08');
-INSERT INTO `sys_oplog` VALUES ('487348681834496000', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-06 19:49:40');
-INSERT INTO `sys_oplog` VALUES ('487348682312646656', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-06 19:49:40');
-INSERT INTO `sys_oplog` VALUES ('487354559442714624', 1, '退出', '0:0:0:0:0:0:0:1', '2018-09-06 20:13:01');
-INSERT INTO `sys_oplog` VALUES ('487354566564642816', 1, '登录', '0:0:0:0:0:0:0:1', '2018-09-06 20:13:03');
-INSERT INTO `sys_oplog` VALUES ('487379898969620480', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-06 21:53:42');
-INSERT INTO `sys_oplog` VALUES ('487381783818534912', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-06 22:01:12');
+INSERT INTO `sys_oplog` VALUES ('489502568456650752', 1, '登录', '0:0:0:0:0:0:0:1', '2018-09-12 18:28:26');
+INSERT INTO `sys_oplog` VALUES ('489503194913701888', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-12 18:30:56');
+INSERT INTO `sys_oplog` VALUES ('489503808305496064', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-12 18:33:22');
+INSERT INTO `sys_oplog` VALUES ('489504358912753664', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-12 18:35:33');
+INSERT INTO `sys_oplog` VALUES ('489504974217150464', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-12 18:38:00');
+INSERT INTO `sys_oplog` VALUES ('489505390849949696', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-12 18:39:39');
+INSERT INTO `sys_oplog` VALUES ('489505537306656768', 4, '登录', '0:0:0:0:0:0:0:1', '2018-09-12 18:40:14');
+INSERT INTO `sys_oplog` VALUES ('489505981722525696', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-12 18:42:00');
+INSERT INTO `sys_oplog` VALUES ('489506057387769856', 4, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-12 18:42:18');
+INSERT INTO `sys_oplog` VALUES ('489934989643743232', 1, '登录', '0:0:0:0:0:0:0:1', '2018-09-13 23:06:44');
+INSERT INTO `sys_oplog` VALUES ('490290937944080384', 1, '登录', '0:0:0:0:0:0:0:1', '2018-09-14 22:41:08');
+INSERT INTO `sys_oplog` VALUES ('490311935863029760', 1, '登录', '0:0:0:0:0:0:0:1', '2018-09-15 00:04:35');
+INSERT INTO `sys_oplog` VALUES ('490504580312858624', 1, '登录', '0:0:0:0:0:0:0:1', '2018-09-15 12:50:05');
+INSERT INTO `sys_oplog` VALUES ('490516777239838720', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-15 13:38:33');
+INSERT INTO `sys_oplog` VALUES ('490517721637715968', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-15 13:42:18');
+INSERT INTO `sys_oplog` VALUES ('490875355452669952', 1, '登录', '0:0:0:0:0:0:0:1', '2018-09-16 13:23:24');
+INSERT INTO `sys_oplog` VALUES ('490944518334447616', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-16 17:58:14');
+INSERT INTO `sys_oplog` VALUES ('490944518560940032', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-16 17:58:14');
+INSERT INTO `sys_oplog` VALUES ('490953223562067968', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-16 18:32:49');
+INSERT INTO `sys_oplog` VALUES ('490953223981498368', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-16 18:32:50');
+INSERT INTO `sys_oplog` VALUES ('491025565260709888', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-16 23:20:17');
+INSERT INTO `sys_oplog` VALUES ('491228162194145280', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-17 12:45:20');
+INSERT INTO `sys_oplog` VALUES ('491320704961085440', 1, '登录', '0:0:0:0:0:0:0:1', '2018-09-17 18:53:04');
+INSERT INTO `sys_oplog` VALUES ('491326721228800000', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-17 19:16:58');
+INSERT INTO `sys_oplog` VALUES ('491329182287003648', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-17 19:26:45');
+INSERT INTO `sys_oplog` VALUES ('491330806225043456', 1, '角色: 管理员, 关联菜单: 菜单,角色,组织,用户,druid监控,代码生成器,系统日志,文件,码表,看小说,富文本编辑,markdown编辑,ckeditor5_classic,easyui texteditor,地区,消息通知类型', '0:0:0:0:0:0:0:1', '2018-09-17 19:33:12');
+INSERT INTO `sys_oplog` VALUES ('491330818203975680', 1, '退出', '0:0:0:0:0:0:0:1', '2018-09-17 19:33:15');
+INSERT INTO `sys_oplog` VALUES ('491330835924910080', 1, '登录', '0:0:0:0:0:0:0:1', '2018-09-17 19:33:19');
+INSERT INTO `sys_oplog` VALUES ('491332763849326592', 1, '退出', '0:0:0:0:0:0:0:1', '2018-09-17 19:40:59');
+INSERT INTO `sys_oplog` VALUES ('491332786037194752', 1, '登录', '0:0:0:0:0:0:0:1', '2018-09-17 19:41:04');
+INSERT INTO `sys_oplog` VALUES ('491334149286658048', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-17 19:46:29');
+INSERT INTO `sys_oplog` VALUES ('491334149697699840', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-17 19:46:29');
+INSERT INTO `sys_oplog` VALUES ('491364282185809920', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-17 21:46:13');
+INSERT INTO `sys_oplog` VALUES ('491365838062878720', 1, '角色: 管理员, 关联菜单: 菜单,角色,组织,用户,druid监控,代码生成器,系统日志,文件,码表,看小说,富文本编辑,markdown编辑,ckeditor5_classic,easyui texteditor,地区,系统通知类型,系统通知类型*角色,系统通知类型*用户', '0:0:0:0:0:0:0:1', '2018-09-17 21:52:24');
+INSERT INTO `sys_oplog` VALUES ('491365854294835200', 1, '退出', '0:0:0:0:0:0:0:1', '2018-09-17 21:52:28');
+INSERT INTO `sys_oplog` VALUES ('491365872812687360', 1, '登录', '0:0:0:0:0:0:0:1', '2018-09-17 21:52:33');
+INSERT INTO `sys_oplog` VALUES ('491366041310461952', 1, '登录', '0:0:0:0:0:0:0:1', '2018-09-17 21:53:13');
+INSERT INTO `sys_oplog` VALUES ('491369212707602432', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-17 22:05:49');
+INSERT INTO `sys_oplog` VALUES ('491370283987369984', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-17 22:10:04');
+INSERT INTO `sys_oplog` VALUES ('491373799808172032', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-17 22:24:03');
+INSERT INTO `sys_oplog` VALUES ('491374381314867200', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-17 22:26:21');
+INSERT INTO `sys_oplog` VALUES ('491377509674254336', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-17 22:38:47');
+INSERT INTO `sys_oplog` VALUES ('491381829601853440', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-17 22:55:57');
+INSERT INTO `sys_oplog` VALUES ('491382220737478656', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-17 22:57:30');
+INSERT INTO `sys_oplog` VALUES ('491383267715448832', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-17 23:01:40');
+INSERT INTO `sys_oplog` VALUES ('491384903468843008', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-17 23:08:10');
+INSERT INTO `sys_oplog` VALUES ('491395707345829888', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-17 23:51:06');
+INSERT INTO `sys_oplog` VALUES ('491396024472961024', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-17 23:52:21');
+INSERT INTO `sys_oplog` VALUES ('491399288056709120', 1, '退出', '0:0:0:0:0:0:0:1', '2018-09-18 00:05:20');
+INSERT INTO `sys_oplog` VALUES ('491399309980336128', 1, '登录', '0:0:0:0:0:0:0:1', '2018-09-18 00:05:25');
+INSERT INTO `sys_oplog` VALUES ('491403775093768192', 1, '登录', '0:0:0:0:0:0:0:1', '2018-09-18 00:23:09');
+INSERT INTO `sys_oplog` VALUES ('491404421821890560', 1, '退出', '0:0:0:0:0:0:0:1', '2018-09-18 00:25:44');
+INSERT INTO `sys_oplog` VALUES ('491404452746493952', 1, '登录', '0:0:0:0:0:0:0:1', '2018-09-18 00:25:51');
+INSERT INTO `sys_oplog` VALUES ('491675303521812480', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-18 18:22:07');
+INSERT INTO `sys_oplog` VALUES ('491676241057808384', 1, '退出', '0:0:0:0:0:0:0:1', '2018-09-18 18:25:50');
+INSERT INTO `sys_oplog` VALUES ('491676260976558080', 1, '登录', '0:0:0:0:0:0:0:1', '2018-09-18 18:25:55');
+INSERT INTO `sys_oplog` VALUES ('491678364520677376', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-18 18:34:17');
+INSERT INTO `sys_oplog` VALUES ('491683291036909568', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-18 18:53:51');
+INSERT INTO `sys_oplog` VALUES ('491740073167945728', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-18 22:39:29');
+INSERT INTO `sys_oplog` VALUES ('491742741269577728', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-18 22:50:05');
+INSERT INTO `sys_oplog` VALUES ('491753726172725248', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-18 23:33:44');
+INSERT INTO `sys_oplog` VALUES ('491760319987712000', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-18 23:59:56');
+INSERT INTO `sys_oplog` VALUES ('491761408879362048', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-19 00:04:16');
+INSERT INTO `sys_oplog` VALUES ('491891538486362112', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-19 08:41:21');
+INSERT INTO `sys_oplog` VALUES ('491951679529287680', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-19 12:40:20');
+INSERT INTO `sys_oplog` VALUES ('491961389963804672', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-19 13:18:55');
+INSERT INTO `sys_oplog` VALUES ('491961390391623680', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-19 13:18:55');
+INSERT INTO `sys_oplog` VALUES ('492035415272849408', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-19 18:13:04');
+INSERT INTO `sys_oplog` VALUES ('492037583480553472', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-19 18:21:41');
+INSERT INTO `sys_oplog` VALUES ('492037583925149696', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-19 18:21:41');
+INSERT INTO `sys_oplog` VALUES ('492041736923643904', 1, '登录', '0:0:0:0:0:0:0:1', '2018-09-19 18:38:11');
+INSERT INTO `sys_oplog` VALUES ('492044961781383168', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-19 18:51:00');
+INSERT INTO `sys_oplog` VALUES ('492045447892828160', 1, ' 修改 通知类型：<br/> [  \"00003\" change to  \"00002\"  ] <br/> [  \"和部分用户部分角色关联 某用户下载小说时，通知某部分用户。 10天后过期，20天后比删除 \"  change to  \"和部分用户部分角色关联 某用户下载小说时，通知某部分用户。 10天后过期，20天后比删除 2\"  ] ', '0:0:0:0:0:0:0:1', '2018-09-19 18:52:56');
+INSERT INTO `sys_oplog` VALUES ('492045583826026496', 1, ' 修改 通知类型：<br/> [  \"00002\" change to  \"00003\"  ] <br/> [  \"和部分用户部分角色关联 某用户下载小说时，通知某部分用户。 10天后过期，20天后比删除 2\"  change to  \"和部分用户部分角色关联 某用户下载小说时，通知某部分用户。 10天后过期，20天后比删除\"  ] ', '0:0:0:0:0:0:0:1', '2018-09-19 18:53:28');
+INSERT INTO `sys_oplog` VALUES ('492045834393747456', 1, ' 修改 通知类型：<br/> [  \"00003\" change to  \"00002\"  ] <br/>', '0:0:0:0:0:0:0:1', '2018-09-19 18:54:28');
+INSERT INTO `sys_oplog` VALUES ('492046186501373952', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-19 18:55:52');
+INSERT INTO `sys_oplog` VALUES ('492046234593263616', 1, ' 修改 通知类型：(id=491746002944917504)<br/> [  \"00002\" change to  \"00003\"  ] <br/> [  \"和部分用户部分角色关联 某用户下载小说时，通知某部分用户。 10天后过期，20天后比删除\"  change to  \"和部分用户部分角色关联 某用户下载小说时，通知某部分用户。 10天后过期，20天后比删除3\"  ] ', '0:0:0:0:0:0:0:1', '2018-09-19 18:56:04');
+INSERT INTO `sys_oplog` VALUES ('492046316872925184', 1, ' 修改 通知类型：(id=491746002944917504)<br/> [  \"00003\" change to  \"00002\"  ] <br/> [  \"和部分用户部分角色关联 某用户下载小说时，通知某部分用户。 10天后过期，20天后比删除3\"  change to  \"和部分用户部分角色关联 某用户下载小说时，通知某部分用户。 10天后过期，20天后比删除\"  ] ', '0:0:0:0:0:0:0:1', '2018-09-19 18:56:23');
+INSERT INTO `sys_oplog` VALUES ('492047450714931200', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-19 19:00:54');
+INSERT INTO `sys_oplog` VALUES ('492047530792583168', 1, ' 删除通知类型：[ ggggg : 111111 ]', '0:0:0:0:0:0:0:1', '2018-09-19 19:01:13');
+INSERT INTO `sys_oplog` VALUES ('492047666725781504', 1, ' 删除通知类型： <br/>[ a : 11111111111 ]   ,  <br/>[ b : 22222222222 ]  ', '0:0:0:0:0:0:0:1', '2018-09-19 19:01:45');
+INSERT INTO `sys_oplog` VALUES ('492074553489489920', 1, '通过 cookie 登录', '0:0:0:0:0:0:0:1', '2018-09-19 20:48:35');
+INSERT INTO `sys_oplog` VALUES ('492074686323097600', 1, '退出', '0:0:0:0:0:0:0:1', '2018-09-19 20:49:07');
+INSERT INTO `sys_oplog` VALUES ('492074705562370048', 1, '登录', '0:0:0:0:0:0:0:1', '2018-09-19 20:49:12');
+INSERT INTO `sys_oplog` VALUES ('492074749921329152', 1, ' 删除通知类型：<br/>[ 用户消息 : 00001 ]', '0:0:0:0:0:0:0:1', '2018-09-19 20:49:22');
 
 -- ----------------------------
 -- Function structure for authMenuTreeIds

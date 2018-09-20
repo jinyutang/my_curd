@@ -110,6 +110,20 @@ public abstract class DateTimeUtils {
         return calendar.getTime();
     }
 
+
+    /**
+     * 某个日期的 相对多少天
+     * @param date
+     * @param day
+     * @return
+     */
+    public static Date getDate(Date date,int day) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.add(Calendar.DATE, day);
+        return calendar.getTime();
+    }
+
     /**
      * 获取当前时间 long 类型值
      *

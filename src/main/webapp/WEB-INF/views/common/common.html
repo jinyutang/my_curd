@@ -12,7 +12,7 @@
         <title>你好！ ${(session.auth_user.name)!}</title>
         <link rel="stylesheet" type="text/css" href="${ctx!}/res/easyui1.5.4.5/themes/metro/easyui.css">
 <!--    <link rel="stylesheet" type="text/css" href="${ctx!}/res/easyui1.5.4.5/themes/icon.css">-->
-        <link rel="stylesheet" href="//at.alicdn.com/t/font_723798_kfj55tiqb8p.css">
+        <link rel="stylesheet" href="//at.alicdn.com/t/font_723798_86mwrymoyaf.css">
         <link   rel="stylesheet" href="${ctx!}/res/css/scrollbar.css">
         <link id="fontCss"  rel="stylesheet" href="${ctx!}/res/css/font.css">
         <script src="${ctx!}/res/easyui1.5.4.5/jquery.min.js"></script>
@@ -21,7 +21,7 @@
         <script src="${ctx!}/res/js/loading_mask.js" ></script>
         <#nested>
         <script>
-            /* 列表表格 搜索过滤监听, 并不是所有页面都需要 */
+            /* datagrid 列表表格 enter 搜索过滤监听, 并不是所有页面都需要 */
             $(function () {
                 $("#enterSpan").on("keydown", function (e) {
                     if (e.keyCode == 13) {

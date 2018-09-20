@@ -3,6 +3,7 @@ package com.hxkj.common.config;
 import com.hxkj.common.constant.Constant;
 import com.hxkj.common.controller.UserInfoController;
 import com.hxkj.common.controller.UserPasswordController;
+import com.hxkj.common.controller.UtilsController;
 import com.jfinal.config.Routes;
 
 /**
@@ -16,5 +17,7 @@ public class CommonRoute extends Routes {
     public void config() {
         add("/userPassword", UserPasswordController.class, Constant.VIEW_PATH);
         add("/userInfo", UserInfoController.class, Constant.VIEW_PATH);
+        // 工具页面
+        add("/utils", UtilsController.class,Constant.VIEW_PATH);
     }
 }

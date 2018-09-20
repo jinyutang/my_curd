@@ -1,0 +1,77 @@
+<!--选择角色页面-->
+<#include "/WEB-INF/views/common/common.html"/> <@layout>
+<link rel="stylesheet" href="${ctx!}/res/css/list.css">
+</head>
+<body>
+<script type="text/javascript">
+    function genderFmt(val){
+        if (val == "1") {
+            val = '男';
+        } else {
+            val = '女';
+        }
+        return val;
+    };
+
+    /*查询函数*/
+    function queryModel() {
+        var queryParams = {};
+        queryParams['search_LIKE_su.username'] = $("#username").textbox("getValue");
+        queryParams['search_LIKE_su.name'] = $("#name").textbox("getValue");
+        queryParams['search_LIKE_su.job'] = $("#job").textbox("getValue");
+        queryParams['search_EQ_su.job_level'] = $("#jobLevel").combobox("getValue");
+        queryParams['search_LIKE_so.name'] = $("#orgName").textbox("getValue");
+        $('#dg').datagrid('load', queryParams);
+    }
+
+
+    /**
+     * 保存 选中的 用户
+     */
+    function saveSelected(){
+        var ary = $("#dg").datagrid("getSelections");
+        if(ary.length==0){
+            parent.popup.msg('请至少选择一个角色');
+            return;
+        }
+        if(top.location==self.location){
+            return;
+        }
+        /*调用父窗口函数*/
+        parent.saveAction(ary);
+    }
+</script>
+<div id="nestLayout" class="easyui-layout" fit="true">
+    <div data-options="region:'center' "   split="true" style="border-top: none">
+        <table id="dg" class="easyui-datagrid  "
+               url="${ctx!}/utils/userData"   pageSize="40" pageList="[20,40]"
+               fitColumns="true" singleSelect="${singleSelect}"
+               toolbar="#tb" rownumbers="true"  border="false"
+               fit="true" pagination="true">
+            <thead>
+            <tr>
+            <#if singleSelect=="false"><th data-options="field:'id',checkbox:true"></th></#if>
+            <th sortable="true" field="username" width="100">登录名</th>
+            <th  field="name" width="100">姓名</th>
+            <th  field="gender" width="60" formatter="genderFmt">性别</th>
+            <th field="orgName" width="150">部门</th>
+            <th field="job" width="100">职务</th>
+            <th field="jobLevelName" width="100">职务级别</th>
+            </tr>
+            </thead>
+        </table>
+        <div id="tb" >
+            <a onclick="saveSelected()" href="#" class="easyui-linkbutton" iconCls="iconfont icon-save" plain="true">${yesBtnTxt!}</a>
+            <span id="enterSpan" class="searchInputArea" >
+                    <input id="username" prompt="登录名" class="easyui-textbox" style="width:120px">
+                    <input id="name" prompt="姓名" class="easyui-textbox" style="width:120px">
+                    <input id="orgName" prompt="部门" class="easyui-textbox" style="width:120px">
+                    <input id="job" prompt="职务" class="easyui-textbox" style="width:120px">
+                    <input id="jobLevel" prompt="职务级别" class="easyui-combobox" style="width:120px; "
+                           data-options="url:'${ctx!}/dataDict/queryDictData?type=jobLevel&fields=dict_key as text, dict_value as value'">
+					<a href="#" class="easyui-linkbutton" data-options="iconCls:'iconfont icon-search',plain:true" onclick="queryModel()">搜索</a>
+            </span>
+        </div>
+    </div>
+</div>
+</@layout>

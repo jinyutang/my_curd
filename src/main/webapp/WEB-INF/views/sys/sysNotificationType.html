@@ -1,0 +1,95 @@
+<!-- 生成时间： 2018-09-17 19:18:07 -->
+<#include "/WEB-INF/views/common/common.html"/> <@layout>
+<link rel="stylesheet" href="${ctx!}/res/css/list.css">
+<link rel="stylesheet" href="${ctx!}/res/layer/theme/default/layer.css">
+</head>
+<body>
+<script type="text/javascript">
+
+    /*新增 model*/
+    function newModel() {
+        popup.openIframe('新建', '${ctx!}/sysNotificationType/newModel', '720px', '380px');
+    }
+
+    /*编辑 model*/
+    function editModel() {
+        alert('系统配置数据，代码和部分数据耦合，如不清楚消息通知业务，不要轻易修改数据');
+        var rows = $("#dg").datagrid("getSelections");
+        if (rows.length==1) {
+            var row = rows[0];
+            /*有且只有一个主键*/
+            popup.openIframe('编辑', '${ctx!}/sysNotificationType/newModel?id=' + row.id, '720px', '380px');
+        } else {
+            popup.msg('请选择一行数据进行编辑');
+        }
+    }
+
+    /*删除 model*/
+    function deleteModel() {
+        alert('系统配置数据，代码和部分数据耦合，如不清楚消息通知业务，不要轻易删除数据');
+        var rows = $("#dg").datagrid("getSelections");
+        if (rows.length!=0) {
+            /*有且只有一个主键*/
+            var idAry =[];
+            rows.forEach(function (row) {
+                idAry.push(row.id);
+            });
+            popup.openConfirm(3, '删除', '您确定要删除选中的'+rows.length+'条记录吗?', function () {
+                $.post('${ctx!}/sysNotificationType/deleteAction?ids='+idAry.splice(',') , function (data) {
+                    popup.msg(data, function () {
+                        $('#dg').datagrid('reload');
+                    });
+                }, "text").error(function(){ popup.errMsg(); });
+            });
+
+        } else {
+            popup.msg('请至少选择一行进行删除');
+        }
+    }
+
+    /*条件查询*/
+    function queryModel() {
+        var queryParams = {};
+        queryParams['search_LIKE_txt'] = $("#txt").textbox("getValue");
+        queryParams['search_LIKE_code'] = $("#code").textbox("getValue");
+        queryParams['search_LIKE_remark'] = $("#remark").textbox("getValue");
+
+        /*load 从第一页加载，reload 重载本页，此处要用load*/
+        $('#dg').datagrid('load', queryParams);
+    }
+</script>
+<table id="dg" class="easyui-datagrid"
+       url="${ctx!}/sysNotificationType/query"
+       data-options="onDblClickRow:editModel"
+       toolbar="#tb" rownumbers="true" border="false"
+       fit="true"    fitColumns="false"
+       nowrap="false"
+       striped="true"
+       pagination="true"
+       ctrlSelect="true"
+       pageSize="40" pageList="[20,40]">
+    <thead>
+    <tr>
+        <th data-options="field:'id',checkbox:true"></th>
+        <th field="txt" width="200">名称</th>
+        <th field="code" width="200">编码</th>
+        <th field="until_expiry_day" width="100">n天后 过期</th>
+        <th field="until_dead_day" width="100">n天后 删除</th>
+        <th field="remark" width="400">备注</th>
+    </tr>
+    </thead>
+</table>
+<div id="tb">
+    <a onclick="newModel()" href="#" class="easyui-linkbutton" iconCls="iconfont icon-add" plain="true">新增</a>
+    <a onclick="editModel()" href="#" class="easyui-linkbutton" iconCls="iconfont icon-edit" plain="true">编辑</a>
+    <a onclick="deleteModel()" href="#" class="easyui-linkbutton  " iconCls="iconfont icon-delete" plain="true">删除</a>
+    <span id="enterSpan" class="searchInputArea">
+            <input id="txt" prompt="名称" class="easyui-textbox" style="width:120px; ">
+            <input id="code" prompt="编码" class="easyui-textbox" style="width:120px; ">
+            <input id="remark" prompt="备注" class="easyui-textbox" style="width:120px; ">
+          <a href="#" class="easyui-linkbutton" data-options="iconCls:'iconfont icon-search',plain:true" onclick="queryModel()">搜索</a>
+    </span>
+</div>
+<script src="${ctx!}/res/layer/layer.js"></script>
+<script src="${ctx!}/res/js/popup-tools.js"></script>
+</@layout>

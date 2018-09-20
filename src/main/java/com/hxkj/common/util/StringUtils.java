@@ -28,6 +28,7 @@ import java.io.StringReader;
 import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
 
 
@@ -112,7 +113,7 @@ public abstract class StringUtils {
         // 报名.类名
         String fullClassName = bean.getClass().getName();
         // 类名
-        return fullClassName.substring(fullClassName.lastIndexOf(".") + 1, fullClassName.length());
+        return fullClassName.substring(fullClassName.lastIndexOf(".") + 1);
     }
 
 
@@ -138,7 +139,7 @@ public abstract class StringUtils {
                 } else if (userAgent.indexOf("safari") == -1 && userAgent.indexOf("applewebkit") == -1 && userAgent.indexOf("chrome") == -1) {
                     return userAgent.indexOf("mozilla") != -1 ? "filename*=UTF-8''" + encodedFileName : "filename=\"" + encodedFileName + "\"";
                 } else {
-                    return "filename=\"" + new String(fileName.getBytes("UTF-8"), "ISO8859-1") + "\"";
+                    return "filename=\"" + new String(fileName.getBytes(StandardCharsets.UTF_8), "ISO8859-1") + "\"";
                 }
             }
         } catch (UnsupportedEncodingException e) {

@@ -16,7 +16,7 @@ var layerSkin = {
 var popup = {
     /* 打开 iframe 弹窗*/
     openIframe: function (title, url, width, height, skin) {
-        layer.open({
+        var index = layer.open({
             skin: skin || layerSkin.lan,
             type: 2,
             title: [title, 'line-height:30px;height:30px;padding: 0 10px'],
@@ -26,6 +26,7 @@ var popup = {
             offset: top.location==self.location || width=="100%"  ? 'auto':'30px',
             content: [url]
         });
+        return index;
     },
     /*页面层*/
     openDOM: function (title, content, width, height, skin) {

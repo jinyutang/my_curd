@@ -1,0 +1,94 @@
+<!-- 生成时间： 2018-09-17 19:18:07 -->
+<#include "/WEB-INF/views/common/common.html"/><@layout>
+<link rel="stylesheet" href="${ctx!}/res/css/form.css">
+<link rel="stylesheet" href="${ctx!}/res/pure/tables-min.css">
+<script src="${ctx!}/res/js/util.js"></script>
+<script>
+    function saveAction() {
+        var url;
+        var idVal = $('#id').val();
+
+        if (isEmpty(idVal)) {
+            url = '${ctx!}/sysNotificationType/addAction';
+        } else {
+            url = '${ctx!}/sysNotificationType/updateAction';
+        }
+
+        $('#modelForm').form('submit', {
+            url: url,
+            onSubmit: function() {
+                return $(this).form('validate');
+            },
+            success: function (data) {
+                parent.popup.msg(data, function () {
+                    parent.$("#dg").datagrid("reload");
+                    parent.layer.close(parent.layer.getFrameIndex(window.name));
+                });
+            }
+        });
+    }
+</script>
+</head>
+<body style="padding: 10px 30px; ">
+<form id="modelForm" method="POST">
+    <table class=" pure-table pure-table-horizontal">
+        <input id="id" name="id"
+               type="hidden" value="${(sysNotificationType.id)!}">
+        <tbody>
+            <tr>
+                <td>
+                    名称:
+                </td>
+                <td>
+                    <input name="txt" value="${(sysNotificationType.txt)!}" class="easyui-textbox"  data-options="required:true">
+                </td>
+
+                <td>
+                    编码:
+                </td>
+                <td>
+                    <input name="code" value="${(sysNotificationType.code)!}" class="easyui-textbox"  data-options="required:true,validType:['length[5,20]']">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    n天后过期:
+                </td>
+                <td>
+                    <input name="untilExpiryDay" value="${(sysNotificationType.untilExpiryDay)!}" class="easyui-numberbox"  data-options="required:true,min:0,precision:0">
+                </td>
+
+                <td>
+                    n天后删除:
+                </td>
+                <td>
+                    <input name="untilDeadDay" value="${(sysNotificationType.untilDeadDay)!}" class="easyui-numberbox"  data-options="required:true,min:0,precision:0">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    备注:
+                </td>
+                <td colspan="3">
+                    <input name="remark" value="${(sysNotificationType.remark)!}" class="easyui-textbox" style="width: 100%;height: 50px;"
+                           data-options="required:true,multiline:true">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    通知模板:
+                </td>
+                <td colspan="3">
+                    <input name="template" value="${(sysNotificationType.template)!}" class="easyui-textbox" style="width: 100%;height: 80px;"
+                           data-options="required:true,multiline:true">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+<div id="toolbars" style="text-align:center; margin-top: 20px;">
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'iconfont icon-save'" onclick="saveAction()">确定</a>
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'iconfont icon-cancel'"
+       onclick="parent.layer.close(parent.layer.getFrameIndex(window.name));">取消</a>
+</div>
+</@layout>

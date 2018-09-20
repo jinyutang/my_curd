@@ -1,7 +1,7 @@
 package com.hxkj.common.config;
 
 import com.hxkj.common.constant.Constant;
-import com.hxkj.ws.controller.WebSocketController;
+import com.hxkj.common.util.ws.controller.WebSocketController;
 import com.jfinal.config.Routes;
 
 /**

@@ -1,5 +1,6 @@
 package com.hxkj.common.util;
 
+import com.hxkj.common.util.ws.server.UserIdEncryptUtils;
 import com.jfinal.kit.AesKit;
 /**
  * @author chuang
@@ -7,13 +8,11 @@ import com.jfinal.kit.AesKit;
  */
 public class Main {
     public static void main(String[] args) {
-        String aesKey = "tFWpij4I9ZP_YIfoEwyrO8kgGhTNKJSi";
-        System.out.println("aes key : "+aesKey);
-        String txt = "1";
-        byte[] txtAry  = AesKit.encrypt(txt,aesKey);
-
-        String txthex = StringUtils.bytesToHexString(txtAry);
-        System.out.println(txthex);
-        System.out.println(AesKit.decryptToStr("1fdfsdfsdfsdf".getBytes(),aesKey));
+        String txt = "zhangchuang";
+        // aes key 字符串大于16字符(128位), 需要修改 jdk 下的 限制策略
+        System.out.println(UserIdEncryptUtils.CURRENT_USER_ID_AESKEY);
+        System.out.println(UserIdEncryptUtils.CURRENT_USER_ID_AESKEY.length());
+        System.out.println(UserIdEncryptUtils.encrypt(txt,UserIdEncryptUtils.CURRENT_USER_ID_AESKEY));
+        System.out.println(AesKit.genAesKey());
     }
 }
