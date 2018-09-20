@@ -26,7 +26,7 @@ public class Constant {
     // 部署服务器 域名（如有防盗链需求）
     public final static String DOMAIN_KEY = "domain_key";
 
-    /*增、删、改 操作信息*/
+    /* 增、删、改 操作信息 */
     public final static String ADD_SUCCESS = "添加成功";
     public final static String ADD_FAIL = "添加失败";
 
@@ -36,5 +36,7 @@ public class Constant {
     public final static String UPDATE_SUCCESS = "修改成功";
     public final static String UPDATE_FAIL = "修改失败";
 
-
+    /* APP操作应答 */
+    public final static String APP_FAILE = "{\"code\":\"400\"}";
+    public final static String APP_SUCCESS = "{\"code\":\"200\"}";
 }

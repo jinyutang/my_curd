@@ -1,10 +1,15 @@
 package com.hxkj.common.config;
 
+import com.hxkj.Barcode.model.BcBarcode;
+import com.hxkj.Barcode.model.BcScanlog;
+import com.hxkj.Barcode.model.BcUser;
 import com.hxkj.auth.model.*;
 import com.hxkj.cms.model.CmsArticle;
 import com.hxkj.cms.model.CmsArticleHtml;
 import com.hxkj.cms.model.CmsArticleMd;
 import com.hxkj.data.model.*;
+import com.hxkj.jin.model.JinTb;
+import com.hxkj.jin.model.JinTb2;
 import com.hxkj.sys.model.SysOplog;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 
@@ -44,6 +49,13 @@ public class MappingKit {
         arp.addMapping("auth_role_menu", "menu_id,role_id", AuthRoleMenu.class);
         arp.addMapping("auth_user", "id", AuthUser.class);
         arp.addMapping("auth_user_role", "role_id,user_id", AuthUserRole.class);
+        
+        arp.addMapping("jin_tb", "idjin_tb", JinTb.class);
+        arp.addMapping("jin_tb2", "idjin_tb2", JinTb2.class);
+        
+        arp.addMapping("bc_barcode", "idbc_barcode", BcBarcode.class);
+        arp.addMapping("bc_user", "idbc_user", BcUser.class);
+        arp.addMapping("bc_scanlog", "idbc_scanlog", BcScanlog.class);
     }
 }
 

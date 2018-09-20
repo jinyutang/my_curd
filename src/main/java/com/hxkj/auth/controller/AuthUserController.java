@@ -65,9 +65,9 @@ public class AuthUserController extends BaseController {
 
         String gender = authUser.getGender();
         if("1".equals("gender")){
-           authUser.setGender("res/image/maleAvatar.jpg");
+           authUser.setAvatar("res/image/maleAvatar.jpg");
         }else{
-            authUser.setGender("res/image/femaleAvatar.jpg");
+            authUser.setAvatar("res/image/femaleAvatar.jpg");
         }
 
         boolean saveFlag = authUser.save();

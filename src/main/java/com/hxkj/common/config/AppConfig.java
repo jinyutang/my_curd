@@ -77,6 +77,9 @@ public class AppConfig extends JFinalConfig {
 
         // ws
         me.add(new WsRoute());
+        
+        me.add(new JinRoute());
+        me.add(new BarcodeRoute());
     }
 
     /**

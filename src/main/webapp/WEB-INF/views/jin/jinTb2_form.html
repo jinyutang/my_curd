@@ -1,0 +1,74 @@
+<!-- 生成时间： 2018-09-18 14:37:59 -->
+<#include "/WEB-INF/views/common/common.html"/><@layout>
+<link rel="stylesheet" href="${ctx!}/res/css/form.css">
+<link rel="stylesheet" href="${ctx!}/res/pure/tables-min.css">
+<script src="${ctx!}/res/js/util.js"></script>
+<script>
+    function saveAction() {
+        var url;
+
+        /*有且只有一个主键*/
+        var idjin_tb2Val = $('#idjin_tb2').val();
+
+        if (isEmpty(idjin_tb2Val)) {
+            url = '${ctx!}/jinTb2/addAction';
+        } else {
+            url = '${ctx!}/jinTb2/updateAction';
+        }
+
+        $('#modelForm').form('submit', {
+            url: url,
+            onSubmit: function() {
+                return $(this).form('validate');
+            },
+            success: function (data) {
+                parent.popup.msg(data, function () {
+                    /* parent.window.location.reload();*/
+                    parent.$("#dg").datagrid("reload");
+                    parent.layer.close(parent.layer.getFrameIndex(window.name));
+                });
+            }
+        });
+    }
+</script>
+</head>
+<body style="padding: 10px 30px; ">
+<form id="modelForm" method="POST">
+    <table class=" pure-table pure-table-horizontal">
+        <!--有且只有一个主键-->
+        <input id="idjin_tb2" name="idjin_tb2"
+               type="hidden" value="${(jinTb2.idjin_tb2)!}">
+        <tbody>
+            <tr>
+                <td>
+                    jin_tb2col:
+                </td>
+                <td>
+                    <input name="jinTb2col" value="${(jinTb2.jinTb2col)!}" class="easyui-textbox"  data-options="required:true">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    jin_tb2col1:
+                </td>
+                <td>
+                    <input name="jinTb2col1" value="${(jinTb2.jinTb2col1)!}" class="easyui-textbox"  data-options="required:true">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    jin_tb2col2:
+                </td>
+                <td>
+                    <input name="jinTb2col2" value="${(jinTb2.jinTb2col2)!}" class="easyui-textbox"  data-options="required:true">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+<div id="toolbars" style="text-align:center; margin-top: 20px;">
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'iconfont icon-save'" onclick="saveAction()">确定</a>
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'iconfont icon-cancel'"
+       onclick="parent.layer.close(parent.layer.getFrameIndex(window.name));">取消</a>
+</div>
+</@layout>

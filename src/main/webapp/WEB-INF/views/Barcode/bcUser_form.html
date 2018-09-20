@@ -1,0 +1,106 @@
+<!-- 生成时间： 2018-09-19 11:03:37 -->
+<#include "/WEB-INF/views/common/common.html"/><@layout>
+<link rel="stylesheet" href="${ctx!}/res/css/form.css">
+<link rel="stylesheet" href="${ctx!}/res/pure/tables-min.css">
+<script src="${ctx!}/res/js/util.js"></script>
+<script>
+    function saveAction() {
+        var url;
+
+        /*有且只有一个主键*/
+        var idbc_userVal = $('#idbc_user').val();
+
+        if (isEmpty(idbc_userVal)) {
+            url = '${ctx!}/bcUser/addAction';
+        } else {
+            url = '${ctx!}/bcUser/updateAction';
+        }
+
+        $('#modelForm').form('submit', {
+            url: url,
+            onSubmit: function() {
+                return $(this).form('validate');
+            },
+            success: function (data) {
+                parent.popup.msg(data, function () {
+                    /* parent.window.location.reload();*/
+                    parent.$("#dg").datagrid("reload");
+                    parent.layer.close(parent.layer.getFrameIndex(window.name));
+                });
+            }
+        });
+    }
+</script>
+</head>
+<body style="padding: 10px 30px; ">
+<form id="modelForm" method="POST">
+    <table class=" pure-table pure-table-horizontal">
+        <!--有且只有一个主键-->
+        <input id="idbc_user" name="idbc_user"
+               type="hidden" value="${(bcUser.idbc_user)!}">
+        <tbody>
+            <tr>
+                <td>
+                    bc_username:
+                </td>
+                <td>
+                    <input name="bcUsername" value="${(bcUser.bcUsername)!}" class="easyui-textbox"  data-options="required:true">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    bc_usepw:
+                </td>
+                <td>
+                    <input name="bcUsepw" value="${(bcUser.bcUsepw)!}" class="easyui-textbox"  data-options="required:true">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    bc_userrole:
+                </td>
+                <td>
+                    <input name="bcUserrole" value="${(bcUser.bcUserrole)!}" class="easyui-textbox"  data-options="required:true">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    bc_userleve:
+                </td>
+                <td>
+                    <input name="bcUserleve" value="${(bcUser.bcUserleve)!}" class="easyui-textbox"  data-options="required:true">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    bc_userdel:
+                </td>
+                <td>
+                    <input name="bcUserdel" value="${(bcUser.bcUserdel)!}" class="easyui-textbox"  data-options="required:true">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    createtime:
+                </td>
+                <td>
+                    <input name="createtime" value="${(bcUser.createtime)!}" class="easyui-datetimebox"  data-options="required:true">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    bc_usertoken:
+                </td>
+                <td>
+                    <input name="bcUsertoken" value="${(bcUser.bcUsertoken)!}" class="easyui-textbox"  data-options="required:true">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+<div id="toolbars" style="text-align:center; margin-top: 20px;">
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'iconfont icon-save'" onclick="saveAction()">确定</a>
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'iconfont icon-cancel'"
+       onclick="parent.layer.close(parent.layer.getFrameIndex(window.name));">取消</a>
+</div>
+</@layout>

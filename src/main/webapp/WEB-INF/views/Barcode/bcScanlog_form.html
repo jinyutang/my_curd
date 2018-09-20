@@ -1,0 +1,162 @@
+<!-- 生成时间： 2018-09-19 11:03:37 -->
+<#include "/WEB-INF/views/common/common.html"/><@layout>
+<link rel="stylesheet" href="${ctx!}/res/css/form.css">
+<link rel="stylesheet" href="${ctx!}/res/pure/tables-min.css">
+<script src="${ctx!}/res/js/util.js"></script>
+<script>
+    function saveAction() {
+        var url;
+
+        /*有且只有一个主键*/
+        var idbc_scanlogVal = $('#idbc_scanlog').val();
+
+        if (isEmpty(idbc_scanlogVal)) {
+            url = '${ctx!}/bcScanlog/addAction';
+        } else {
+            url = '${ctx!}/bcScanlog/updateAction';
+        }
+
+        $('#modelForm').form('submit', {
+            url: url,
+            onSubmit: function() {
+                return $(this).form('validate');
+            },
+            success: function (data) {
+                parent.popup.msg(data, function () {
+                    /* parent.window.location.reload();*/
+                    parent.$("#dg").datagrid("reload");
+                    parent.layer.close(parent.layer.getFrameIndex(window.name));
+                });
+            }
+        });
+    }
+</script>
+</head>
+<body style="padding: 10px 30px; ">
+<form id="modelForm" method="POST">
+    <table class=" pure-table pure-table-horizontal">
+        <!--有且只有一个主键-->
+        <input id="idbc_scanlog" name="idbc_scanlog"
+               type="hidden" value="${(bcScanlog.idbc_scanlog)!}">
+        <tbody>
+            <tr>
+                <td>
+                    bc_scanlogcreatetime:
+                </td>
+                <td>
+                    <input name="bcScanlogcreatetime" value="${(bcScanlog.bcScanlogcreatetime)!}" class="easyui-textbox"  data-options="required:true">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    bc_scanlogstatus:
+                </td>
+                <td>
+                    <input name="bcScanlogstatus" value="${(bcScanlog.bcScanlogstatus)!}" class="easyui-textbox"  data-options="required:true">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    bc_scanlogimg1:
+                </td>
+                <td>
+                    <input name="bcScanlogimg1" value="${(bcScanlog.bcScanlogimg1)!}" class="easyui-textbox"  data-options="required:true">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    bc_scanlogimg2:
+                </td>
+                <td>
+                    <input name="bcScanlogimg2" value="${(bcScanlog.bcScanlogimg2)!}" class="easyui-textbox"  data-options="required:true">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    bc_scanlogimg3:
+                </td>
+                <td>
+                    <input name="bcScanlogimg3" value="${(bcScanlog.bcScanlogimg3)!}" class="easyui-textbox"  data-options="required:true">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    bc_scanlogimg4:
+                </td>
+                <td>
+                    <input name="bcScanlogimg4" value="${(bcScanlog.bcScanlogimg4)!}" class="easyui-textbox"  data-options="required:true">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    bc_scanlogimg5:
+                </td>
+                <td>
+                    <input name="bcScanlogimg5" value="${(bcScanlog.bcScanlogimg5)!}" class="easyui-textbox"  data-options="required:true">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    bc_scanlogcontent1:
+                </td>
+                <td>
+                    <input name="bcScanlogcontent1" value="${(bcScanlog.bcScanlogcontent1)!}" class="easyui-textbox"  data-options="required:true">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    bc_scanlogcontent2:
+                </td>
+                <td>
+                    <input name="bcScanlogcontent2" value="${(bcScanlog.bcScanlogcontent2)!}" class="easyui-textbox"  data-options="required:true">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    bc_scanlogcontent3:
+                </td>
+                <td>
+                    <input name="bcScanlogcontent3" value="${(bcScanlog.bcScanlogcontent3)!}" class="easyui-textbox"  data-options="required:true">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    bc_scanlogcontent4:
+                </td>
+                <td>
+                    <input name="bcScanlogcontent4" value="${(bcScanlog.bcScanlogcontent4)!}" class="easyui-textbox"  data-options="required:true">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    bc_scanlogcontent5:
+                </td>
+                <td>
+                    <input name="bcScanlogcontent5" value="${(bcScanlog.bcScanlogcontent5)!}" class="easyui-textbox"  data-options="required:true">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    bc_user_idbc_user:
+                </td>
+                <td>
+                    <input name="bcUserIdbcUser" value="${(bcScanlog.bcUserIdbcUser)!}" class="easyui-textbox"  data-options="required:true">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    bc_barcode_idbc_barcode:
+                </td>
+                <td>
+                    <input name="bcBarcodeIdbcBarcode" value="${(bcScanlog.bcBarcodeIdbcBarcode)!}" class="easyui-textbox"  data-options="required:true">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+<div id="toolbars" style="text-align:center; margin-top: 20px;">
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'iconfont icon-save'" onclick="saveAction()">确定</a>
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'iconfont icon-cancel'"
+       onclick="parent.layer.close(parent.layer.getFrameIndex(window.name));">取消</a>
+</div>
+</@layout>

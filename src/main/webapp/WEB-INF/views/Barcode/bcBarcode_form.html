@@ -1,0 +1,114 @@
+<!-- 生成时间： 2018-09-19 11:03:37 -->
+<#include "/WEB-INF/views/common/common.html"/><@layout>
+<link rel="stylesheet" href="${ctx!}/res/css/form.css">
+<link rel="stylesheet" href="${ctx!}/res/pure/tables-min.css">
+<script src="${ctx!}/res/js/util.js"></script>
+<script>
+    function saveAction() {
+        var url;
+
+        /*有且只有一个主键*/
+        var idbc_barcodeVal = $('#idbc_barcode').val();
+
+        if (isEmpty(idbc_barcodeVal)) {
+            url = '${ctx!}/bcBarcode/addAction';
+        } else {
+            url = '${ctx!}/bcBarcode/updateAction';
+        }
+
+        $('#modelForm').form('submit', {
+            url: url,
+            onSubmit: function() {
+                return $(this).form('validate');
+            },
+            success: function (data) {
+                parent.popup.msg(data, function () {
+                    /* parent.window.location.reload();*/
+                    parent.$("#dg").datagrid("reload");
+                    parent.layer.close(parent.layer.getFrameIndex(window.name));
+                });
+            }
+        });
+    }
+</script>
+</head>
+<body style="padding: 10px 30px; ">
+<form id="modelForm" method="POST">
+    <table class=" pure-table pure-table-horizontal">
+        <!--有且只有一个主键-->
+        <input id="idbc_barcode" name="idbc_barcode"
+               type="hidden" value="${(bcBarcode.idbc_barcode)!}">
+        <tbody>
+            <tr>
+                <td>
+                    bc_barcodesn:
+                </td>
+                <td>
+                    <input name="bcBarcodesn" value="${(bcBarcode.bcBarcodesn)!}" class="easyui-textbox"  data-options="required:true">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    bc_barcodename:
+                </td>
+                <td>
+                    <input name="bcBarcodename" value="${(bcBarcode.bcBarcodename)!}" class="easyui-textbox"  data-options="required:true">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    bc_barcodelocation:
+                </td>
+                <td>
+                    <input name="bcBarcodelocation" value="${(bcBarcode.bcBarcodelocation)!}" class="easyui-textbox"  data-options="required:true">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    bc_barcoderole:
+                </td>
+                <td>
+                    <input name="bcBarcoderole" value="${(bcBarcode.bcBarcoderole)!}" class="easyui-textbox"  data-options="required:true">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    bc_barcodeleve:
+                </td>
+                <td>
+                    <input name="bcBarcodeleve" value="${(bcBarcode.bcBarcodeleve)!}" class="easyui-textbox"  data-options="required:true">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    bc_barcodetype:
+                </td>
+                <td>
+                    <input name="bcBarcodetype" value="${(bcBarcode.bcBarcodetype)!}" class="easyui-textbox"  data-options="required:true">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    bc_barcodedescription:
+                </td>
+                <td>
+                    <input name="bcBarcodedescription" value="${(bcBarcode.bcBarcodedescription)!}" class="easyui-textbox"  data-options="required:true">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    bc_barcodedel:
+                </td>
+                <td>
+                    <input name="bcBarcodedel" value="${(bcBarcode.bcBarcodedel)!}" class="easyui-textbox"  data-options="required:true">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+<div id="toolbars" style="text-align:center; margin-top: 20px;">
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'iconfont icon-save'" onclick="saveAction()">确定</a>
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'iconfont icon-cancel'"
+       onclick="parent.layer.close(parent.layer.getFrameIndex(window.name));">取消</a>
+</div>
+</@layout>
