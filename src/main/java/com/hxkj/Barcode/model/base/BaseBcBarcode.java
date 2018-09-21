@@ -6,16 +6,16 @@ import com.jfinal.plugin.activerecord.Model;
 /**
  * base model generated code
  * @author
- * @date 2018-09-19 11:05:54
+ * @date 2018-09-21 13:39:33
  */
 @SuppressWarnings("serial")
 public abstract class BaseBcBarcode<M extends BaseBcBarcode<M>> extends Model<M> implements IBean {
 
    // idbc_barcode  
-   public void setIdbcBarcode(java.lang.Integer idbcBarcode) {
+   public void setIdbcBarcode(java.lang.String idbcBarcode) {
        set("idbc_barcode", idbcBarcode);
    }
-   public java.lang.Integer getIdbcBarcode() {
+   public java.lang.String getIdbcBarcode() {
        return get("idbc_barcode");
    }
 

@@ -11,12 +11,15 @@ import com.hxkj.common.constant.Constant;
 import com.hxkj.common.controller.BaseController;
 import com.hxkj.common.util.Identities;
 import com.hxkj.common.util.search.SearchSql;
+
+import java.util.Date;
+
 import com.hxkj.Barcode.model.BcUser;
 
 /**
  * bc_user 控制器
  * @author
- * @date 2018-09-19 11:05:54
+ * @date 2018-09-21 13:39:33
  */
 public class BcUserController extends BaseController{
 
@@ -61,9 +64,9 @@ public class BcUserController extends BaseController{
         public void addAction(){
             BcUser bcUser=getBean(BcUser.class,"");
             bcUser.set("idbc_user",Identities.id());
-            // 生成用户token
-            bcUser.setBcUsertoken(HashKit.sha256(bcUser.getBcUsername()));
-            boolean saveFlag=bcUser.remove("idbc_user").save();
+            bcUser.setBcUsepw(HashKit.sha1("123456"));
+            bcUser.setCreatetime(new Date());
+            boolean saveFlag=bcUser.save();
             if(saveFlag){
                 renderText(Constant.ADD_SUCCESS);
             }else{

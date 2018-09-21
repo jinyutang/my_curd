@@ -1,0 +1,31 @@
+用户登录(用户名密码登录)
+url:/bcApp/login
+参数：username
+参数：password
+
+用户登录(Token登录)
+url:/bcApp/loginByToken
+参数：username
+参数：password
+
+修改密码
+url:/bcApp/changePW
+参数：username
+参数：password
+参数：newpassword
+参数：token
+
+用户可扫二维码
+url:/bcApp/userBarCode
+参数：token
+参数：pageNumber   默认值：1
+参数：pageSize     默认值：50
+
+用户角色
+url:/bcApp/userRole
+
+用户扫码日志
+url:/bcApp/userScanLog
+参数：token
+参数：pageNumber   默认值：1
+参数：pageSize     默认值：50

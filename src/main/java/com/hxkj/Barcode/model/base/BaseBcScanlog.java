@@ -6,16 +6,16 @@ import com.jfinal.plugin.activerecord.Model;
 /**
  * base model generated code
  * @author
- * @date 2018-09-19 11:05:54
+ * @date 2018-09-21 13:39:33
  */
 @SuppressWarnings("serial")
 public abstract class BaseBcScanlog<M extends BaseBcScanlog<M>> extends Model<M> implements IBean {
 
    // idbc_scanlog  
-   public void setIdbcScanlog(java.lang.Integer idbcScanlog) {
+   public void setIdbcScanlog(java.lang.String idbcScanlog) {
        set("idbc_scanlog", idbcScanlog);
    }
-   public java.lang.Integer getIdbcScanlog() {
+   public java.lang.String getIdbcScanlog() {
        return get("idbc_scanlog");
    }
 
@@ -129,19 +129,19 @@ public abstract class BaseBcScanlog<M extends BaseBcScanlog<M>> extends Model<M>
 
 
    // bc_user_idbc_user  
-   public void setBcUserIdbcUser(java.lang.Integer bcUserIdbcUser) {
+   public void setBcUserIdbcUser(java.lang.String bcUserIdbcUser) {
        set("bc_user_idbc_user", bcUserIdbcUser);
    }
-   public java.lang.Integer getBcUserIdbcUser() {
+   public java.lang.String getBcUserIdbcUser() {
        return get("bc_user_idbc_user");
    }
 
 
    // bc_barcode_idbc_barcode  
-   public void setBcBarcodeIdbcBarcode(java.lang.Integer bcBarcodeIdbcBarcode) {
+   public void setBcBarcodeIdbcBarcode(java.lang.String bcBarcodeIdbcBarcode) {
        set("bc_barcode_idbc_barcode", bcBarcodeIdbcBarcode);
    }
-   public java.lang.Integer getBcBarcodeIdbcBarcode() {
+   public java.lang.String getBcBarcodeIdbcBarcode() {
        return get("bc_barcode_idbc_barcode");
    }
 

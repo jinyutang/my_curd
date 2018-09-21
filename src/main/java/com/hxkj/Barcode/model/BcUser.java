@@ -7,7 +7,7 @@ import com.hxkj.Barcode.model.base.BaseBcUser;
 /**
  * model table: bc_user   
  * @author
- * @date 2018-09-19 11:05:54
+ * @date 2018-09-21 13:39:33
  */
 public class BcUser extends BaseBcUser<BcUser> implements java.io.Serializable{
 
@@ -39,5 +39,4 @@ public class BcUser extends BaseBcUser<BcUser> implements java.io.Serializable{
                 + " where bc_usertoken = ? ";
         return findFirst(sql, token);
     }
-
 }

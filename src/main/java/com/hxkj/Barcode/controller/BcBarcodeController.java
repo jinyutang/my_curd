@@ -15,7 +15,7 @@ import com.hxkj.Barcode.model.BcBarcode;
 /**
  * bc_barcode 控制器
  * @author
- * @date 2018-09-19 11:05:54
+ * @date 2018-09-21 13:39:33
  */
 public class BcBarcodeController extends BaseController{
 

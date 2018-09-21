@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS `my_curd`.`bc_user` (
-  `idbc_user` INT NOT NULL AUTO_INCREMENT,
+  `idbc_user` VARCHAR(128) NOT NULL,
   `bc_username` VARCHAR(128) NOT NULL,
   `bc_usepw` VARCHAR(128) NOT NULL,
   `bc_userrole` VARCHAR(128) NOT NULL DEFAULT '',
@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS `my_curd`.`bc_user` (
 ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `my_curd`.`bc_barcode` (
-  `idbc_barcode` INT NOT NULL,
+  `idbc_barcode` VARCHAR(128) NOT NULL,
   `bc_barcodesn` VARCHAR(128) NOT NULL,
   `bc_barcodename` VARCHAR(128) NOT NULL,
   `bc_barcodelocation` VARCHAR(128) NOT NULL,
@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `my_curd`.`bc_barcode` (
 ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `my_curd`.`bc_scanlog` (
-  `idbc_scanlog` INT NOT NULL AUTO_INCREMENT,
+  `idbc_scanlog` VARCHAR(128) NOT NULL,
   `bc_scanlogcreatetime` DATETIME NOT NULL DEFAULT now(),
   `bc_scanlogstatus` VARCHAR(45) NOT NULL DEFAULT 0,
   `bc_scanlogimg1` VARCHAR(256) NULL,
@@ -41,8 +41,8 @@ CREATE TABLE IF NOT EXISTS `my_curd`.`bc_scanlog` (
   `bc_scanlogcontent3` VARCHAR(256) NULL,
   `bc_scanlogcontent4` VARCHAR(256) NULL,
   `bc_scanlogcontent5` VARCHAR(256) NULL,
-  `bc_user_idbc_user` INT NOT NULL,
-  `bc_barcode_idbc_barcode` INT NOT NULL,
+  `bc_user_idbc_user` VARCHAR(128) NOT NULL,
+  `bc_barcode_idbc_barcode` VARCHAR(128) NOT NULL,
   PRIMARY KEY (`idbc_scanlog`),
   INDEX `fk_bc_scanlog_bc_user_idx` (`bc_user_idbc_user` ASC),
   INDEX `fk_bc_scanlog_bc_barcode1_idx` (`bc_barcode_idbc_barcode` ASC),

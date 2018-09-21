@@ -1,4 +1,4 @@
-<!-- 生成时间： 2018-09-19 11:03:37 -->
+<!-- 生成时间： 2018-09-21 13:39:33 -->
 <#include "/WEB-INF/views/common/common.html"/><@layout>
 <link rel="stylesheet" href="${ctx!}/res/css/form.css">
 <link rel="stylesheet" href="${ctx!}/res/pure/tables-min.css">
@@ -36,7 +36,7 @@
 <form id="modelForm" method="POST">
     <table class=" pure-table pure-table-horizontal">
         <!--有且只有一个主键-->
-        <input id="idbc_user" name="idbc_user"
+        <input id="idbc_user" name="idbcUser"
                type="hidden" value="${(bcUser.idbc_user)!}">
         <tbody>
             <tr>
@@ -71,6 +71,7 @@
                     <input name="bcUserleve" value="${(bcUser.bcUserleve)!}" class="easyui-textbox"  data-options="required:true">
                 </td>
             </tr>
+            
             <tr>
                 <td>
                     bc_userdel:
@@ -79,6 +80,7 @@
                     <input name="bcUserdel" value="${(bcUser.bcUserdel)!}" class="easyui-textbox"  data-options="required:true">
                 </td>
             </tr>
+            <!--
             <tr>
                 <td>
                     createtime:
@@ -87,6 +89,7 @@
                     <input name="createtime" value="${(bcUser.createtime)!}" class="easyui-datetimebox"  data-options="required:true">
                 </td>
             </tr>
+             
             <tr>
                 <td>
                     bc_usertoken:
@@ -95,6 +98,7 @@
                     <input name="bcUsertoken" value="${(bcUser.bcUsertoken)!}" class="easyui-textbox"  data-options="required:true">
                 </td>
             </tr>
+            -->
         </tbody>
     </table>
 </form>

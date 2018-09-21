@@ -13,6 +13,7 @@ import com.hxkj.common.controller.BaseController;
 import com.hxkj.common.util.search.SearchSql;
 import com.jfinal.aop.Before;
 import com.jfinal.aop.Clear;
+import com.jfinal.kit.HashKit;
 import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.Record;
 
@@ -22,10 +23,11 @@ import com.jfinal.plugin.activerecord.Record;
  */
 @Clear
 public class BcAppController extends BaseController {
+    
     @Clear
     public void login() {
-        String username = getPara("username", "_");
-        String password = getPara("password", "_");
+        String username = getPara("username");
+        String password = getPara("password");
         BcUser bcUser = BcUser.dao.findByUsernameAndPassword(username, password);
         if (null == bcUser) {
             renderJson(Constant.APP_FAILE);
@@ -36,9 +38,10 @@ public class BcAppController extends BaseController {
             renderJson(map);
         }
     }
+    
     @Clear
     public void loginByToken() {
-        String token = getPara("token", "_");
+        String token = getPara("token");
         BcUser bcUser = BcUser.dao.findByToken(token);
         if (null == bcUser) {
             renderJson(Constant.APP_FAILE);
@@ -49,18 +52,44 @@ public class BcAppController extends BaseController {
             renderJson(map);
         }
     }
+    
+    @Clear
+    public void changePW() {
+        String username = getPara("username");
+        String password = getPara("password");
+        String newpassword = getPara("newpassword");
+        String token = getPara("token");
+        BcUser bcUser = BcUser.dao.findByUsernameAndPassword(username, password);
+        
+        if (null == bcUser) {
+            renderJson(Constant.APP_FAILE);
+        } else if (!bcUser.getBcUsertoken().equals(token)) {
+            renderJson(Constant.APP_FAILE);
+        } else {
+//            bcUser.setBcUsepw(HashKit.sha1(newpassword));
+            bcUser.setBcUsepw(newpassword);
+            if (bcUser.update()) {
+                renderJson(Constant.APP_SUCCESS);
+            } else {
+                renderJson(Constant.APP_FAILE);
+            }
+        }
+    }
+    
     @Clear
     @Before(SearchSql.class)
     public void userBarcode() {
-        String token = getPara("token", "_");
+        String token = getPara("token");
         int pageNumber = getAttr("pageNumber", 1);
         int pageSize = getAttr("pageSize", 50);
         BcUser bcUser = BcUser.dao.findByToken(token);
-        String where = getAttr(Constant.SEARCH_SQL);
+//        String where = getAttr(Constant.SEARCH_SQL);
         if (null == bcUser) {
             renderJson(Constant.APP_FAILE);
         } else {
             HashMap<String, Object> map = new HashMap<String, Object>();
+            
+            String where = " where bc_barcoderole = '"+bcUser.getBcUserrole()+"' and bc_barcodeleve <= " + bcUser.getBcUserleve();
             
             Page<BcBarcode> page = BcBarcode.dao.page(pageNumber, pageSize, where);
             map.put("code", 200);
@@ -82,7 +111,7 @@ public class BcAppController extends BaseController {
     @Clear
     @Before(SearchSql.class)
     public void userScanLog() {
-        String token = getPara("token", "_");
+        String token = getPara("token");
         int pageNumber = getAttr("pageNumber", 1);
         int pageSize = getAttr("pageSize", 50);
         BcUser bcUser = BcUser.dao.findByToken(token);

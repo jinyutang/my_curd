@@ -6,16 +6,16 @@ import com.jfinal.plugin.activerecord.Model;
 /**
  * base model generated code
  * @author
- * @date 2018-09-19 11:05:54
+ * @date 2018-09-21 13:39:33
  */
 @SuppressWarnings("serial")
 public abstract class BaseBcUser<M extends BaseBcUser<M>> extends Model<M> implements IBean {
 
    // idbc_user  
-   public void setIdbcUser(java.lang.Integer idbcUser) {
+   public void setIdbcUser(java.lang.String idbcUser) {
        set("idbc_user", idbcUser);
    }
-   public java.lang.Integer getIdbcUser() {
+   public java.lang.String getIdbcUser() {
        return get("idbc_user");
    }
 

@@ -7,7 +7,7 @@ import com.hxkj.Barcode.model.base.BaseBcBarcode;
 /**
  * model table: bc_barcode   
  * @author
- * @date 2018-09-19 11:05:54
+ * @date 2018-09-21 13:39:33
  */
 public class BcBarcode extends BaseBcBarcode<BcBarcode> implements java.io.Serializable{
 

@@ -1,4 +1,4 @@
-<!-- 生成时间： 2018-09-19 11:03:37 -->
+<!-- 生成时间： 2018-09-21 13:39:33 -->
 <#include "/WEB-INF/views/common/common.html"/><@layout>
 <link rel="stylesheet" href="${ctx!}/res/css/form.css">
 <link rel="stylesheet" href="${ctx!}/res/pure/tables-min.css">
@@ -36,7 +36,7 @@
 <form id="modelForm" method="POST">
     <table class=" pure-table pure-table-horizontal">
         <!--有且只有一个主键-->
-        <input id="idbc_scanlog" name="idbc_scanlog"
+        <input id="idbc_scanlog" name="idbcScanlog"
                type="hidden" value="${(bcScanlog.idbc_scanlog)!}">
         <tbody>
             <tr>
@@ -44,7 +44,7 @@
                     bc_scanlogcreatetime:
                 </td>
                 <td>
-                    <input name="bcScanlogcreatetime" value="${(bcScanlog.bcScanlogcreatetime)!}" class="easyui-textbox"  data-options="required:true">
+                    <input name="bcScanlogcreatetime" value="${(bcScanlog.bcScanlogcreatetime)!}" class="easyui-datetimebox"  data-options="required:true">
                 </td>
             </tr>
             <tr>
