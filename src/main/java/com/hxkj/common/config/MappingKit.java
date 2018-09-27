@@ -57,8 +57,8 @@ public class MappingKit {
         arp.addMapping("auth_user", "id", AuthUser.class);
         arp.addMapping("auth_user_role", "role_id,user_id", AuthUserRole.class);
         
-        arp.addMapping("jin_tb", "idjin_tb", JinTb.class);
-        arp.addMapping("jin_tb2", "idjin_tb2", JinTb2.class);
+        //arp.addMapping("jin_tb", "idjin_tb", JinTb.class);
+        //arp.addMapping("jin_tb2", "idjin_tb2", JinTb2.class);
         
         arp.addMapping("bc_barcode", "idbc_barcode", BcBarcode.class);
         arp.addMapping("bc_user", "idbc_user", BcUser.class);

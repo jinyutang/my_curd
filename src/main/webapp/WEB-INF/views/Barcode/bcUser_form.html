@@ -41,43 +41,60 @@
         <tbody>
             <tr>
                 <td>
-                    bc_username:
+					用户名:
                 </td>
                 <td>
-                    <input name="bcUsername" value="${(bcUser.bcUsername)!}" class="easyui-textbox"  data-options="required:true">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    bc_usepw:
-                </td>
-                <td>
-                    <input name="bcUsepw" value="${(bcUser.bcUsepw)!}" class="easyui-textbox"  data-options="required:true">
+                    <input name="bcUsername" value="${(bcUser.bcUsername)!}" class="easyui-textbox" data-options="required:true">
                 </td>
             </tr>
             <tr>
                 <td>
-                    bc_userrole:
+					密码:
                 </td>
                 <td>
-                    <input name="bcUserrole" value="${(bcUser.bcUserrole)!}" class="easyui-textbox"  data-options="required:true">
+                    <input name="bcUsepw" value="${(bcUser.bcUsepw)!}" class="easyui-passwordbox" data-options="required:true">
                 </td>
             </tr>
             <tr>
                 <td>
-                    bc_userleve:
+					角色:
                 </td>
                 <td>
-                    <input name="bcUserleve" value="${(bcUser.bcUserleve)!}" class="easyui-textbox"  data-options="required:true">
+                    <select name="bcUserrole"  class="easyui-combobox" data-options="required:true,value:'${(bcUser.bcUserrole)!}'">
+                    	<option value="保洁">保洁</option>
+					    <option value="保安">保安</option>
+					    <option value="工程师">工程师</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+					等级:
+                </td>
+                <td>
+                    <select name="bcUserleve" class="easyui-combobox" data-options="required:true,value:'${(bcUser.bcUserleve)!}'">
+                    	<option value="1">1</option>
+					    <option value="2">2</option>
+					    <option value="3">3</option>
+					    <option value="4">4</option>
+					    <option value="5">5</option>
+					    <option value="6">6</option>
+					    <option value="7">7</option>
+					    <option value="8">8</option>
+					    <option value="9">9</option>
+                    </select>
                 </td>
             </tr>
             
             <tr>
                 <td>
-                    bc_userdel:
+					是否有效:
                 </td>
                 <td>
-                    <input name="bcUserdel" value="${(bcUser.bcUserdel)!}" class="easyui-textbox"  data-options="required:true">
+                    <select name="bcUserdel" class="easyui-combobox" data-options="required:true,value:'${(bcUser.bcUserdel)!}' ">
+                    	<option value="0">有效</option>
+					    <option value="1">禁用</option>
+                    </select>
                 </td>
             </tr>
             <!--

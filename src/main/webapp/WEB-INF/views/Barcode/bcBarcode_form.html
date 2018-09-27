@@ -41,7 +41,7 @@
         <tbody>
             <tr>
                 <td>
-                    bc_barcodesn:
+					设备码:
                 </td>
                 <td>
                     <input name="bcBarcodesn" value="${(bcBarcode.bcBarcodesn)!}" class="easyui-textbox"  data-options="required:true">
@@ -49,7 +49,7 @@
             </tr>
             <tr>
                 <td>
-                    bc_barcodename:
+					名称:
                 </td>
                 <td>
                     <input name="bcBarcodename" value="${(bcBarcode.bcBarcodename)!}" class="easyui-textbox"  data-options="required:true">
@@ -57,7 +57,7 @@
             </tr>
             <tr>
                 <td>
-                    bc_barcodelocation:
+					位置:
                 </td>
                 <td>
                     <input name="bcBarcodelocation" value="${(bcBarcode.bcBarcodelocation)!}" class="easyui-textbox"  data-options="required:true">
@@ -65,44 +65,79 @@
             </tr>
             <tr>
                 <td>
-                    bc_barcoderole:
+					角色:
                 </td>
                 <td>
+                	<!--  
                     <input name="bcBarcoderole" value="${(bcBarcode.bcBarcoderole)!}" class="easyui-textbox"  data-options="required:true">
+					-->
+					<select id="cc" class="easyui-combobox" name="bcBarcoderole" style="width:200px;" 
+						data-options="required:true, value:'${(bcBarcode.bcBarcoderole)!}'">
+					    <option value="保洁">保洁</option>
+					    <option value="保安">保安</option>
+					    <option value="工程师">工程师</option>
+					</select>
                 </td>
             </tr>
             <tr>
                 <td>
-                    bc_barcodeleve:
+					等级:
                 </td>
                 <td>
+                	<!--  
                     <input name="bcBarcodeleve" value="${(bcBarcode.bcBarcodeleve)!}" class="easyui-textbox"  data-options="required:true">
+                    -->
+                    <select id="cc" class="easyui-combobox" name="bcBarcodeleve" style="width:200px;" 
+                    	data-options="required:true,value:'${(bcBarcode.bcBarcodeleve)!}'">
+					    <option value="1">1</option>
+					    <option value="2">2</option>
+					    <option value="3">3</option>
+					    <option value="4">4</option>
+					    <option value="5">5</option>
+					    <option value="6">6</option>
+					    <option value="7">7</option>
+					    <option value="8">8</option>
+					    <option value="9">9</option>
+					</select>
                 </td>
             </tr>
             <tr>
                 <td>
-                    bc_barcodetype:
+					报告类型:
                 </td>
                 <td>
+                	<!--  
                     <input name="bcBarcodetype" value="${(bcBarcode.bcBarcodetype)!}" class="easyui-textbox"  data-options="required:true">
+                    -->
+                    <select id="cc" class="easyui-combobox" name="bcBarcodetype" style="width:200px;" 
+                    	data-options="required:true,value:'${(bcBarcode.bcBarcodetype)!}'">
+					    <option value="1">T1</option>
+					    <option value="2">T2</option>
+					    <option value="3">T3</option>
+					</select>
                 </td>
             </tr>
             <tr>
                 <td>
-                    bc_barcodedescription:
+					描述:
                 </td>
                 <td>
                     <input name="bcBarcodedescription" value="${(bcBarcode.bcBarcodedescription)!}" class="easyui-textbox"  data-options="required:true">
                 </td>
             </tr>
+             
             <tr>
                 <td>
-                    bc_barcodedel:
+					是否有效:
                 </td>
                 <td>
-                    <input name="bcBarcodedel" value="${(bcBarcode.bcBarcodedel)!}" class="easyui-textbox"  data-options="required:true">
+                    <select name="bcBarcodedel" value="${(bcBarcode.bcBarcodedel)!}" class="easyui-combobox"  data-options="required:true">
+                    	<option value="0">有效</option>
+					    <option value="1">禁用</option>
+                    </select>
                 </td>
             </tr>
+            
         </tbody>
     </table>
 </form>

@@ -53,6 +53,31 @@
         /*load 从第一页加载，reload 重载本页，此处要用load*/
         $('#dg').datagrid('load', queryParams);
     }
+    
+    function delStatus(data) {
+    	if (data == 0) {
+	    	return '有效';
+	    } else {
+	    	return '禁用';
+	    }
+    }
+    
+    function barcodeType(data) {
+    	switch(data){
+			case  0: return 'T0';
+			case  1: return 'T1';
+			case  2: return 'T2';
+			case  3: return 'T3';
+			case  4: return 'T4';
+			case  5: return 'T5';
+			case  6: return 'T6';
+			case  7: return 'T7';
+			case  8: return 'T8';
+			case  9: return 'T9';
+			case 10: return 'T10';
+		}
+		return 'Error';
+    }
 </script>
 <table id="dg" class="easyui-datagrid"
        url="${ctx!}/bcBarcode/query"
@@ -67,14 +92,14 @@
     <tr>
         <!--有且只有一个主键-->
         <th data-options="field:'idbc_barcode',checkbox:true"></th>
-        <th field="bc_barcodesn" width="100">bc_barcodesn</th>
-        <th field="bc_barcodename" width="100">bc_barcodename</th>
-        <th field="bc_barcodelocation" width="100">bc_barcodelocation</th>
-        <th field="bc_barcoderole" width="100">bc_barcoderole</th>
-        <th field="bc_barcodeleve" width="100">bc_barcodeleve</th>
-        <th field="bc_barcodetype" width="100">bc_barcodetype</th>
-        <th field="bc_barcodedescription" width="100">bc_barcodedescription</th>
-        <th field="bc_barcodedel" width="100">bc_barcodedel</th>
+        <th field="bc_barcodesn" width="100">设备码</th>
+        <th field="bc_barcodename" width="100">名称</th>
+        <th field="bc_barcodelocation" width="100">位置</th>
+        <th field="bc_barcoderole" width="100">角色</th>
+        <th field="bc_barcodeleve" width="100">等级</th>
+        <th field="bc_barcodetype" width="100" data-options="formatter:barcodeType">报告类型</th>
+        <th field="bc_barcodedescription" width="100">描述</th>
+        <th field="bc_barcodedel" width="100" data-options="formatter:delStatus">是否有效</th>
     </tr>
     </thead>
 </table>
@@ -82,7 +107,9 @@
 <div id="tb">
     <a onclick="newModel()" href="#" class="easyui-linkbutton" iconCls="iconfont icon-add" plain="true">新增</a>
     <a onclick="editModel()" href="#" class="easyui-linkbutton" iconCls="iconfont icon-edit" plain="true">编辑</a>
+    <!--  
     <a onclick="deleteModel()" href="#" class="easyui-linkbutton  " iconCls="iconfont icon-delete" plain="true">删除</a>
+    -->
     <span id="enterSpan" class="searchInputArea">
           <input id="test" prompt="test" class="easyui-textbox" style="width:120px; ">
           <a href="#" class="easyui-linkbutton" data-options="iconCls:'iconfont icon-search',plain:true" onclick="queryModel()">搜索</a>

@@ -64,7 +64,7 @@ public class BcUserController extends BaseController{
         public void addAction(){
             BcUser bcUser=getBean(BcUser.class,"");
             bcUser.set("idbc_user",Identities.id());
-            bcUser.setBcUsepw(HashKit.sha1("123456"));
+            bcUser.setBcUsepw(HashKit.sha1(bcUser.getBcUsepw()));
             bcUser.setCreatetime(new Date());
             boolean saveFlag=bcUser.save();
             if(saveFlag){
@@ -95,6 +95,10 @@ public class BcUserController extends BaseController{
          */
         public void updateAction(){
             BcUser bcUser=getBean(BcUser.class,"");
+            if (bcUser.getBcUsepw().length()!=40) {
+                bcUser.setBcUsepw(HashKit.sha1(bcUser.getBcUsepw()));
+            }
+            
             boolean updateFlag=bcUser.update();
             if(updateFlag){
                 renderText(Constant.UPDATE_SUCCESS);

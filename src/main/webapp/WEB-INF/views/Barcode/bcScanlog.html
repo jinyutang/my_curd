@@ -53,6 +53,22 @@
         /*load 从第一页加载，reload 重载本页，此处要用load*/
         $('#dg').datagrid('load', queryParams);
     }
+    function barcodeType(data) {
+    	switch(data){
+			case  0: return 'T0';
+			case  1: return 'T1';
+			case  2: return 'T2';
+			case  3: return 'T3';
+			case  4: return 'T4';
+			case  5: return 'T5';
+			case  6: return 'T6';
+			case  7: return 'T7';
+			case  8: return 'T8';
+			case  9: return 'T9';
+			case 10: return 'T10';
+		}
+		return 'Error';
+    }
 </script>
 <table id="dg" class="easyui-datagrid"
        url="${ctx!}/bcScanlog/query"
@@ -67,20 +83,29 @@
     <tr>
         <!--有且只有一个主键-->
         <th data-options="field:'idbc_scanlog',checkbox:true"></th>
-        <th field="bc_scanlogcreatetime" width="100">bc_scanlogcreatetime</th>
-        <th field="bc_scanlogstatus" width="100">bc_scanlogstatus</th>
-        <th field="bc_scanlogimg1" width="100">bc_scanlogimg1</th>
-        <th field="bc_scanlogimg2" width="100">bc_scanlogimg2</th>
-        <th field="bc_scanlogimg3" width="100">bc_scanlogimg3</th>
-        <th field="bc_scanlogimg4" width="100">bc_scanlogimg4</th>
-        <th field="bc_scanlogimg5" width="100">bc_scanlogimg5</th>
-        <th field="bc_scanlogcontent1" width="100">bc_scanlogcontent1</th>
-        <th field="bc_scanlogcontent2" width="100">bc_scanlogcontent2</th>
-        <th field="bc_scanlogcontent3" width="100">bc_scanlogcontent3</th>
-        <th field="bc_scanlogcontent4" width="100">bc_scanlogcontent4</th>
-        <th field="bc_scanlogcontent5" width="100">bc_scanlogcontent5</th>
-        <th field="bc_user_idbc_user" width="100">bc_user_idbc_user</th>
-        <th field="bc_barcode_idbc_barcode" width="100">bc_barcode_idbc_barcode</th>
+        
+        <th field="bc_username" width="100">记录人</th>
+        <th field="bc_barcodesn" width="100">设备码</th>
+        <th field="bc_barcodename" width="100">设备名称</th>
+        <th field="bc_barcodeleve" width="100">设备等级</th>
+        <th field="bc_barcoderole" width="100">设备角色</th>
+        <th field="bc_barcodetype" width="100" data-options="formatter:barcodeType">设备报告类型</th>
+        
+        <th field="bc_scanlogcreatetime" width="100">记录时间</th>
+        
+        <th field="bc_scanlogstatus" width="100">记录状态</th>
+        <th field="bc_scanlogcontent1" width="100">文本1</th>
+        <th field="bc_scanlogcontent2" width="100">文本2</th>
+        <th field="bc_scanlogcontent3" width="100">文本3</th>
+        <th field="bc_scanlogcontent4" width="100">文本4</th>
+        <th field="bc_scanlogcontent5" width="100">文本5</th>
+        
+        <th field="bc_scanlogimg1" width="100">附件1</th>
+        <th field="bc_scanlogimg2" width="100">附件2</th>
+        <th field="bc_scanlogimg3" width="100">附件3</th>
+        <th field="bc_scanlogimg4" width="100">附件4</th>
+        <th field="bc_scanlogimg5" width="100">附件5</th>
+        
     </tr>
     </thead>
 </table>
@@ -88,7 +113,9 @@
 <div id="tb">
     <a onclick="newModel()" href="#" class="easyui-linkbutton" iconCls="iconfont icon-add" plain="true">新增</a>
     <a onclick="editModel()" href="#" class="easyui-linkbutton" iconCls="iconfont icon-edit" plain="true">编辑</a>
+    <!--  
     <a onclick="deleteModel()" href="#" class="easyui-linkbutton  " iconCls="iconfont icon-delete" plain="true">删除</a>
+    -->
     <span id="enterSpan" class="searchInputArea">
           <input id="test" prompt="test" class="easyui-textbox" style="width:120px; ">
           <a href="#" class="easyui-linkbutton" data-options="iconCls:'iconfont icon-search',plain:true" onclick="queryModel()">搜索</a>

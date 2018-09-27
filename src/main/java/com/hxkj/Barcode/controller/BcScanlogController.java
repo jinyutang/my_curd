@@ -3,6 +3,8 @@ package com.hxkj.Barcode.controller;
 import com.jfinal.aop.Before;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Page;
+import com.jfinal.plugin.activerecord.Record;
+import com.jfinal.plugin.activerecord.SqlPara;
 import com.jfinal.kit.StrKit;
 import com.jfinal.plugin.activerecord.tx.Tx;
 
@@ -34,9 +36,15 @@ public class BcScanlogController extends BaseController{
         public void query(){
             int pageNumber=getAttr("pageNumber");
             int pageSize=getAttr("pageSize");
-            String where=getAttr(Constant.SEARCH_SQL);
-            Page<BcScanlog> bcScanlogPage=BcScanlog.dao.page(pageNumber,pageSize,where);
-            renderDatagrid(bcScanlogPage);
+//            String where=getAttr(Constant.SEARCH_SQL);
+//            Page<BcScanlog> bcScanlogPage=BcScanlog.dao.page(pageNumber,pageSize,where);
+//            renderDatagrid(bcScanlogPage);
+            String sql = "select bc_barcode.*,bc_scanlog.*,bc_user.*\r\n" + 
+                    "from bc_barcode ,bc_scanlog,bc_user\r\n" + 
+                    "where bc_scanlog.bc_barcode_idbc_barcode = bc_barcode.idbc_barcode \r\n" + 
+                    "and bc_scanlog.bc_user_idbc_user = bc_user.idbc_user";
+            Page<Record> pageData = Db.paginate(pageNumber, pageSize, sql, "");
+            renderDatagrid(pageData);
         }
 
 
