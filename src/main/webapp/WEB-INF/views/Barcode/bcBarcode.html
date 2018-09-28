@@ -48,8 +48,9 @@
     /*条件查询*/
     function queryModel() {
         var queryParams = {};
-        queryParams['search_LIKE_test'] = $("#test").textbox("getValue");
-
+        queryParams['search_EQ_bc_barcodesn'] = $("#bc_barcodesn").textbox("getValue");
+        queryParams['search_EQ_bc_barcoderole'] = $("#bc_barcoderole").textbox("getValue");
+        queryParams['search_EQ_bc_barcodedel'] = $("#bc_barcodedel").textbox("getValue");
         /*load 从第一页加载，reload 重载本页，此处要用load*/
         $('#dg').datagrid('load', queryParams);
     }
@@ -111,7 +112,18 @@
     <a onclick="deleteModel()" href="#" class="easyui-linkbutton  " iconCls="iconfont icon-delete" plain="true">删除</a>
     -->
     <span id="enterSpan" class="searchInputArea">
-          <input id="test" prompt="test" class="easyui-textbox" style="width:120px; ">
+          <input id="bc_barcodesn" prompt="设备码" class="easyui-textbox" style="width:120px; ">
+          <select id="bc_barcoderole" prompt="角色" class="easyui-combobox" style="width:120px; ">
+          		<option value=""></option>
+				<option value="保洁">保洁</option>
+				<option value="保安">保安</option>
+				<option value="工程师">工程师</option>
+          </select>
+          <select id="bc_barcodedel" prompt="是否有效" class="easyui-combobox" style="width:120px; ">
+          		<option value=""></option>
+				<option value="0">有效</option>
+				<option value="1">禁用</option>
+          </select>
           <a href="#" class="easyui-linkbutton" data-options="iconCls:'iconfont icon-search',plain:true" onclick="queryModel()">搜索</a>
     </span>
 </div>

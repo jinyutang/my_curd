@@ -11,6 +11,9 @@ CREATE TABLE IF NOT EXISTS `my_curd`.`bc_user` (
   UNIQUE INDEX `bc_username_UNIQUE` (`bc_username` ASC))
 ENGINE = InnoDB;
 
+ALTER TABLE `my_curd`.`bc_user` 
+ADD COLUMN `bc_usermobile` VARCHAR(45) NULL AFTER `bc_usertoken`;
+
 CREATE TABLE IF NOT EXISTS `my_curd`.`bc_barcode` (
   `idbc_barcode` VARCHAR(128) NOT NULL,
   `bc_barcodesn` VARCHAR(128) NOT NULL,

@@ -36,13 +36,16 @@ public class BcScanlogController extends BaseController{
         public void query(){
             int pageNumber=getAttr("pageNumber");
             int pageSize=getAttr("pageSize");
-//            String where=getAttr(Constant.SEARCH_SQL);
+            String where=getAttr(Constant.SEARCH_SQL);
 //            Page<BcScanlog> bcScanlogPage=BcScanlog.dao.page(pageNumber,pageSize,where);
 //            renderDatagrid(bcScanlogPage);
-            String sql = "select bc_barcode.*,bc_scanlog.*,bc_user.*\r\n" + 
-                    "from bc_barcode ,bc_scanlog,bc_user\r\n" + 
-                    "where bc_scanlog.bc_barcode_idbc_barcode = bc_barcode.idbc_barcode \r\n" + 
-                    "and bc_scanlog.bc_user_idbc_user = bc_user.idbc_user";
+            String sql = " select bc_barcode.*,bc_scanlog.*,bc_user.* " + 
+                    " from bc_barcode, bc_scanlog, bc_user " + 
+                    " where bc_scanlog.bc_barcode_idbc_barcode = bc_barcode.idbc_barcode " + 
+                    " and bc_scanlog.bc_user_idbc_user = bc_user.idbc_user ";
+            if (!where.equals("")) {
+                sql += " and " + where;
+            }
             Page<Record> pageData = Db.paginate(pageNumber, pageSize, sql, "");
             renderDatagrid(pageData);
         }

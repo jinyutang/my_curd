@@ -81,5 +81,13 @@ public abstract class BaseBcUser<M extends BaseBcUser<M>> extends Model<M> imple
    public java.lang.String getBcUsertoken() {
        return get("bc_usertoken");
    }
+   
+   // bc_usermobile
+   public void setBcUsermobile(java.lang.String bcUsermobile) {
+       set("bc_usermobile", bcUsermobile);
+   }
+   public java.lang.String getBcUsermobile(){
+       return get("bc_usermobile");
+   }
 
 }

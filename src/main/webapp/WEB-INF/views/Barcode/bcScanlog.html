@@ -17,7 +17,7 @@
         if (rows.length==1) {
             var row = rows[0];
             /*有且只有一个主键*/
-            popup.openIframe('编辑', '${ctx!}/bcScanlog/newModel?idbc_scanlog=' + row.idbc_scanlog, '800px', '500px');
+            popup.openIframe('编辑', '${ctx!}/bcScanlog/newModel?idbc_scanlog=' + row.idbc_scanlog, '1600px', '800px');
         } else {
             popup.msg('请选择一行数据进行编辑');
         }
@@ -48,8 +48,10 @@
     /*条件查询*/
     function queryModel() {
         var queryParams = {};
-        queryParams['search_LIKE_test'] = $("#test").textbox("getValue");
-
+        queryParams['search_EQ_bc_username'] = $("#bc_username").textbox("getValue");
+        queryParams['search_EQ_bc_barcodesn'] = $("#bc_barcodesn").textbox("getValue");
+        queryParams['search_EQ_bc_barcoderole'] = $("#bc_barcoderole").textbox("getValue");
+        queryParams['search_EQ_bc_scanlogstatus'] = $("#bc_scanlogstatus").textbox("getValue");
         /*load 从第一页加载，reload 重载本页，此处要用load*/
         $('#dg').datagrid('load', queryParams);
     }
@@ -69,6 +71,14 @@
 		}
 		return 'Error';
     }
+    function scanlogStatus(data) {
+    	switch(data){
+			case  '0': return '正常';
+			case  '1': return '异常';
+		}
+		return 'Error';
+    }
+    
 </script>
 <table id="dg" class="easyui-datagrid"
        url="${ctx!}/bcScanlog/query"
@@ -93,7 +103,7 @@
         
         <th field="bc_scanlogcreatetime" width="100">记录时间</th>
         
-        <th field="bc_scanlogstatus" width="100">记录状态</th>
+        <th field="bc_scanlogstatus" width="100" data-options="formatter:scanlogStatus">记录状态</th>
         <th field="bc_scanlogcontent1" width="100">文本1</th>
         <th field="bc_scanlogcontent2" width="100">文本2</th>
         <th field="bc_scanlogcontent3" width="100">文本3</th>
@@ -111,13 +121,22 @@
 </table>
 
 <div id="tb">
-    <a onclick="newModel()" href="#" class="easyui-linkbutton" iconCls="iconfont icon-add" plain="true">新增</a>
+	<!-- 
+	<a onclick="newModel()" href="#" class="easyui-linkbutton" iconCls="iconfont icon-add" plain="true">新增</a>
+	-->
     <a onclick="editModel()" href="#" class="easyui-linkbutton" iconCls="iconfont icon-edit" plain="true">编辑</a>
     <!--  
     <a onclick="deleteModel()" href="#" class="easyui-linkbutton  " iconCls="iconfont icon-delete" plain="true">删除</a>
     -->
     <span id="enterSpan" class="searchInputArea">
-          <input id="test" prompt="test" class="easyui-textbox" style="width:120px; ">
+          <input id="bc_username" prompt="记录人" class="easyui-textbox" style="width:120px; ">
+          <input id="bc_barcodesn" prompt="设备码" class="easyui-textbox" style="width:120px; ">
+          <input id="bc_barcoderole" prompt="设备角色" class="easyui-textbox" style="width:120px; ">
+          <select id="bc_scanlogstatus" prompt="记录状态" class="easyui-combobox" style="width:120px; ">
+          		<option value=""></option>
+				<option value="0">正常</option>
+				<option value="1">异常</option>
+          </select>
           <a href="#" class="easyui-linkbutton" data-options="iconCls:'iconfont icon-search',plain:true" onclick="queryModel()">搜索</a>
     </span>
 </div>

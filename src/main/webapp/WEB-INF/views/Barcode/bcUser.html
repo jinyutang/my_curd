@@ -48,8 +48,9 @@
     /*条件查询*/
     function queryModel() {
         var queryParams = {};
-        queryParams['search_LIKE_test'] = $("#test").textbox("getValue");
-
+        queryParams['search_LIKE_bc_username'] = $("#bc_username").textbox("getValue");
+        queryParams['search_EQ_bc_userrole'] = $("#bc_userrole").textbox("getValue");
+        queryParams['search_EQ_bc_userdel'] = $("#bc_userdel").textbox("getValue");
         /*load 从第一页加载，reload 重载本页，此处要用load*/
         $('#dg').datagrid('load', queryParams);
     }
@@ -77,6 +78,7 @@
         <!--有且只有一个主键-->
         <th data-options="field:'idbc_user',checkbox:true"></th>
         <th field="bc_username" width="100">用户名</th>
+        <th field="bc_usermobile" width="100">电话</th>
         <!--  
         <th field="bc_usepw" width="100">bc_usepw</th>
         -->
@@ -98,7 +100,18 @@
     <a onclick="deleteModel()" href="#" class="easyui-linkbutton  " iconCls="iconfont icon-delete" plain="true">删除</a>
     -->
     <span id="enterSpan" class="searchInputArea">
-          <input id="test" prompt="test" class="easyui-textbox" style="width:120px; ">
+          <input id="bc_username" prompt="用户名" class="easyui-textbox" style="width:120px; ">
+          <select id="bc_userrole" prompt="角色" class="easyui-combobox" style="width:120px; ">
+          		<option value=""></option>
+				<option value="保洁">保洁</option>
+				<option value="保安">保安</option>
+				<option value="工程师">工程师</option>
+          </select>
+          <select id="bc_userdel" prompt="是否有效" class="easyui-combobox" style="width:120px; ">
+          		<option value=""></option>
+				<option value="0">有效</option>
+				<option value="1">禁用</option>
+          </select>
           <a href="#" class="easyui-linkbutton" data-options="iconCls:'iconfont icon-search',plain:true" onclick="queryModel()">搜索</a>
     </span>
 </div>
