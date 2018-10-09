@@ -59,4 +59,22 @@ CREATE TABLE IF NOT EXISTS `my_curd`.`bc_scanlog` (
     REFERENCES `my_curd`.`bc_barcode` (`idbc_barcode`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-ENGINE = InnoDB
+ENGINE = InnoDB;
+
+CREATE TABLE `bc_events` (
+	`idbc_events` varchar(128) NOT NULL,
+	`bc_eventname` varchar(128) NULL,
+	`bc_eventlocation` varchar(256) NULL,
+	`bc_eventtitle` varchar(128) NULL,
+	`bc_eventcontent` varchar(256) NULL,
+	`bc_eventf1` varchar(256) NULL,
+	`bc_eventf2` varchar(256) NULL,
+	`bc_eventf3` varchar(256) NULL,
+	`bc_eventf4` varchar(256) NULL,
+	`bc_eventf5` varchar(256) NULL,
+	`bc_eventdel` tinyint NULL,
+	`bc_eventcreatetime` datetime NULL,
+	PRIMARY KEY (`idbc_events`)
+) ENGINE=InnoDB
+DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
+COMMENT='重大事件';

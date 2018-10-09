@@ -1,31 +1,66 @@
+服务器地址：http://116.62.151.195:8080/
+
+正常应答code:200
+失败或异常code:400
+
+用户头像文件名称存储到oss上, 发在 head目录下，文件名称为  [用户id].jpg
+其他用户拍照的文件存储到photo目录下,文件名称为[用户id+时间戳].jpg
+
 用户登录(用户名密码登录)
-url:/bcApp/login
+url:/login
 参数：username
-参数：password
+参数：password   实际值为SHA1(password)
 
 用户登录(Token登录)
-url:/bcApp/loginByToken
-参数：username
-参数：password
+url:/loginByToken
+参数：token
 
 修改密码
-url:/bcApp/changePW
+url:/changePW
 参数：username
 参数：password
 参数：newpassword
 参数：token
 
 用户可扫二维码
-url:/bcApp/userBarCode
+url:/userBarcode
 参数：token
 参数：pageNumber   默认值：1
 参数：pageSize     默认值：50
 
 用户角色
-url:/bcApp/userRole
+url:/userRole
 
 用户扫码日志
-url:/bcApp/userScanLog
+url:/userScanLog
 参数：token
 参数：pageNumber   默认值：1
 参数：pageSize     默认值：50
+
+用户扫码提交
+当前先将扫码的文件提交
+url:/userScan
+参数：token
+参数：IdbcScanlog
+参数：BcScanlogstatus
+参数：BcScanlogimg1
+参数：BcScanlogimg2
+参数：BcScanlogimg3
+参数：BcScanlogimg4
+参数：BcScanlogimg5
+参数：BcScanlogcontent1
+参数：BcScanlogcontent2
+参数：BcScanlogcontent3
+参数：BcScanlogcontent4
+参数：BcScanlogcontent5
+参数：IdbcBarcode
+
+大事件
+url:/bigEvents
+参数：token
+参数：pageNumber   默认值：1
+参数：pageSize     默认值：50
+
+OSS上传下载sts凭证
+url:/sts
+参数：token
