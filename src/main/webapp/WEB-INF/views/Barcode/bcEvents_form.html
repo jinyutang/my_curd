@@ -1,0 +1,140 @@
+<!-- 生成时间： 2018-10-09 13:37:35 -->
+<#include "/WEB-INF/views/common/common.html"/><@layout>
+<link rel="stylesheet" href="${ctx!}/res/css/form.css">
+<link rel="stylesheet" href="${ctx!}/res/pure/tables-min.css">
+<script src="${ctx!}/res/js/util.js"></script>
+<script>
+    function saveAction() {
+        var url;
+
+        /*有且只有一个主键*/
+        var idbc_eventsVal = $('#idbc_events').val();
+
+        if (isEmpty(idbc_eventsVal)) {
+            url = '${ctx!}/bcEvents/addAction';
+        } else {
+            url = '${ctx!}/bcEvents/updateAction';
+        }
+
+        $('#modelForm').form('submit', {
+            url: url,
+            onSubmit: function() {
+                return $(this).form('validate');
+            },
+            success: function (data) {
+                parent.popup.msg(data, function () {
+                    /* parent.window.location.reload();*/
+                    parent.$("#dg").datagrid("reload");
+                    parent.layer.close(parent.layer.getFrameIndex(window.name));
+                });
+            }
+        });
+    }
+</script>
+</head>
+<body style="padding: 10px 30px; ">
+<form id="modelForm" method="POST">
+    <table class=" pure-table pure-table-horizontal">
+        <!--有且只有一个主键-->
+        <input id="idbc_events" name="idbcEvents"
+               type="hidden" value="${(bcEvents.idbc_events)!}">
+        <tbody>
+            <tr>
+                <td>
+					 事件名称:
+                </td>
+                <td>
+                    <input name="bcEventname" value="${(bcEvents.bcEventname)!}" class="easyui-textbox"  data-options="required:true">
+                </td>
+            </tr>
+            <tr>
+                <td>
+					地点:
+                </td>
+                <td>
+                    <input name="bcEventlocation" value="${(bcEvents.bcEventlocation)!}" class="easyui-textbox"  data-options="required:true">
+                </td>
+            </tr>
+            <tr>
+                <td>
+					标题:
+                </td>
+                <td>
+                    <input name="bcEventtitle" value="${(bcEvents.bcEventtitle)!}" class="easyui-textbox"  data-options="required:true">
+                </td>
+            </tr>
+            <tr>
+                <td>
+					内容:
+                </td>
+                <td>
+                    <input name="bcEventcontent" value="${(bcEvents.bcEventcontent)!}" class="easyui-textbox"  data-options="required:true">
+                </td>
+            </tr>
+            <tr>
+                <td>
+					文件1:
+                </td>
+                <td>
+                    <input name="bcEventf1" value="${(bcEvents.bcEventf1)!}" class="easyui-textbox"  data-options="required:true">
+                </td>
+            </tr>
+            <tr>
+                <td>
+					文件2:
+                </td>
+                <td>
+                    <input name="bcEventf2" value="${(bcEvents.bcEventf2)!}" class="easyui-textbox"  data-options="required:true">
+                </td>
+            </tr>
+            <tr>
+                <td>
+					文件3:
+                </td>
+                <td>
+                    <input name="bcEventf3" value="${(bcEvents.bcEventf3)!}" class="easyui-textbox"  data-options="required:true">
+                </td>
+            </tr>
+            <tr>
+                <td>
+					文件4:
+                </td>
+                <td>
+                    <input name="bcEventf4" value="${(bcEvents.bcEventf4)!}" class="easyui-textbox"  data-options="required:true">
+                </td>
+            </tr>
+            <tr>
+                <td>
+					文件5:
+                </td>
+                <td>
+                    <input name="bcEventf5" value="${(bcEvents.bcEventf5)!}" class="easyui-textbox"  data-options="required:true">
+                </td>
+            </tr>
+            <tr>
+                <td>
+					是否有效:
+                </td>
+                <td>
+                    <input name="bcEventdel" value="${(bcEvents.bcEventdel)!}" class="easyui-textbox"  data-options="required:true">
+                </td>
+            </tr>
+            <!--  
+            <tr>
+                <td>
+					创建时间:
+                </td>
+                <td>
+                    <input name="bcEventcreatetime" value="${(bcEvents.bcEventcreatetime)!}" class="easyui-textbox"  data-options="required:true">
+                </td>
+            </tr>
+            -->
+        </tbody>
+    </table>
+</form>
+<div id="toolbars" style="text-align:center; margin-top: 20px;">
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'iconfont icon-save'" onclick="saveAction()">确定</a>
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'iconfont icon-cancel'"
+       onclick="parent.layer.close(parent.layer.getFrameIndex(window.name));">取消</a>
+</div>
+</@layout>

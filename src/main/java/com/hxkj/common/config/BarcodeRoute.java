@@ -5,6 +5,7 @@ package com.hxkj.common.config;
 
 import com.hxkj.Barcode.controller.BcAppController;
 import com.hxkj.Barcode.controller.BcBarcodeController;
+import com.hxkj.Barcode.controller.BcEventsController;
 import com.hxkj.Barcode.controller.BcScanlogController;
 import com.hxkj.Barcode.controller.BcUserController;
 import com.hxkj.common.constant.Constant;
@@ -25,6 +26,7 @@ public class BarcodeRoute extends Routes{
         add("/bcScanlog", BcScanlogController.class, Constant.VIEW_PATH);
         add("/bcUser", BcUserController.class, Constant.VIEW_PATH);
         add("/bcApp", BcAppController.class, Constant.VIEW_PATH);
+        add("/bcEvents", BcEventsController.class, Constant.VIEW_PATH);
     }
 
 }

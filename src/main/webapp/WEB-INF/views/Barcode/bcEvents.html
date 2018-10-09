@@ -1,0 +1,96 @@
+<!-- 生成时间： 2018-10-09 13:37:35 -->
+<#include "/WEB-INF/views/common/common.html"/> <@layout>
+<link rel="stylesheet" href="${ctx!}/res/css/list.css">
+<link rel="stylesheet" href="${ctx!}/res/layer/theme/default/layer.css">
+</head>
+<body>
+<script type="text/javascript">
+
+    /*新增 model*/
+    function newModel() {
+        popup.openIframe('新建', '${ctx!}/bcEvents/newModel', '800px', '500px');
+    }
+
+    /*编辑 model*/
+    function editModel() {
+        var rows = $("#dg").datagrid("getSelections");
+        if (rows.length==1) {
+            var row = rows[0];
+            /*有且只有一个主键*/
+            popup.openIframe('编辑', '${ctx!}/bcEvents/newModel?idbc_events=' + row.idbc_events, '800px', '500px');
+        } else {
+            popup.msg('请选择一行数据进行编辑');
+        }
+    }
+
+    /*删除 model*/
+    function deleteModel() {
+        var rows = $("#dg").datagrid("getSelections");
+        if (rows.length!=0) {
+            /*有且只有一个主键*/
+            var idbc_eventsAry =[];
+            rows.forEach(function (row) {
+                idbc_eventsAry.push(row.idbc_events);
+            });
+            popup.openConfirm(3, '删除', '您确定要删除选中的'+rows.length+'条记录吗?', function () {
+                $.post('${ctx!}/bcEvents/deleteAction?idbc_eventss='+idbc_eventsAry.splice(',') , function (data) {
+                    popup.msg(data, function () {
+                        $('#dg').datagrid('reload');
+                    });
+                }, "text").error(function(){ popup.errMsg(); });
+            });
+
+        } else {
+            popup.msg('请至少选择一行进行删除');
+        }
+    }
+
+    /*条件查询*/
+    function queryModel() {
+        var queryParams = {};
+        queryParams['search_LIKE_test'] = $("#test").textbox("getValue");
+
+        /*load 从第一页加载，reload 重载本页，此处要用load*/
+        $('#dg').datagrid('load', queryParams);
+    }
+</script>
+<table id="dg" class="easyui-datagrid"
+       url="${ctx!}/bcEvents/query"
+       data-options="onDblClickRow:editModel"
+       toolbar="#tb" rownumbers="true" border="false"
+       fit="true"    fitColumns="true"
+       striped="true"
+       pagination="true"
+       ctrlSelect="true"
+       pageSize="40" pageList="[20,40]">
+    <thead>
+    <tr>
+        <!--有且只有一个主键-->
+        <th data-options="field:'idbc_events',checkbox:true"></th>
+        <th field="bc_eventname" width="100">事件名称</th>
+        <th field="bc_eventlocation" width="100">地点</th>
+        <th field="bc_eventtitle" width="100">标题</th>
+        <th field="bc_eventcontent" width="100">内容</th>
+        <th field="bc_eventf1" width="100">文件1</th>
+        <th field="bc_eventf2" width="100">文件2</th>
+        <th field="bc_eventf3" width="100">文件3</th>
+        <th field="bc_eventf4" width="100">文件4</th>
+        <th field="bc_eventf5" width="100">文件5</th>
+        <th field="bc_eventdel" width="100">是否有效</th>
+        <th field="bc_eventcreatetime" width="100">bc_eventcreatetime</th>
+    </tr>
+    </thead>
+</table>
+
+<div id="tb">
+    <a onclick="newModel()" href="#" class="easyui-linkbutton" iconCls="iconfont icon-add" plain="true">新增</a>
+    <a onclick="editModel()" href="#" class="easyui-linkbutton" iconCls="iconfont icon-edit" plain="true">编辑</a>
+    <a onclick="deleteModel()" href="#" class="easyui-linkbutton  " iconCls="iconfont icon-delete" plain="true">删除</a>
+    <span id="enterSpan" class="searchInputArea">
+          <input id="test" prompt="test" class="easyui-textbox" style="width:120px; ">
+          <a href="#" class="easyui-linkbutton" data-options="iconCls:'iconfont icon-search',plain:true" onclick="queryModel()">搜索</a>
+    </span>
+</div>
+<script src="${ctx!}/res/layer/layer.js"></script>
+<script src="${ctx!}/res/js/popup-tools.js"></script>
+</@layout>

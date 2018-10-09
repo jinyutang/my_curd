@@ -1,6 +1,7 @@
 package com.hxkj.common.config;
 
 import com.hxkj.Barcode.model.BcBarcode;
+import com.hxkj.Barcode.model.BcEvents;
 import com.hxkj.Barcode.model.BcScanlog;
 import com.hxkj.Barcode.model.BcUser;
 import com.hxkj.auth.model.*;
@@ -63,6 +64,7 @@ public class MappingKit {
         arp.addMapping("bc_barcode", "idbc_barcode", BcBarcode.class);
         arp.addMapping("bc_user", "idbc_user", BcUser.class);
         arp.addMapping("bc_scanlog", "idbc_scanlog", BcScanlog.class);
+        arp.addMapping("bc_events", "idbc_events", BcEvents.class);
     }
 }
 
