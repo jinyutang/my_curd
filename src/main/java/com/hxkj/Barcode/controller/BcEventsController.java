@@ -3,7 +3,6 @@ package com.hxkj.Barcode.controller;
 import com.jfinal.aop.Before;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Page;
-import com.jfinal.kit.HashKit;
 import com.jfinal.kit.StrKit;
 import com.jfinal.plugin.activerecord.tx.Tx;
 
@@ -11,23 +10,20 @@ import com.hxkj.common.constant.Constant;
 import com.hxkj.common.controller.BaseController;
 import com.hxkj.common.util.Identities;
 import com.hxkj.common.util.search.SearchSql;
-
-import java.util.Date;
-
-import com.hxkj.Barcode.model.BcUser;
+import com.hxkj.Barcode.model.BcEvents;
 
 /**
- * bc_user 控制器
+ * bc_events 控制器
  * @author
- * @date 2018-09-21 13:39:33
+ * @date 2018-10-15 20:30:56
  */
-public class BcUserController extends BaseController{
+public class BcEventsController extends BaseController{
 
         /**
          * 列表页
          */
         public void index(){
-          render("Barcode/bcUser.html");
+          render("Barcode/bcEvents.html");
         }
 
 
@@ -39,8 +35,8 @@ public class BcUserController extends BaseController{
             int pageNumber=getAttr("pageNumber");
             int pageSize=getAttr("pageSize");
             String where=getAttr(Constant.SEARCH_SQL);
-            Page<BcUser> bcUserPage=BcUser.dao.page(pageNumber,pageSize,where);
-            renderDatagrid(bcUserPage);
+            Page<BcEvents> bcEventsPage=BcEvents.dao.page(pageNumber,pageSize,where);
+            renderDatagrid(bcEventsPage);
         }
 
 
@@ -49,12 +45,12 @@ public class BcUserController extends BaseController{
          */
         public void newModel(){
             // 有且只有一个主键，且主键类型为 字符串，否则需要手动修改
-            String idbc_user=getPara("idbc_user");
-            if(StrKit.notBlank(idbc_user)){
-                BcUser bcUser=BcUser.dao.findById(idbc_user);
-                setAttr("bcUser",bcUser);
+            String idbc_events=getPara("idbc_events");
+            if(StrKit.notBlank(idbc_events)){
+                BcEvents bcEvents=BcEvents.dao.findById(idbc_events);
+                setAttr("bcEvents",bcEvents);
             }
-            render("Barcode/bcUser_form.html");
+            render("Barcode/bcEvents_form.html");
         }
 
 
@@ -62,12 +58,9 @@ public class BcUserController extends BaseController{
          * 增加
          */
         public void addAction(){
-            BcUser bcUser=getBean(BcUser.class,"");
-            bcUser.set("idbc_user",Identities.id());
-            bcUser.setBcUsepw(HashKit.sha1(bcUser.getBcUsepw()));
-            bcUser.setBcUsertoken(HashKit.sha1(bcUser.getBcUsepw()));
-            bcUser.setCreatetime(new Date());
-            boolean saveFlag=bcUser.save();
+            BcEvents bcEvents=getBean(BcEvents.class,"");
+            bcEvents.set("idbc_events",Identities.id());
+            boolean saveFlag=bcEvents.save();
             if(saveFlag){
                 renderText(Constant.ADD_SUCCESS);
             }else{
@@ -80,13 +73,13 @@ public class BcUserController extends BaseController{
          */
         @Before(Tx.class)
         public void deleteAction(){
-            String idbc_users = getPara("idbc_users");
-            if(idbc_users.contains(",")){
-                idbc_users = idbc_users.replaceAll(",","','");
-                String deleteSql = "delete from bc_user where idbc_user  in ( '" + idbc_users + "' ) ";
+            String idbc_eventss = getPara("idbc_eventss");
+            if(idbc_eventss.contains(",")){
+                idbc_eventss = idbc_eventss.replaceAll(",","','");
+                String deleteSql = "delete from bc_events where idbc_events  in ( '" + idbc_eventss + "' ) ";
                 Db.update(deleteSql);
             }else{
-                BcUser.dao.deleteById(idbc_users);
+                BcEvents.dao.deleteById(idbc_eventss);
             }
             renderText(Constant.DELETE_SUCCESS);
         }
@@ -95,13 +88,8 @@ public class BcUserController extends BaseController{
          * 修改
          */
         public void updateAction(){
-            BcUser bcUser=getBean(BcUser.class,"");
-            if (bcUser.getBcUsepw().length()!=40) {
-                bcUser.setBcUsepw(HashKit.sha1(bcUser.getBcUsepw()));
-                bcUser.setBcUsertoken(HashKit.sha1(bcUser.getBcUsepw()));
-            }
-            
-            boolean updateFlag=bcUser.update();
+            BcEvents bcEvents=getBean(BcEvents.class,"");
+            boolean updateFlag=bcEvents.update();
             if(updateFlag){
                 renderText(Constant.UPDATE_SUCCESS);
             }else{
