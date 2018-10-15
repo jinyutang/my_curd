@@ -1,4 +1,4 @@
-package com.hxkj.Barcode.model;
+﻿package com.hxkj.Barcode.model;
 
 import com.jfinal.kit.StrKit;
 import com.jfinal.plugin.activerecord.Page;

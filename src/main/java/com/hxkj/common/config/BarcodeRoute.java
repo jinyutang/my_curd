@@ -27,6 +27,7 @@ public class BarcodeRoute extends Routes{
         add("/bcScanlog", BcScanlogController.class, Constant.VIEW_PATH);
         add("/bcUser", BcUserController.class, Constant.VIEW_PATH);
         add("/bcApp", BcAppController.class, Constant.VIEW_PATH);
+        add("/bcEvents", BcEventsController.class, Constant.VIEW_PATH);
     }
 
 }
