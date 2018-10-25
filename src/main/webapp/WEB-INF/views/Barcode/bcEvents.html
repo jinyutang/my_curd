@@ -8,7 +8,7 @@
 
     /*新增 model*/
     function newModel() {
-        popup.openIframe('新建', '${ctx!}/bcEvents/newModel', '800px', '500px');
+        popup.openIframe('新建', '${ctx!}/bcEvents/newModel', '1600px', '800px');
     }
 
     /*编辑 model*/
@@ -17,7 +17,7 @@
         if (rows.length==1) {
             var row = rows[0];
             /*有且只有一个主键*/
-            popup.openIframe('编辑', '${ctx!}/bcEvents/newModel?idbc_events=' + row.idbc_events, '800px', '500px');
+            popup.openIframe('编辑', '${ctx!}/bcEvents/newModel?idbc_events=' + row.idbc_events, '1600px', '800px');
         } else {
             popup.msg('请选择一行数据进行编辑');
         }

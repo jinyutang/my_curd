@@ -30,6 +30,10 @@ url:/userBarcode
 参数：pageNumber   默认值：1
 参数：pageSize     默认值：50
 
+所有的二维码(经理角色可调用)
+url:/allBarcode
+参数：token
+
 用户角色
 url:/userRole
 
@@ -65,4 +69,8 @@ url:/bigEvents
 
 OSS上传下载sts凭证
 url:/sts
+参数：token
+
+所有用户列表(经理角色可以调用)
+url:/allusers
 参数：token

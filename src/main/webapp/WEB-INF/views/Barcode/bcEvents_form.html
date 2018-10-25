@@ -3,7 +3,85 @@
 <link rel="stylesheet" href="${ctx!}/res/css/form.css">
 <link rel="stylesheet" href="${ctx!}/res/pure/tables-min.css">
 <script src="${ctx!}/res/js/util.js"></script>
+
+
 <script>
+$(function(){
+	var ossclient = null;
+	
+    OSS.urllib.request("http://116.62.151.195:8080/bcapp/sts?token=6d0f4be160258358484113ff77ad41e62ec11031", {method: 'GET'}, (err, response) => {
+    	if (err) {
+  	    	return alert(err);
+        }
+        try {
+          result = JSON.parse(response);
+          ossclient = new OSS({
+        	    accessKeyId: result.AccessKeyId,
+        		accessKeySecret: result.AccessKeySecret,
+        		stsToken: result.SecurityToken,
+        		endpoint: result.Endpoint,
+        		bucket: result.Bucket
+        	  });
+        } catch (e) {
+            errmsg = 'parse sts response info error: ' + e.message;
+            return alert(errmsg);
+        }
+     });
+     
+     
+    document.getElementById('file1').addEventListener('change', function (e) {
+    	var name = "Event/"+Math.random()*1000000000000000000+"."+e.target.files[0].name.split('.')[1];
+    	ossclient.multipartUpload(name, e.target.files[0]).then(function (result) {
+    		$("#bcEventf1").textbox({value:name,editable:false});
+			console.log(result);
+		  }).catch(function (err) {
+			console.log(err);
+		  });
+    });
+    
+    document.getElementById('file2').addEventListener('change', function (e) {
+    	var name = "Event/"+Math.random()*1000000000000000000+"."+e.target.files[0].name.split('.')[1];
+    	ossclient.multipartUpload(name, e.target.files[0]).then(function (result) {
+    		$("#bcEventf2").textbox({value:name,editable:false});
+			console.log(result);
+		  }).catch(function (err) {
+			console.log(err);
+		  });
+    });
+    
+    document.getElementById('file3').addEventListener('change', function (e) {
+    	var name = "Event/"+Math.random()*1000000000000000000+"."+e.target.files[0].name.split('.')[1];
+    	ossclient.multipartUpload(name, e.target.files[0]).then(function (result) {
+    		$("#bcEventf3").textbox({value:name,editable:false});
+			console.log(result);
+		  }).catch(function (err) {
+			console.log(err);
+		  });
+    });
+    
+    document.getElementById('file4').addEventListener('change', function (e) {
+    	var name = "Event/"+Math.random()*1000000000000000000+"."+e.target.files[0].name.split('.')[1];
+    	ossclient.multipartUpload(name, e.target.files[0]).then(function (result) {
+    		$("#bcEventf4").textbox({value:name,editable:false});
+			console.log(result);
+		  }).catch(function (err) {
+			console.log(err);
+		  });
+    });
+    
+    document.getElementById('file5').addEventListener('change', function (e) {
+    	var name = "Event/"+Math.random()*1000000000000000000+"."+e.target.files[0].name.split('.')[1];
+    	ossclient.multipartUpload(name, e.target.files[0]).then(function (result) {
+    		$("#bcEventf5").textbox({value:name,editable:false});
+			console.log(result);
+		  }).catch(function (err) {
+			console.log(err);
+		  });
+    });
+    
+});
+
+
     function saveAction() {
         var url;
 
@@ -30,6 +108,9 @@
             }
         });
     }
+    
+    
+    
 </script>
 </head>
 <body style="padding: 10px 30px; ">
@@ -44,7 +125,7 @@
 					 事件名称:
                 </td>
                 <td>
-                    <input name="bcEventname" value="${(bcEvents.bcEventname)!}" class="easyui-textbox"  data-options="required:true">
+                    <input name="bcEventname" value="${(bcEvents.bcEventname)!}" class="easyui-textbox" data-options="required:true">
                 </td>
             </tr>
             <tr>
@@ -52,7 +133,7 @@
 					地点:
                 </td>
                 <td>
-                    <input name="bcEventlocation" value="${(bcEvents.bcEventlocation)!}" class="easyui-textbox"  data-options="required:true">
+                    <input name="bcEventlocation" value="${(bcEvents.bcEventlocation)!}" class="easyui-textbox" data-options="required:true">
                 </td>
             </tr>
             <tr>
@@ -60,7 +141,7 @@
 					标题:
                 </td>
                 <td>
-                    <input name="bcEventtitle" value="${(bcEvents.bcEventtitle)!}" class="easyui-textbox"  data-options="required:true">
+                    <input name="bcEventtitle" value="${(bcEvents.bcEventtitle)!}" class="easyui-textbox" data-options="required:true">
                 </td>
             </tr>
             <tr>
@@ -68,7 +149,7 @@
 					内容:
                 </td>
                 <td>
-                    <input name="bcEventcontent" value="${(bcEvents.bcEventcontent)!}" class="easyui-textbox"  data-options="required:true">
+                    <input name="bcEventcontent" value="${(bcEvents.bcEventcontent)!}" class="easyui-textbox">
                 </td>
             </tr>
             <tr>
@@ -76,7 +157,9 @@
 					文件1:
                 </td>
                 <td>
-                    <input name="bcEventf1" value="${(bcEvents.bcEventf1)!}" class="easyui-textbox"  data-options="required:true">
+					<input type="file" id="file1" />
+                    <input name="bcEventf1" id="bcEventf1" value="${(bcEvents.bcEventf1)!}" class="easyui-textbox">
+                    <a target="_blank" href="http://bcapp2018.oss-cn-hangzhou.aliyuncs.com/${(bcEvents.bcEventf1)!}">下载</a>                
                 </td>
             </tr>
             <tr>
@@ -84,7 +167,9 @@
 					文件2:
                 </td>
                 <td>
-                    <input name="bcEventf2" value="${(bcEvents.bcEventf2)!}" class="easyui-textbox"  data-options="required:true">
+                	<input type="file" id="file2" />
+                    <input name="bcEventf2" id="bcEventf2" value="${(bcEvents.bcEventf2)!}" class="easyui-textbox">
+                    <a target="_blank" href="http://bcapp2018.oss-cn-hangzhou.aliyuncs.com/${(bcEvents.bcEventf2)!}">下载</a>
                 </td>
             </tr>
             <tr>
@@ -92,7 +177,9 @@
 					文件3:
                 </td>
                 <td>
-                    <input name="bcEventf3" value="${(bcEvents.bcEventf3)!}" class="easyui-textbox"  data-options="required:true">
+                	<input type="file" id="file3" />
+                    <input name="bcEventf3" id="bcEventf3" value="${(bcEvents.bcEventf3)!}" class="easyui-textbox">
+                    <a target="_blank" href="http://bcapp2018.oss-cn-hangzhou.aliyuncs.com/${(bcEvents.bcEventf3)!}">下载</a>
                 </td>
             </tr>
             <tr>
@@ -100,7 +187,9 @@
 					文件4:
                 </td>
                 <td>
-                    <input name="bcEventf4" value="${(bcEvents.bcEventf4)!}" class="easyui-textbox"  data-options="required:true">
+                	<input type="file" id="file4" />
+                    <input name="bcEventf4" id="bcEventf4" value="${(bcEvents.bcEventf4)!}" class="easyui-textbox">
+                    <a target="_blank" href="http://bcapp2018.oss-cn-hangzhou.aliyuncs.com/${(bcEvents.bcEventf4)!}">下载</a>
                 </td>
             </tr>
             <tr>
@@ -108,12 +197,14 @@
 					文件5:
                 </td>
                 <td>
-                    <input name="bcEventf5" value="${(bcEvents.bcEventf5)!}" class="easyui-textbox"  data-options="required:true">
+                	<input type="file" id="file5" />
+                    <input name="bcEventf5" id="bcEventf5" value="${(bcEvents.bcEventf5)!}" class="easyui-textbox">
+                    <a target="_blank" href="http://bcapp2018.oss-cn-hangzhou.aliyuncs.com/${(bcEvents.bcEventf5)!}">下载</a>
                 </td>
             </tr>
             <tr>
                 <td>
-                    是否有效:
+                                                  是否有效:
                 </td>
                 <td>
                     <select name="bcEventdel" value="${(bcEvents.bcEventdel)!}" class="easyui-combobox"  data-options="required:true">
