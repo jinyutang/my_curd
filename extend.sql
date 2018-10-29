@@ -13,6 +13,10 @@ ENGINE = InnoDB;
 
 ALTER TABLE `my_curd`.`bc_user` 
 ADD COLUMN `bc_usermobile` VARCHAR(45) NULL AFTER `bc_usertoken`;
+ALTER TABLE `bc_user` 
+	ADD COLUMN `bc_alias` varchar(32) NULL DEFAULT '未填写' COMMENT '昵称';
+ALTER TABLE `bc_user` 
+	ADD COLUMN `bc_avatar` varchar(256) NULL DEFAULT '' COMMENT '头像'
 
 CREATE TABLE IF NOT EXISTS `my_curd`.`bc_barcode` (
   `idbc_barcode` VARCHAR(128) NOT NULL,
