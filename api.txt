@@ -89,3 +89,6 @@ url:/sts
 所有用户列表(经理角色可以调用)
 url:/allusers
 参数：token
+
+获取最新APP版本信息
+url:/versionApp

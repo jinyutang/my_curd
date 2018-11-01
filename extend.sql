@@ -78,3 +78,17 @@ CREATE TABLE `bc_events` (
 ) ENGINE=InnoDB
 DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
 COMMENT='重大事件';
+
+CREATE TABLE `bc_app` (
+  `idbc_app` varchar(32) DEFAULT NULL,
+  `versionName` varchar(32) DEFAULT NULL,
+  `versionCode` varchar(32) DEFAULT NULL,
+  `downloadUrl` varchar(256) DEFAULT NULL,
+  `release` varchar(32) DEFAULT NULL,
+  `comment` varchar(32) DEFAULT NULL,
+  `createtime` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='app更新下载';
+
+ALTER TABLE `bc_app` 
+	MODIFY COLUMN `idbc_app` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL FIRST,
+	ADD PRIMARY KEY(`idbc_app`);
