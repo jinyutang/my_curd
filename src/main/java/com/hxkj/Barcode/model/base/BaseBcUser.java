@@ -89,5 +89,21 @@ public abstract class BaseBcUser<M extends BaseBcUser<M>> extends Model<M> imple
    public java.lang.String getBcUsermobile(){
        return get("bc_usermobile");
    }
+   
+   // bc_alias
+   public void setBcAlias(java.lang.String bcAlias) {
+       set("bc_alias", bcAlias);
+   }
+   public java.lang.String getBcAlias(){
+       return get("bc_alias");
+   }
+   
+   // bc_avatar
+   public void setBcAvatar(java.lang.String bcAvatar) {
+       set("bc_avatar", bcAvatar);
+   }
+   public java.lang.String getBcAvatar(){
+       return get("bc_avatar");
+   }
 
 }
