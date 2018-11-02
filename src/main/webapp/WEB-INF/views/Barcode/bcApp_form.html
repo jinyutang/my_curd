@@ -1,0 +1,137 @@
+<!-- 生成时间： 2018-11-02 10:07:37 -->
+<#include "/WEB-INF/views/common/common.html"/><@layout>
+<link rel="stylesheet" href="${ctx!}/res/css/form.css">
+<link rel="stylesheet" href="${ctx!}/res/pure/tables-min.css">
+<script src="${ctx!}/res/js/util.js"></script>
+<script>
+    function saveAction() {
+        var url;
+
+        /*有且只有一个主键*/
+        var idbc_appVal = $('#idbc_app').val();
+
+        if (isEmpty(idbc_appVal)) {
+            url = '${ctx!}/bcApp/addAction';
+        } else {
+            url = '${ctx!}/bcApp/updateAction';
+        }
+
+        $('#modelForm').form('submit', {
+            url: url,
+            onSubmit: function() {
+                return $(this).form('validate');
+            },
+            success: function (data) {
+                parent.popup.msg(data, function () {
+                    /* parent.window.location.reload();*/
+                    parent.$("#dg").datagrid("reload");
+                    parent.layer.close(parent.layer.getFrameIndex(window.name));
+                });
+            }
+        });
+    }
+</script>
+
+<script>
+$(function(){
+	var ossclient = null;
+	
+    OSS.urllib.request("http://116.62.151.195:8080/bcapp/sts?token=6d0f4be160258358484113ff77ad41e62ec11031", {method: 'GET'}, (err, response) => {
+    	if (err) {
+  	    	return alert(err);
+        }
+        try {
+          result = JSON.parse(response);
+          ossclient = new OSS({
+        	    accessKeyId: result.AccessKeyId,
+        		accessKeySecret: result.AccessKeySecret,
+        		stsToken: result.SecurityToken,
+        		endpoint: result.Endpoint,
+        		bucket: result.Bucket
+        	  });
+        } catch (e) {
+            errmsg = 'parse sts response info error: ' + e.message;
+            return alert(errmsg);
+        }
+     });
+     
+     
+    document.getElementById('file1').addEventListener('change', function (e) {
+    	var name = "App/"+Math.random()*1000000000000000000+"."+e.target.files[0].name.split('.')[1];
+    	ossclient.multipartUpload(name, e.target.files[0]).then(function (result) {
+    		$("#downloadUrl").textbox({value:name,editable:false});
+			console.log(result);
+		  }).catch(function (err) {
+			console.log(err);
+		  });
+    });
+});
+</script>
+</head>
+<body style="padding: 10px 30px; ">
+<form id="modelForm" method="POST">
+    <table class=" pure-table pure-table-horizontal">
+        <!--有且只有一个主键-->
+        <input id="idbc_app" name="idbcApp"
+               type="hidden" value="${(bcApp.idbc_app)!}">
+        <tbody>
+            <tr>
+                <td>
+                    versionName:
+                </td>
+                <td>
+                    <input name="versionName" value="${(bcApp.versionName)!}" class="easyui-textbox"  data-options="required:true">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    versionCode:
+                </td>
+                <td>
+                    <input name="versionCode" value="${(bcApp.versionCode)!}" class="easyui-textbox"  data-options="required:true">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    downloadUrl:
+                </td>
+                <td>
+                	<input type="file" id="file1" />
+                    <input name="downloadUrl" id="downloadUrl" value="${(bcApp.downloadUrl)!}" class="easyui-textbox"  data-options="required:true">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    release:
+                </td>
+                <td>
+                    <input name="release" value="${(bcApp.release)!}" class="easyui-textbox"  data-options="required:true">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    comment:
+                </td>
+                <td>
+                    <input name="comment" value="${(bcApp.comment)!}" class="easyui-textbox"  data-options="required:true">
+                </td>
+            </tr>
+            <!--  
+            <tr>
+                <td>
+                    createtime:
+                </td>
+                <td>
+                    <input name="createtime" value="${(bcApp.createtime)!}" class="easyui-textbox"  data-options="required:true">
+                </td>
+            </tr>
+            -->
+        </tbody>
+    </table>
+</form>
+<div id="toolbars" style="text-align:center; margin-top: 20px;">
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'iconfont icon-save'" onclick="saveAction()">确定</a>
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'iconfont icon-cancel'"
+       onclick="parent.layer.close(parent.layer.getFrameIndex(window.name));">取消</a>
+</div>
+</@layout>

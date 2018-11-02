@@ -1,131 +1,99 @@
-/**
- * 
- */
 package com.hxkj.Barcode.controller;
 
-import java.util.HashMap;
+import com.jfinal.aop.Before;
+import com.jfinal.plugin.activerecord.Db;
+import com.jfinal.plugin.activerecord.Page;
+import com.jfinal.kit.StrKit;
+import com.jfinal.plugin.activerecord.tx.Tx;
 
-import com.hxkj.Barcode.model.BcBarcode;
-import com.hxkj.Barcode.model.BcScanlog;
-import com.hxkj.Barcode.model.BcUser;
 import com.hxkj.common.constant.Constant;
 import com.hxkj.common.controller.BaseController;
+import com.hxkj.common.util.Identities;
 import com.hxkj.common.util.search.SearchSql;
-import com.jfinal.aop.Before;
-import com.jfinal.aop.Clear;
-import com.jfinal.kit.HashKit;
-import com.jfinal.plugin.activerecord.Page;
-import com.jfinal.plugin.activerecord.Record;
+import com.hxkj.Barcode.model.BcApp;
 
 /**
- * @author yutang.jin@finisar.com
- *
+ * bc_app 控制器
+ * @author
+ * @date 2018-11-02 10:07:37
  */
-@Clear
-public class BcAppController extends BaseController {
-    
-    @Clear
-    public void login() {
-        String username = getPara("username");
-        String password = getPara("password");
-        BcUser bcUser = BcUser.dao.findByUsernameAndPassword(username, password);
-        if (null == bcUser) {
-            renderJson(Constant.APP_FAILE);
-        } else {
-            HashMap<String, Object> map = new HashMap<String, Object>();
-            map.put("code", 200);
-            map.put("data", bcUser);
-            renderJson(map);
+public class BcAppController extends BaseController{
+
+        /**
+         * 列表页
+         */
+        public void index(){
+          render("Barcode/bcApp.html");
         }
-    }
-    
-    @Clear
-    public void loginByToken() {
-        String token = getPara("token");
-        BcUser bcUser = BcUser.dao.findByToken(token);
-        if (null == bcUser) {
-            renderJson(Constant.APP_FAILE);
-        } else {
-            HashMap<String, Object> map = new HashMap<String, Object>();
-            map.put("code", 200);
-            map.put("data", bcUser);
-            renderJson(map);
+
+
+        /**
+         * 列表数据
+         */
+        @Before(SearchSql.class)
+        public void query(){
+            int pageNumber=getAttr("pageNumber");
+            int pageSize=getAttr("pageSize");
+            String where=getAttr(Constant.SEARCH_SQL);
+            Page<BcApp> bcAppPage=BcApp.dao.page(pageNumber,pageSize,where);
+            renderDatagrid(bcAppPage);
         }
-    }
-    
-    @Clear
-    public void changePW() {
-        String username = getPara("username");
-        String password = getPara("password");
-        String newpassword = getPara("newpassword");
-        String token = getPara("token");
-        BcUser bcUser = BcUser.dao.findByUsernameAndPassword(username, password);
-        
-        if (null == bcUser) {
-            renderJson(Constant.APP_FAILE);
-        } else if (!bcUser.getBcUsertoken().equals(token)) {
-            renderJson(Constant.APP_FAILE);
-        } else {
-//            bcUser.setBcUsepw(HashKit.sha1(newpassword));
-            bcUser.setBcUsepw(newpassword);
-            if (bcUser.update()) {
-                renderJson(Constant.APP_SUCCESS);
-            } else {
-                renderJson(Constant.APP_FAILE);
+
+
+        /**
+         * 打开新增或者修改弹出框
+         */
+        public void newModel(){
+            // 有且只有一个主键，且主键类型为 字符串，否则需要手动修改
+            String idbc_app=getPara("idbc_app");
+            if(StrKit.notBlank(idbc_app)){
+                BcApp bcApp=BcApp.dao.findById(idbc_app);
+                setAttr("bcApp",bcApp);
+            }
+            render("Barcode/bcApp_form.html");
+        }
+
+
+        /**
+         * 增加
+         */
+        public void addAction(){
+            BcApp bcApp=getBean(BcApp.class,"");
+            bcApp.set("idbc_app",Identities.id());
+            boolean saveFlag=bcApp.save();
+            if(saveFlag){
+                renderText(Constant.ADD_SUCCESS);
+            }else{
+                renderText(Constant.ADD_FAIL);
             }
         }
-    }
-    
-    @Clear
-    @Before(SearchSql.class)
-    public void userBarcode() {
-        String token = getPara("token");
-        int pageNumber = getAttr("pageNumber", 1);
-        int pageSize = getAttr("pageSize", 50);
-        BcUser bcUser = BcUser.dao.findByToken(token);
-//        String where = getAttr(Constant.SEARCH_SQL);
-        if (null == bcUser) {
-            renderJson(Constant.APP_FAILE);
-        } else {
-            HashMap<String, Object> map = new HashMap<String, Object>();
-            
-            String where = " where bc_barcoderole = '"+bcUser.getBcUserrole()+"' and bc_barcodeleve <= " + bcUser.getBcUserleve();
-            
-            Page<BcBarcode> page = BcBarcode.dao.page(pageNumber, pageSize, where);
-            map.put("code", 200);
-            map.put("data", page);
-            renderJson(map);
+
+        /**
+         * 删除
+         */
+        @Before(Tx.class)
+        public void deleteAction(){
+            String idbc_apps = getPara("idbc_apps");
+            if(idbc_apps.contains(",")){
+                idbc_apps = idbc_apps.replaceAll(",","','");
+                String deleteSql = "delete from bc_app where idbc_app  in ( '" + idbc_apps + "' ) ";
+                Db.update(deleteSql);
+            }else{
+                BcApp.dao.deleteById(idbc_apps);
+            }
+            renderText(Constant.DELETE_SUCCESS);
         }
-    }
-    
-    @Clear
-    @Before(SearchSql.class)
-    public void userRole() {
-        HashMap<String, Object> map = new HashMap<String, Object>();
-        map.put("code", 200);
-        String[] data = new String[] {"保洁","保安","工程师"};
-        map.put("data", data);
-        renderJson(map);
-    }
-    
-    @Clear
-    @Before(SearchSql.class)
-    public void userScanLog() {
-        String token = getPara("token");
-        int pageNumber = getAttr("pageNumber", 1);
-        int pageSize = getAttr("pageSize", 50);
-        BcUser bcUser = BcUser.dao.findByToken(token);
-        //String where = getAttr(Constant.SEARCH_SQL);
-        if (null == bcUser) {
-            renderJson(Constant.APP_FAILE);
-        } else {
-            HashMap<String, Object> map = new HashMap<String, Object>();
-            
-            Page<Record> page = BcScanlog.dao.userScanLog(pageNumber, pageSize, token);
-            map.put("code", 200);
-            map.put("data", page);
-            renderJson(map);
+
+        /**
+         * 修改
+         */
+        public void updateAction(){
+            BcApp bcApp=getBean(BcApp.class,"");
+            boolean updateFlag=bcApp.update();
+            if(updateFlag){
+                renderText(Constant.UPDATE_SUCCESS);
+            }else{
+                renderText(Constant.UPDATE_FAIL);
+            }
         }
-    }
-    
 }
