@@ -82,6 +82,14 @@ public abstract class BaseBcBarcode<M extends BaseBcBarcode<M>> extends Model<M>
        return get("bc_barcodedescription");
    }
 
+   // bc_barcodeimage  
+   public void setBcBarcodeimg(java.lang.String bcBarcodeimg) {
+       set("bc_barcodeimg", bcBarcodeimg);
+   }
+   public java.lang.String getBcBarcodeimg() {
+       return get("bc_barcodeimg");
+   }
+
 
    // bc_barcodedel  
    public void setBcBarcodedel(java.lang.Integer bcBarcodedel) {

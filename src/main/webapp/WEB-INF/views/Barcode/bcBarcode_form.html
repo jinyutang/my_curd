@@ -31,6 +31,43 @@
         });
     }
 </script>
+
+<script>
+$(function(){
+	var ossclient = null;
+
+    OSS.urllib.request("http://116.62.151.195:8080/bcapp/sts?token=6d0f4be160258358484113ff77af41e62ec11031", {method: 'GET'}, (err, response) => {
+    	if (err) {
+  	    	return alert(err);
+        }
+        try {
+          result = JSON.parse(response);
+          ossclient = new OSS({
+        	    accessKeyId: result.AccessKeyId,
+        		accessKeySecret: result.AccessKeySecret,
+        		stsToken: result.SecurityToken,
+        		endpoint: result.Endpoint,
+        		bucket: result.Bucket
+        	  });
+        } catch (e) {
+            errmsg = 'parse sts response info error: ' + e.message;
+            return alert(errmsg);
+        }
+     });
+     
+     
+    document.getElementById('file1').addEventListener('change', function (e) {
+    	var name = "Barcode/"+Math.random()*1000000000000000000+"."+e.target.files[0].name.split('.')[1];
+    	ossclient.multipartUpload(name, e.target.files[0]).then(function (result) {
+    		$("#image").textbox({value:name,editable:false});
+			console.log(result);
+		  }).catch(function (err) {
+			console.log(err);
+		  });
+    });
+});
+</script>
+
 </head>
 <body style="padding: 10px 30px; ">
 <form id="modelForm" method="POST">
@@ -116,6 +153,15 @@
 					    <option value="2">T2</option>
 					    <option value="3">T3</option>
 					</select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                                                   图片:
+                </td>
+                <td>
+                	<input type="file" id="file1" />
+                    <input name="bcBarcodeimg" id="image" value="${(bcBarcode.bcBarcodeimg)!}" class="easyui-textbox"  data-options="required:true">
                 </td>
             </tr>
             <tr>

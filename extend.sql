@@ -96,3 +96,5 @@ CREATE TABLE `bc_app` (
 ALTER TABLE `bc_app` 
 	MODIFY COLUMN `idbc_app` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL FIRST,
 	ADD PRIMARY KEY(`idbc_app`);
+ALTER TABLE `bc_barcode` 
+	ADD COLUMN `bc_barcodeimg` varchar(256) NULL DEFAULT '' AFTER `bc_barcodedel`;
