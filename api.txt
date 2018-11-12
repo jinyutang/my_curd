@@ -52,6 +52,8 @@ url:/userRole
 url:/userScanLog
 参数：token
 参数：date 日期时间戳毫秒，默认值0  某日的扫码记录，查询2018-10-26日，就传2018-10-26 00:00:00 的时间戳，不传或传0则查询所有
+参数：dateBegin 日期时间戳毫秒，默认值0 组合dateEnd一起使用
+参数：dateEnd 日期时间戳毫秒，默认值0
 参数：idbcbarcode   二维码id,默认值"" 查询某个二维码的扫码记录（等于某个位置的二维码记录）
 参数：pageNumber   默认值：1
 参数：pageSize     默认值：50
