@@ -39,6 +39,12 @@ url:/userBarcode
 url:/allBarcode
 参数：token
 
+
+所有的二维码地址
+url:/allBarcode_location
+参数：token
+
+
 用户角色
 url:/userRole
 
